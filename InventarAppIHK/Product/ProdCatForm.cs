@@ -33,7 +33,7 @@ namespace InventarAppIHK
             {
                 comboCategory.Items.Clear();
                 MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=;database=inventar");
-                string sql = "select categoryname from category";
+                string sql = "select categoryName from category";
                 conn.Open();
                 MySqlCommand comm = new MySqlCommand(sql, conn);
                 MySqlDataReader dr = comm.ExecuteReader();

@@ -38,11 +38,11 @@ namespace InventarAppIHK
         /// <param name="category"></param>
         public static void AddCategory(Category category)
         {
-            string insert = "INSERT INTO category(categoryname) VALUES (@categoryname)";
+            string insert = "INSERT INTO category(categoryName) VALUES (@categoryName)";
             MySqlConnection con = GetConnection();
             MySqlCommand cmd = new MySqlCommand(insert, con);
             cmd.CommandType = CommandType.Text;
-            cmd.Parameters.Add("@categoryname", MySqlDbType.VarChar).Value = category.CategoryName;
+            cmd.Parameters.Add("@categoryName", MySqlDbType.VarChar).Value = category.CategoryName;
             try
             {
                 cmd.ExecuteNonQuery();
@@ -187,7 +187,7 @@ namespace InventarAppIHK
         }
     }
 }
-//https://www.youtube.com/watch?v=NrJiEjzyhYc
+//https://www.youtube.com/watch?v=NrJiEjzyhYc  constraint wenn ich mehrere FK´s in einer Tabelle habe
 
 
 

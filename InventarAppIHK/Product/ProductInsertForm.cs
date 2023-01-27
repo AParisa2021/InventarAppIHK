@@ -86,7 +86,7 @@ namespace InventarAppIHK
             //    cmd.ExecuteNonQuery();
             //    conn.Close();
             //    comboCategory.DataSource= ds.Tables[0];
-            //    comboCategory.DisplayMember = "categoryname";
+            //    comboCategory.DisplayMember = "categoryName";
             //    comboCategory.ValueMember = "category_id";
             //}
             //catch (Exception ex)
@@ -99,7 +99,7 @@ namespace InventarAppIHK
             {
                 comboCategory.Items.Clear();
                 MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=;database=inventar");
-                string sql = "select categoryname from category";
+                string sql = "select categoryName from category";
                 conn.Open();
                 MySqlCommand comm = new MySqlCommand(sql, conn);
                 MySqlDataReader dr = comm.ExecuteReader();
@@ -135,7 +135,7 @@ namespace InventarAppIHK
                 //        cmd.ExecuteNonQuery();
                 //        conn.Close();
                 //        comboCategory.DataSource = ds.Tables[0];
-                //        comboCategory.DisplayMember = "categoryname";
+                //        comboCategory.DisplayMember = "categoryName";
                 //        comboCategory.ValueMember = "category_id";
                 //    }
                 //    catch (Exception ex)
