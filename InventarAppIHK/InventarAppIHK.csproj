@@ -167,16 +167,6 @@
       <DependentUpon>CategoryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DBInventar.cs" />
-<<<<<<< HEAD
-    <Compile Include="ImportForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ImportForm.Designer.cs">
-      <DependentUpon>ImportForm.cs</DependentUpon>
-    </Compile>
-=======
-    <Compile Include="Import\CSVDataImport.cs" />
->>>>>>> d4b7af07bfe82f30ef896c6e9d8fd120d761cc55
     <Compile Include="Location\LocationInsertForm.cs">
       <SubType>Form</SubType>
     </Compile>
