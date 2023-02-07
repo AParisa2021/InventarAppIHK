@@ -19,7 +19,7 @@ namespace InventarAppIHK
         public LoginForm()
         {
             InitializeComponent();
-            Import.CSVDataImport.ImportData();
+            
         }
 
         private void btnRegister_Click(object sender, EventArgs e)

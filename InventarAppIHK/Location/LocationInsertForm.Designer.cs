@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LocationInsertForm));
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtRoomName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtfloor = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pbClose = new System.Windows.Forms.PictureBox();
             this.btnUpdate = new System.Windows.Forms.Button();
@@ -42,12 +42,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbClose)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox1
+            // txtRoomName
             // 
-            this.textBox1.Location = new System.Drawing.Point(263, 174);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(420, 22);
-            this.textBox1.TabIndex = 0;
+            this.txtRoomName.Location = new System.Drawing.Point(263, 174);
+            this.txtRoomName.Name = "txtRoomName";
+            this.txtRoomName.Size = new System.Drawing.Size(420, 22);
+            this.txtRoomName.TabIndex = 0;
             // 
             // label1
             // 
@@ -70,6 +70,7 @@
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Speichern";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // label3
             // 
@@ -81,12 +82,12 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Etage:";
             // 
-            // textBox2
+            // txtfloor
             // 
-            this.textBox2.Location = new System.Drawing.Point(263, 131);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(420, 22);
-            this.textBox2.TabIndex = 4;
+            this.txtfloor.Location = new System.Drawing.Point(263, 131);
+            this.txtfloor.Name = "txtfloor";
+            this.txtfloor.Size = new System.Drawing.Size(420, 22);
+            this.txtfloor.TabIndex = 4;
             // 
             // panel1
             // 
@@ -132,6 +133,7 @@
             this.btnDelete.TabIndex = 8;
             this.btnDelete.Text = "Löschen";
             this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // LocationInsertForm
             // 
@@ -142,12 +144,12 @@
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtfloor);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtRoomName);
             this.Name = "LocationInsertForm";
-            this.Text = "LocationInsertForm";
+            this.Text = "7";
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbClose)).EndInit();
             this.ResumeLayout(false);
@@ -157,14 +159,14 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtRoomName;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtfloor;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pbClose;
-        private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.Button btnDelete;
+        public System.Windows.Forms.Button btnSave;
+        public System.Windows.Forms.Button btnUpdate;
+        public System.Windows.Forms.Button btnDelete;
     }
 }

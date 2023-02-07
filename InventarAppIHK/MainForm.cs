@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace InventarAppIHK
-{
+{//datagridView mit join alles anzeigen
     public partial class MainForm : Form
     {
         public MainForm()

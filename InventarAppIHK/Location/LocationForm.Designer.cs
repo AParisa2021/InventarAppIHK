@@ -32,21 +32,24 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LocationForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.dgvLocation = new System.Windows.Forms.DataGridView();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.Ort_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.floor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.locationName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Edit = new System.Windows.Forms.DataGridViewImageColumn();
             this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocation)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 429);
+            this.panel1.Location = new System.Drawing.Point(0, 376);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(775, 87);
+            this.panel1.Size = new System.Drawing.Size(1058, 87);
             this.panel1.TabIndex = 0;
             // 
             // dgvLocation
@@ -67,13 +70,24 @@
             this.locationName,
             this.Edit,
             this.Delete});
+            this.dgvLocation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvLocation.EnableHeadersVisualStyles = false;
-            this.dgvLocation.Location = new System.Drawing.Point(12, 25);
+            this.dgvLocation.Location = new System.Drawing.Point(0, 0);
             this.dgvLocation.Name = "dgvLocation";
             this.dgvLocation.RowHeadersWidth = 51;
             this.dgvLocation.RowTemplate.Height = 24;
-            this.dgvLocation.Size = new System.Drawing.Size(751, 326);
+            this.dgvLocation.Size = new System.Drawing.Size(1058, 376);
             this.dgvLocation.TabIndex = 1;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
+            this.btnAdd.Location = new System.Drawing.Point(987, 32);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(44, 43);
+            this.btnAdd.TabIndex = 2;
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // Ort_ID
             // 
@@ -118,13 +132,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(775, 516);
+            this.ClientSize = new System.Drawing.Size(1058, 463);
             this.Controls.Add(this.dgvLocation);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "LocationForm";
             this.Text = "RoomForm";
             this.Load += new System.EventHandler(this.LocationForm_Load);
+            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocation)).EndInit();
             this.ResumeLayout(false);
 
@@ -134,6 +149,7 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dgvLocation;
+        private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ort_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn floor;
         private System.Windows.Forms.DataGridViewTextBoxColumn locationName;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InventarAppIHK.Import;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -25,8 +26,27 @@ namespace InventarAppIHK
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+           if(txtCategory.Text == "")
+            {
+                MessageBox.Show("Bitte geben Sie eine Kategorie an!");
+            }
+            else
+            {
+                Category category = new Category(txtCategory.Text.Trim());
+                DBInventar.AddCategory(category);
+            }       
+           
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
             Category category = new Category(txtCategory.Text.Trim());
-            DBInventar.AddCategory(category);
+            CSVDataImport.UpdateCategory(category);
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            txtCategory.Clear();
         }
     }
 }

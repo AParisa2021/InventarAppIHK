@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InventarAppIHK.Import;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,18 @@ namespace InventarAppIHK
         public ProductForm()
         {
             InitializeComponent();
+            MyInitializeComponent();
+        }
+
+        public void MyInitializeComponent()
+        {
+            CSVDataImport.LoadFormProduct(dgvProdukt);
+
+        }
+
+        private void dgvProdukt_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -167,6 +167,13 @@
       <DependentUpon>CategoryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DBInventar.cs" />
+    <Compile Include="Import\FileImportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Import\FileImportForm.Designer.cs">
+      <DependentUpon>FileImportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Import\CSVDataImport.cs" />
     <Compile Include="Location\LocationInsertForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -187,6 +194,12 @@
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SelectInventar\ProductLocationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectInventar\ProductLocationForm.Designer.cs">
+      <DependentUpon>ProductLocationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Product\ProdCatForm.cs">
       <SubType>Form</SubType>
@@ -217,20 +230,21 @@
     <Compile Include="Location\LocationForm.Designer.cs">
       <DependentUpon>LocationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TotalForm.cs">
+    <Compile Include="SelectInventar\TotalForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TotalForm.Designer.cs">
+    <Compile Include="SelectInventar\TotalForm.Designer.cs">
       <DependentUpon>TotalForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SelectInventar\Totalinventar.cs" />
     <EmbeddedResource Include="Category\CategoryForm.resx">
       <DependentUpon>CategoryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Category\CategoryInsertForm.resx">
       <DependentUpon>CategoryInsertForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ImportForm.resx">
-      <DependentUpon>ImportForm.cs</DependentUpon>
+    <EmbeddedResource Include="Import\FileImportForm.resx">
+      <DependentUpon>FileImportForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Location\LocationForm.resx">
       <DependentUpon>LocationForm.cs</DependentUpon>
@@ -243,6 +257,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectInventar\ProductLocationForm.resx">
+      <DependentUpon>ProductLocationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Product\ProdCatForm.resx">
       <DependentUpon>ProdCatForm.cs</DependentUpon>
@@ -263,7 +280,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="TotalForm.resx">
+    <EmbeddedResource Include="SelectInventar\TotalForm.resx">
       <DependentUpon>TotalForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

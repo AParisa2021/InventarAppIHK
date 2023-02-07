@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InventarAppIHK.Import;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,11 +16,25 @@ namespace InventarAppIHK
         public LocationForm()
         {
             InitializeComponent();
+            MyInitializeComponent();
+        }
+
+        public void MyInitializeComponent()
+        {
+            CSVDataImport.LoadFormLocation(dgvLocation);
         }
 
         private void LocationForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            LocationInsertForm insertLocation = new LocationInsertForm();
+            insertLocation.btnSave.Enabled = true;
+            insertLocation.btnUpdate.Enabled = false;
+            insertLocation.ShowDialog();
         }
     }
 }

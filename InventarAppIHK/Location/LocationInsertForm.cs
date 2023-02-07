@@ -26,5 +26,24 @@ namespace InventarAppIHK
         {
 
         }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (txtfloor.Text == "" && txtRoomName.Text == "")
+            {
+                MessageBox.Show("Bitte geben Sie einen Ort an!");
+            }
+            else
+            {
+                Location location = new Location(txtfloor.Text.Trim(), txtRoomName.Text.Trim());
+                DBInventar.AddLocation(location);
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            txtfloor.Clear();
+            txtRoomName.Clear();
+        }
     }
 }

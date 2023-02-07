@@ -29,24 +29,30 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.dgvProdukt = new System.Windows.Forms.DataGridView();
-            this.delete = new System.Windows.Forms.DataGridViewImageColumn();
-            this.edit = new System.Windows.Forms.DataGridViewImageColumn();
-            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.product_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.category_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.edit = new System.Windows.Forms.DataGridViewImageColumn();
+            this.delete = new System.Windows.Forms.DataGridViewImageColumn();
+            this.pbPlus = new System.Windows.Forms.PictureBox();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProdukt)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPlus)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.panel1.Controls.Add(this.pbPlus);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 414);
+            this.panel1.Location = new System.Drawing.Point(0, 406);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(757, 87);
+            this.panel1.Size = new System.Drawing.Size(1021, 87);
             this.panel1.TabIndex = 0;
             // 
             // dgvProdukt
@@ -67,6 +73,7 @@
             this.productName,
             this.date,
             this.price,
+            this.category_id,
             this.edit,
             this.delete});
             this.dgvProdukt.EnableHeadersVisualStyles = false;
@@ -76,6 +83,51 @@
             this.dgvProdukt.RowTemplate.Height = 24;
             this.dgvProdukt.Size = new System.Drawing.Size(757, 272);
             this.dgvProdukt.TabIndex = 1;
+            this.dgvProdukt.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProdukt_CellContentClick);
+            // 
+            // product_id
+            // 
+            this.product_id.HeaderText = "Produktnummer";
+            this.product_id.MinimumWidth = 6;
+            this.product_id.Name = "product_id";
+            this.product_id.Width = 125;
+            // 
+            // productName
+            // 
+            this.productName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.productName.HeaderText = "Produktname";
+            this.productName.MinimumWidth = 6;
+            this.productName.Name = "productName";
+            // 
+            // date
+            // 
+            this.date.HeaderText = "Datum";
+            this.date.MinimumWidth = 6;
+            this.date.Name = "date";
+            this.date.Width = 125;
+            // 
+            // price
+            // 
+            this.price.HeaderText = "Preis";
+            this.price.MinimumWidth = 6;
+            this.price.Name = "price";
+            this.price.Width = 125;
+            // 
+            // category_id
+            // 
+            this.category_id.HeaderText = "Kategorie";
+            this.category_id.MinimumWidth = 6;
+            this.category_id.Name = "category_id";
+            this.category_id.Width = 125;
+            // 
+            // edit
+            // 
+            this.edit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.edit.HeaderText = "Bearbeiten";
+            this.edit.Image = ((System.Drawing.Image)(resources.GetObject("edit.Image")));
+            this.edit.MinimumWidth = 6;
+            this.edit.Name = "edit";
+            this.edit.Width = 79;
             // 
             // delete
             // 
@@ -85,53 +137,28 @@
             this.delete.Name = "delete";
             this.delete.Width = 64;
             // 
-            // edit
+            // pbPlus
             // 
-            this.edit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.edit.HeaderText = "bearbeiten";
-            this.edit.MinimumWidth = 6;
-            this.edit.Name = "edit";
-            this.edit.Width = 78;
-            // 
-            // price
-            // 
-            this.price.HeaderText = "Preis";
-            this.price.MinimumWidth = 6;
-            this.price.Name = "price";
-            this.price.Width = 125;
-            // 
-            // date
-            // 
-            this.date.HeaderText = "Datum";
-            this.date.MinimumWidth = 6;
-            this.date.Name = "date";
-            this.date.Width = 125;
-            // 
-            // productName
-            // 
-            this.productName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.productName.HeaderText = "Produktname";
-            this.productName.MinimumWidth = 6;
-            this.productName.Name = "productName";
-            // 
-            // product_id
-            // 
-            this.product_id.HeaderText = "Produktnummer";
-            this.product_id.MinimumWidth = 6;
-            this.product_id.Name = "product_id";
-            this.product_id.Width = 125;
+            this.pbPlus.Image = ((System.Drawing.Image)(resources.GetObject("pbPlus.Image")));
+            this.pbPlus.Location = new System.Drawing.Point(942, 16);
+            this.pbPlus.Name = "pbPlus";
+            this.pbPlus.Size = new System.Drawing.Size(57, 59);
+            this.pbPlus.TabIndex = 2;
+            this.pbPlus.TabStop = false;
             // 
             // ProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(757, 501);
+            this.ClientSize = new System.Drawing.Size(1021, 493);
             this.Controls.Add(this.dgvProdukt);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ProductForm";
             this.Text = "ProductForm";
+            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProdukt)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPlus)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -144,7 +171,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn productName;
         private System.Windows.Forms.DataGridViewTextBoxColumn date;
         private System.Windows.Forms.DataGridViewTextBoxColumn price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn category_id;
         private System.Windows.Forms.DataGridViewImageColumn edit;
         private System.Windows.Forms.DataGridViewImageColumn delete;
+        private System.Windows.Forms.PictureBox pbPlus;
     }
 }
