@@ -155,7 +155,12 @@ namespace InventarAppIHK
                 MessageBox.Show("Ihre Auswahl wurde eingetragen!");
             }
            
-        }      
+        }
+
+        private void txtSelectProduct_TextChanged(object sender, EventArgs e)
+        {
+            TxtSelectProd();
+        }
     }
 }
 

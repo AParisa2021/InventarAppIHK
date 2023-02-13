@@ -332,7 +332,7 @@
             this.txtSelectProduct.Name = "txtSelectProduct";
             this.txtSelectProduct.Size = new System.Drawing.Size(345, 22);
             this.txtSelectProduct.TabIndex = 10;
-            this.txtSelectProduct.TextChanged += new System.EventHandler(this.txtSelectLocation_TextChanged);
+            this.txtSelectProduct.TextChanged += new System.EventHandler(this.txtSelectProduct_TextChanged);
             // 
             // txtPNumber
             // 

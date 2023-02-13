@@ -164,33 +164,6 @@
   <metadata name="edit.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="delete.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="total_id.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="productName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="date.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="price.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="categoryName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="floor.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="locationName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="edit.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <data name="edit.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         /9j/4AAQSkZJRgABAQEAdwB3AAD/4QBoRXhpZgAATU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAAB
@@ -223,7 +196,7 @@
         9+jo93p69z8/98jI9+Xl90ZG9yEh96am9/Dw9/X19+Li9/b299TU9yUl99fX98bG9/Ly90pK90JC997e
         935+98zM9+np94KC91FR99bW99nZ97Cw9+7u95GR9+Hh9xkZ95aW9+3t9wsL91NT92lp983N95WV9wgI
         95qa987O9yws95eX99HR9xMT911d9y8v9xIS91xc9zAw91lZ95CQ9y0t9zQ096Oj9x4e9wkJ92Nj9+/v
-        97Oz9w4O94CAowRniAAAAAlwSFlzAAABQAAAAUABsvEyTgAAAVxJREFUOE91kldXwkAQRseGdcRQLIAY
+        97Oz9w4O94CAowRniAAAAAlwSFlzAAABPwAAAT8B4CLoYwAAAVxJREFUOE91kldXwkAQRseGdcRQLIAY
         BQs2RBEVQbFhLAjYFRE7IvZe/rwbGZZwWO9L7sx3zu4kEwAoK6+orNJVF6Orqa2rbwDARn2TJMRgNJmh
         Wd9CZQmG1jawWKkQYYN2MiF26CATIkMnmRjoImGTOEiceWFxN4nU09vnUp9y/4DtT1RgkGRoGN0jHkly
         jI6h2TtOXfCRTCDi5JTH4Z9mYgpQl8dWixsxODMbMiPOzRuoy2NpYXEJMbyMqKzwniaWVxfZsYw1X/5m

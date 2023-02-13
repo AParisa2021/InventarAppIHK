@@ -38,7 +38,7 @@
             this.txtFrom = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtSelect = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvTotal = new System.Windows.Forms.DataGridView();
             this.total_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,7 +65,7 @@
             this.panel1.Controls.Add(this.txtFrom);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.txtSelect);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 310);
@@ -149,12 +149,13 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Preis Ab:";
             // 
-            // textBox1
+            // txtSelect
             // 
-            this.textBox1.Location = new System.Drawing.Point(133, 40);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(433, 22);
-            this.textBox1.TabIndex = 1;
+            this.txtSelect.Location = new System.Drawing.Point(133, 40);
+            this.txtSelect.Name = "txtSelect";
+            this.txtSelect.Size = new System.Drawing.Size(433, 22);
+            this.txtSelect.TabIndex = 1;
+            this.txtSelect.TextChanged += new System.EventHandler(this.txtSelect_TextChanged);
             // 
             // label1
             // 
@@ -187,6 +188,7 @@
             this.dgvTotal.RowTemplate.Height = 24;
             this.dgvTotal.Size = new System.Drawing.Size(1050, 310);
             this.dgvTotal.TabIndex = 1;
+            this.dgvTotal.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTotal_CellContentClick);
             // 
             // total_id
             // 
@@ -280,7 +282,7 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dgvTotal;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtSelect;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox4;
