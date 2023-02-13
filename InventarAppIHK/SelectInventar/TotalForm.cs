@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -36,45 +37,68 @@ namespace InventarAppIHK
                 "INNER JOIN location AS L " +
                 "ON T.location_id=L.location_id ";
 
-            MySqlCommand comm = new MySqlCommand(query, conn);
-            if (txtFrom.Text.Trim() != "" || txtTo.Text.Trim() != "" || txtSelect.Text.ToUpper().Trim() != "") query += " WHERE ";
-      
+            //MySqlCommand comm = new MySqlCommand(query, conn);
+            //if (txtFrom.Text.Trim() != "" || txtTo.Text.Trim() != "" || txtSelect.Text.ToUpper().Trim() != "") query += " WHERE ";
+
             if (txtFrom.Text.Trim().Length > 0 && txtTo.Text.Trim().Length > 0)
             {
-                query += "price between (Cast('" + txtFrom.Text + "' AS DOUBLE)) AND (Cast('" + txtTo.Text + "' AS DOUBLE))";
+                query += " where price between 400 AND 450";
+
+                //query += "price between (Cast('" + txtFrom.Text + "' AS double)) AND (Cast('" + txtTo.Text + "' AS double))";
             }
             else if (txtFrom.Text.Trim().Length > 0)
             {
-                query += "price >=  (Cast('" + txtFrom.Text + "' AS DOUBLE))";
+                //query += " where price >=  500";
+
+                query += "price >= @price";
+                //productqty = (productqty - '" + numericUpDown1.Value + "')
             }
             else if (txtTo.Text.Trim().Length > 0)
             {
-                query += " T.price <= (Cast('" + txtTo.Text + "' AS DOUBLE))";
+                //query +=  "where price <= 300";
+
+                query += " price <= (Cast('" + txtTo.Text + "' AS double))";
 
             }
-            else if (txtSelect.Text.Trim() != "")
+            if (txtSelect.Text.Trim() != "")
             {
                 query += " concat(total_id, productName, date, price, C.categoryName, L.floor, L.locationName ) like concat('%' , @search_totalinventar , '%')";
-                comm.Parameters.AddWithValue("@search_totalinventar", txtSelect.Text.ToUpper());
             }
-            conn.Open();
-            MessageBox.Show(query);
-            MySqlDataReader dr = comm.ExecuteReader();
-            int i = 0;
-            if (dr.HasRows)
-            {
-                while (dr.Read())
+            //using (MySqlConnection conn = new MySqlConnection(sql))
+            using (MySqlCommand comm = new MySqlCommand(query, conn)) {
                 {
-                    dgvTotal.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), double.Parse(dr[3].ToString()), dr[4].ToString(), dr[5].ToString(), dr[6].ToString());
+                    try
+                    {
+                        conn.Open();
+                        MessageBox.Show(query);
+                        //comm.Parameters.AddWithValue("@price", Convert.ToDouble(txtFrom.Text));
 
-                    total += double.Parse(dr[3].ToString());
+                        comm.Parameters.AddWithValue("@search_totalinventar", txtSelect.Text.ToUpper());
+
+                        MySqlDataReader dr = comm.ExecuteReader();
+                        int i = 0;
+                        if (dr.HasRows)
+                        {
+                            while (dr.Read())
+                            {
+                                dgvTotal.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), double.Parse(dr[3].ToString()), dr[4].ToString(), dr[5].ToString(), dr[6].ToString());
+
+                                total += double.Parse(dr[3].ToString());
+                            }
+                        }
+                        comm.Dispose();
+                        conn.Close();
+                        dr.Close();
+
+                        lblTotal.Text = total.ToString();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
-            }
-            comm.Dispose();
-            conn.Close();
-            dr.Close();
-
-            lblTotal.Text = total.ToString();
+            }     
+        
         }
 
 
@@ -247,7 +271,8 @@ namespace InventarAppIHK
 
         private void dgvTotal_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            SelectPriceProduct();
+            //SelectPriceProduct();
         }
     }
 }
+//https://stackoverflow.com/questions/23106780/c-sharp-mysql-select-with-textbox-text
