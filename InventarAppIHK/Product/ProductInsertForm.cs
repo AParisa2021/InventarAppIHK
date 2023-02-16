@@ -42,9 +42,9 @@ namespace InventarAppIHK
         /// <param name="e"></param>
         private void btnSave_Click(object sender, EventArgs e)
         {
-            int category_id = CSVDataImport.GetCategoryId(comboCategory.Text);
+            int category_id = DataImport.GetCategoryId(comboCategory.Text);
             Product insertProduct = new Product(txtName.Text, (DateTime.Parse(dtOrder.Text.Substring(0, 10))), double.Parse(txtPrice.Text), category_id);
-            CSVDataImport.InsertProduct(insertProduct);
+            DataImport.InsertProduct(insertProduct);
             MessageBox.Show("Ihre Auswahl wurde eingetragen!");
 
 

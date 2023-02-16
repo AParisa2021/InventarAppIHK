@@ -1,4 +1,5 @@
 ﻿using InventarAppIHK.Import;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,11 +9,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace InventarAppIHK
 {
     public partial class CategoryForm : Form
     {
+        private MySqlCommand comm;
+
         public CategoryForm()
         {
             InitializeComponent();
@@ -21,7 +25,7 @@ namespace InventarAppIHK
 
         public void MyInitializeComponent()
         {
-            CSVDataImport.LoadFormCategory(dgvCategory);
+            DataImport.LoadFormCategory(dgvCategory);
         }
 
         private void dgvCategory_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -32,6 +36,31 @@ namespace InventarAppIHK
             //dgvCategory.Columns.Add(img);
             //img.HeaderText = "Bearbeiten";
             //img.Name = "MiniBleispift.png";
+            //Category category = new Category(dgvCategory);
+            //DataImport.EditDeleteCategory(dgvCategory, e);
+            //string query = "SELECT location_id FROM location WHERE locationName = @locationName";
+            string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
+
+            //string query = "DELETE FROM category where categoryName LIKE" + dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString() + "";
+            MySqlConnection con = new MySqlConnection(sql);
+            string columnName = "";
+            columnName = dgvCategory.Columns[e.ColumnIndex].Name;
+            con.Open();
+            if (columnName == "edit")
+            {
+                CategoryInsertForm catInsert = new CategoryInsertForm();
+                catInsert.Name = dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString();
+            }
+            else if (columnName == "delete")
+            {
+                //string query = "DELETE FROM category where categoryName LIKE" + dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString();
+
+                //MySqlCommand command = new MySqlCommand(query, con);
+                comm = new MySqlCommand("DELETE FROM category WHERE categoryName LIKE '" + dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString() + "'", con); //prüfen ob [1] stimmt [4]phone ist in postgreSQL bei properties auf allow null gesetzt
+
+                comm.ExecuteNonQuery();
+            }
+            con.Close();
 
         }
 
@@ -44,3 +73,8 @@ namespace InventarAppIHK
         }
     }
 }
+
+
+//erst in der Verknüfungstabelle löschen z.B. delete From inventar where product_id=5
+//Delete From product where product_id=5; dann in der Haupttabelle
+//; 

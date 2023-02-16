@@ -30,39 +30,46 @@ namespace InventarAppIHK
             double total = 0;
             dgvTotal.Rows.Clear();
             MySqlConnection conn = new MySqlConnection(sql);
-            string query = "SELECT total_id, productName, date, price, C.categoryName, L.floor, L.locationName " +
-                "from totalinventar AS T " +
+            string query = "SELECT inventar_id, P.productName, P.date, P.price, C.categoryName, L.floor, L.locationName " +
+                "from inventar AS I " +
+                "INNER JOIN product AS P " +
+                 "ON I.product_id=P.product_id " +
                 "INNER JOIN category AS C " +
-                "ON T.category_id=C.category_id " +
+                "ON I.category_id=C.category_id " +
                 "INNER JOIN location AS L " +
-                "ON T.location_id=L.location_id ";
+                "ON I.location_id=L.location_id ";
 
             //MySqlCommand comm = new MySqlCommand(query, conn);
-            //if (txtFrom.Text.Trim() != "" || txtTo.Text.Trim() != "" || txtSelect.Text.ToUpper().Trim() != "") query += " WHERE ";
+            if (txtFrom.Text.Trim() != "" || txtTo.Text.Trim() != "" || txtSelect.Text.ToUpper().Trim() != "") query += " WHERE ";
 
             if (txtFrom.Text.Trim().Length > 0 && txtTo.Text.Trim().Length > 0)
             {
-                query += " where price between 400 AND 450";
+                query += " price BETWEEN @priceFrom AND @priceTo";
 
                 //query += "price between (Cast('" + txtFrom.Text + "' AS double)) AND (Cast('" + txtTo.Text + "' AS double))";
             }
             else if (txtFrom.Text.Trim().Length > 0)
             {
-                //query += " where price >=  500";
+                //query += " price >=  500";
 
-                query += "price >= @price";
+                query += "price >= @priceFrom";           
                 //productqty = (productqty - '" + numericUpDown1.Value + "')
             }
             else if (txtTo.Text.Trim().Length > 0)
             {
-                //query +=  "where price <= 300";
+                //query += " price <= 300";
 
-                query += " price <= (Cast('" + txtTo.Text + "' AS double))";
+                query += " price <= @priceTo";
+
+                //query += " price <= (Cast('" + txtTo.Text + "' AS double))";
 
             }
             if (txtSelect.Text.Trim() != "")
             {
-                query += " concat(total_id, productName, date, price, C.categoryName, L.floor, L.locationName ) like concat('%' , @search_totalinventar , '%')";
+                if (txtFrom.Text.Trim().Length > 0 || txtTo.Text.Trim().Length > 0)
+                    query += " AND ";
+
+                query += " concat(I.inventar_id, P.productName, P.date, P.price, C.categoryName, L.floor, L.locationName ) like concat('%' , @search_totalinventar , '%')";
             }
             //using (MySqlConnection conn = new MySqlConnection(sql))
             using (MySqlCommand comm = new MySqlCommand(query, conn)) {
@@ -73,7 +80,14 @@ namespace InventarAppIHK
                         MessageBox.Show(query);
                         //comm.Parameters.AddWithValue("@price", Convert.ToDouble(txtFrom.Text));
 
-                        comm.Parameters.AddWithValue("@search_totalinventar", txtSelect.Text.ToUpper());
+                        if(txtSelect.Text.Trim() != "")
+                            comm.Parameters.AddWithValue("@search_totalinventar", txtSelect.Text.ToUpper());
+
+                        if(txtFrom.Text.Trim() != "")
+                            comm.Parameters.AddWithValue("@priceFrom", double.Parse(txtFrom.Text));
+
+                        if(txtTo.Text.Trim() != "")
+                            comm.Parameters.AddWithValue("@priceTo", double.Parse(txtTo.Text));
 
                         MySqlDataReader dr = comm.ExecuteReader();
                         int i = 0;

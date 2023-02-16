@@ -1,4 +1,5 @@
 ﻿using InventarAppIHK.Import;
+using InventarAppIHK.SelectInventar;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace InventarAppIHK
 
         public void MyInitializeComponent()
         {
-            CSVDataImport.LoadFormProduct(dgvProduct);
+            DataImport.LoadFormProduct(dgvProduct);
             //CSVDataImport.LoadFormLocation(dgvLocation);
         }
 
@@ -148,10 +149,11 @@ namespace InventarAppIHK
             }
             else
             {
-                int category_id = CSVDataImport.GetCategoryId(txtCategoryName.Text);
-                int location_id = CSVDataImport.GetLocationId(txtLName.Text);
-                Totalinventar inventar = new Totalinventar(txtPName.Text, (DateTime.Parse(txtDate.Text.Substring(0, 10))), double.Parse(txtPrice.Text), category_id, location_id);
-                CSVDataImport.ChooseInventar(inventar);
+                int category_id = DataImport.GetCategoryId(txtCategoryName.Text);
+                int location_id = DataImport.GetLocationId(txtLName.Text);
+                int product_id = DataImport.GetProductId(txtPName.Text);
+                Inventar inventar = new Inventar(product_id, category_id, location_id);
+                DataImport.ChooseInventar(inventar);
                 MessageBox.Show("Ihre Auswahl wurde eingetragen!");
             }
            

@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using InventarAppIHK.SelectInventar;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,7 +14,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace InventarAppIHK.Import
 {
-    class CSVDataImport
+    class DataImport
     {
         public static Mutex categoryAwait = new Mutex();
 
@@ -106,12 +107,7 @@ namespace InventarAppIHK.Import
                 MySqlConnection con = new MySqlConnection(sql);
                 con.Open();
                 using (MySqlCommand command = new MySqlCommand(query, con))
-                {
-                    //command.Parameters.Add("productName", MySqlDbType.VarChar).Value = product.ProductName;
-                    //command.Parameters.Add("date", MySqlDbType.VarChar).Value = product.Date.ToString("yyyy-MM-dd");
-                    //command.Parameters.Add("price", MySqlDbType.Double).Value = product.Price;
-                    //command.Parameters.Add("category_id", MySqlDbType.Int32).Value = categoryId;
-
+                {                
                     command.Parameters.Add("@productName", MySqlDbType.VarChar).Value = product.ProductName;
                     command.Parameters.Add("@date", MySqlDbType.VarChar).Value = product.Date.ToString("yyyy-MM-dd");
                     command.Parameters.Add("@price", MySqlDbType.Double).Value = product.Price;
@@ -187,6 +183,39 @@ namespace InventarAppIHK.Import
         }
 
         /// <summary>
+        /// holt die jeweilige product_id des jeweiligen locationName aus der category Tabelle und gibt die LocationId als Rückgabewert zurück
+        /// </summary>
+        /// <param name="productName"></param>
+        /// <returns="productid"></returns>
+        public static int GetProductId(string productName)
+        {
+
+            string query = "SELECT product_id FROM product WHERE productName = @productName";
+
+            string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
+            int productid = 0;
+            try
+            {
+                MySqlConnection con = new MySqlConnection(sql);
+                con.Open();
+                using (MySqlCommand command = new MySqlCommand(query, con))
+                {
+                    command.Parameters.Add("@productName", MySqlDbType.VarChar).Value = productName;
+
+                    productid = (int)command.ExecuteScalar();
+                }
+                con.Close();
+
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+            return productid;
+        }
+
+        /// <summary>
         /// holt die jeweilige location_id des jeweiligen locationName aus der category Tabelle und gibt die LocationId als Rückgabewert zurück
         /// </summary>
         /// <param name="floor"></param>
@@ -238,11 +267,7 @@ namespace InventarAppIHK.Import
                 MySqlCommand command = new MySqlCommand(query, con);
                 MySqlDataReader dr = command.ExecuteReader();
                 command.Parameters.AddWithValue("@search_location", MySqlDbType.VarChar).Value = locationName; 
-
-                //command.Parameters.AddWithValue("@location_id", MySqlDbType.VarChar).Value = locationId;
-                //command.Parameters.AddWithValue("@floor", MySqlDbType.VarChar).Value = floor;
-                //command.Parameters.AddWithValue("@locationName", MySqlDbType.VarChar).Value = locationName;
-
+                                
                 int i = 0;
                 if (dr.HasRows)
                 {
@@ -406,17 +431,17 @@ namespace InventarAppIHK.Import
         /// <summary>
         /// MySQL Tabelle totalinventar aus Tabelle location und produkt Inventar wählen und in totalinventar einfügen
         /// </summary>
-        /// <param name="productName"></param>
+        /// <param name="product-id</param>
         /// <param name="date"></param>
         /// <param name="price"></param>
         /// <param name="category_id"></param>
         /// <param name="location_id"></param>
-        public static void ChooseInventar(Totalinventar inventar)
+        public static void ChooseInventar(Inventar inventar)
         {
             try
             {
                 string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
-                string query = "INSERT INTO totalinventar(productName, date, price, category_id, location_id) VALUES (@productName, @date, @price, @category_id, @location_id)";
+                string query = "INSERT INTO inventar(product_id, category_id, location_id) VALUES (@product_id, @category_id, @location_id)";
 
                 //category_id = CSVDataImport.GetCategoryId(txtCategoryName.Text);
                 //location_id = CSVDataImport.GetLocationId(txtLName.Text);
@@ -425,18 +450,10 @@ namespace InventarAppIHK.Import
                 command.CommandType = CommandType.Text;
                 con.Open();
 
-                command.Parameters.Add("@productName", MySqlDbType.VarChar).Value = inventar.ProductName;
-                command.Parameters.Add("@date", MySqlDbType.VarChar).Value = inventar.Date.ToString("yyyy-MM-dd");
-                command.Parameters.Add("@price", MySqlDbType.Double).Value = inventar.Price;
+                command.Parameters.AddWithValue("@product_id", MySqlDbType.Int32).Value = inventar.Product_id;
                 command.Parameters.AddWithValue("@category_id", MySqlDbType.Int32).Value = inventar.Category_id;
                 command.Parameters.AddWithValue("@location_id", MySqlDbType.Int32).Value = inventar.Location_id;
-
-                //command.Parameters.AddWithValue("@productName", txtPName.Text/*.Replace(',', '.')*/);
-                //command.Parameters.AddWithValue("@date", DateTime.Parse(txtDate.Text.Substring(0, 10)));
-                //command.Parameters.AddWithValue("@price", Convert.ToDouble(txtPrice.Text));
-                //command.Parameters.AddWithValue("@category_id", category_id);
-                //command.Parameters.AddWithValue("@location_id", location_id);
-
+                              
                 command.ExecuteNonQuery();
                 con.Close();
 
@@ -476,40 +493,46 @@ namespace InventarAppIHK.Import
 
             return sql;
         }
-        //private void LoadOrder()
-        //{
-        //    double total = 0;
-        //    dgvOrder.Rows.Clear();
-        //    NpgsqlConnection conn = new NpgsqlConnection(connstring);
-        //    //string sql = "select * from public.tborderjoin";
-        //    //string sql = "select order_id, oderdate, O.productid, P.productname, O.customerid, C.customername, qty, price, total from public.tborderjoin AS O JOIN tbcustomer AS C ON O.customerid=C.customer_id JOIN tbproduct AS P ON O.productid=P.product_id WHERE CONCAT(order_id, oderdate, O.productid, P.productname, O.customerid, C.customername, qty, price) LIKE '%"+txtSearch.Text+"%'"; //'%" zwischen den Anführungszeichen, weil SQL LIKE QUery. Gehört nicht zum C# string
-        //    string sql = "select order_id, oderdate, O.productid, P.productname, O.customerid, C.customername, qty, price, total " +
-        //                 "from public.tborderjoin AS O " +
-        //                 "JOIN tbcustomer AS C " +
-        //                 "ON O.customerid=C.customer_id " +
-        //                 "JOIN tbproduct AS P " +
-        //                 "ON O.productid=P.product_id " +
-        //                 "WHERE UPPER(CONCAT(order_id, oderdate, O.productid, P.productname, O.customerid, C.customername, qty, price)) " +
-        //                 "LIKE '%" + txtSearch.Text.ToUpper() + "%'"; //'%" zwischen den Anführungszeichen, weil SQL LIKE QUery. Gehört nicht zum C# string
+        
+        public static void EditDeleteCategory(DataGridView dgvCategory, DataGridViewCellEventArgs e/*, Category category*//*, string columnName*/)
+        {
+            string columnName = "";
+            columnName = dgvCategory.Columns[e.ColumnIndex].Name;
+            //if(columnName == "edit")
+            //{
+            //    CategoryInsertForm catInsert = new CategoryInsertForm();
+            //    catInsert.Name = dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString();
+            //}
+            //else if(columnName == "delete")
+            //{
+            //string query = "DELETE FROM category where categoryName LIKE" + dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString();
+            
+            string query = "DELETE FROM category where categoryName LIKE" + dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString() + "'";
+            MySqlConnection con = GetConnection();
+                MySqlCommand command = new MySqlCommand(query, con);
+                command.ExecuteNonQuery();
+                con.Close();
+            //}
+        }
+        public static void EditDeleteProduct(DataGridView dgvProduct, DataGridViewCellEventArgs e/*, Category category*//*, string columnName*/)
+        {
+            string columnName = "";
+            columnName = dgvProduct.Columns[e.ColumnIndex].Name;
+            //if(columnName == "edit")
+            //{
+            //    CategoryInsertForm catInsert = new CategoryInsertForm();
+            //    catInsert.Name = dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString();
+            //}
+            //else if(columnName == "delete")
+            //{
+            //string query = "DELETE FROM category where categoryName LIKE" + dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString();
 
-        //    conn.Open();
-        //    NpgsqlCommand comm = new NpgsqlCommand(sql, conn);
-        //    NpgsqlDataReader dr = comm.ExecuteReader();
-        //    int i = 0;
-        //    if (dr.HasRows)
-        //    {
-        //        while (dr.Read())
-        //        {
-
-        //            dgvOrder.Rows.Add(dr[0].ToString(), NullProblemDatabase(dr[1].ToString()), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString(), dr[8].ToString());
-        //            total += double.Parse(dr[8].ToString());
-        //        }
-        //    }
-        //    comm.Dispose();
-        //    conn.Close();
-        //    dr.Close();
-
-        //    lblTotal.Text = total.ToString();
-        //}
+            string query = "DELETE FROM category where categoryName LIKE" + dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString() + "'";
+            MySqlConnection con = GetConnection();
+            MySqlCommand command = new MySqlCommand(query, con);
+            command.ExecuteNonQuery();
+            con.Close();
+            //}
+        }
     }
 }

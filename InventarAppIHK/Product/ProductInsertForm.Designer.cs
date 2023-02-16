@@ -42,6 +42,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.pbClose = new System.Windows.Forms.PictureBox();
             this.dtOrder = new System.Windows.Forms.DateTimePicker();
+            this.txtID = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbClose)).BeginInit();
             this.SuspendLayout();
@@ -171,11 +172,19 @@
             this.dtOrder.TabIndex = 12;
             this.dtOrder.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keyDown);
             // 
+            // txtID
+            // 
+            this.txtID.Location = new System.Drawing.Point(634, 125);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(100, 22);
+            this.txtID.TabIndex = 13;
+            // 
             // ProductInsertForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 445);
+            this.Controls.Add(this.txtID);
             this.Controls.Add(this.dtOrder);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label4);
@@ -198,12 +207,9 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnClear;
@@ -211,6 +217,9 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pbClose;
         public System.Windows.Forms.ComboBox comboCategory;
-        private System.Windows.Forms.DateTimePicker dtOrder;
+        public System.Windows.Forms.TextBox txtName;
+        public System.Windows.Forms.TextBox txtPrice;
+        public System.Windows.Forms.DateTimePicker dtOrder;
+        public System.Windows.Forms.TextBox txtID;
     }
 }

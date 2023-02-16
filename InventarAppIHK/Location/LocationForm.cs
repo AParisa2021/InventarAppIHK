@@ -21,7 +21,7 @@ namespace InventarAppIHK
 
         public void MyInitializeComponent()
         {
-            CSVDataImport.LoadFormLocation(dgvLocation);
+            DataImport.LoadFormLocation(dgvLocation);
         }
 
         private void LocationForm_Load(object sender, EventArgs e)

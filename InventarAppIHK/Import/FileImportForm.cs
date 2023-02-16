@@ -23,7 +23,7 @@ namespace InventarAppIHK
 
         private void btnUpload_Click(object sender, EventArgs e)
         {
-            CSVDataImport.ImportData(file);
+            DataImport.ImportData(file);
         }
 
         public void SetText(string text)

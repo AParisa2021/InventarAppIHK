@@ -173,7 +173,7 @@
     <Compile Include="Import\FileImportForm.Designer.cs">
       <DependentUpon>FileImportForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Import\CSVDataImport.cs" />
+    <Compile Include="Import\DataImport.cs" />
     <Compile Include="Location\LocationInsertForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -195,6 +195,7 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SelectInventar\Inventar.cs" />
     <Compile Include="SelectInventar\ProductLocationForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -41,7 +41,7 @@ namespace InventarAppIHK
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             Category category = new Category(txtCategory.Text.Trim());
-            CSVDataImport.UpdateCategory(category);
+            DataImport.UpdateCategory(category);
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

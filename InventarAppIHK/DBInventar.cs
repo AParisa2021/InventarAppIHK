@@ -89,7 +89,7 @@ namespace InventarAppIHK
         {
             ComboBox comBox = new ComboBox();
             ProductInsertForm cat = new ProductInsertForm();
-            int category_id = CSVDataImport.GetCategoryId(cat.comboCategory.Text);
+            int category_id = DataImport.GetCategoryId(cat.comboCategory.Text);
             string insert = "INSERT INTO product (productName, date, price, category_id)VALUES (@productName, @date, @price, @category_id)";
             MySqlConnection con = GetConnection();
             MySqlCommand cmd = new MySqlCommand(insert, con);
