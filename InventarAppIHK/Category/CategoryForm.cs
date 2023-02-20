@@ -30,19 +30,13 @@ namespace InventarAppIHK
 
         private void dgvCategory_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //DataGridViewImageColumn img = new DataGridViewImageColumn();
-            //Image image = Image.FromFile("C:\\Users\\paris\\source\\repos\\IHK\\InventarAppIHK\\Resources\\MiniBleispift.png");
-            //img.Image = image;
-            //dgvCategory.Columns.Add(img);
-            //img.HeaderText = "Bearbeiten";
-            //img.Name = "MiniBleispift.png";
-            //Category category = new Category(dgvCategory);
-            //DataImport.EditDeleteCategory(dgvCategory, e);
-            //string query = "SELECT location_id FROM location WHERE locationName = @locationName";
+     
             string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
 
             //string query = "DELETE FROM category where categoryName LIKE" + dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString() + "";
             MySqlConnection con = new MySqlConnection(sql);
+            //int category_id = DataImport.GetCategoryId(CategoryInsertForm);
+
             string columnName = "";
             columnName = dgvCategory.Columns[e.ColumnIndex].Name;
             con.Open();
@@ -50,13 +44,14 @@ namespace InventarAppIHK
             {
                 CategoryInsertForm catInsert = new CategoryInsertForm();
                 catInsert.Name = dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString();
+                catInsert.ShowDialog();
             }
             else if (columnName == "delete")
             {
                 //string query = "DELETE FROM category where categoryName LIKE" + dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString();
 
                 //MySqlCommand command = new MySqlCommand(query, con);
-                comm = new MySqlCommand("DELETE FROM category WHERE categoryName LIKE '" + dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString() + "'", con); //prüfen ob [1] stimmt [4]phone ist in postgreSQL bei properties auf allow null gesetzt
+                comm = new MySqlCommand("DELETE FROM category WHERE category_id '" + Convert.ToInt32(dgvCategory.Rows[e.RowIndex].Cells[0].Value.ToString()) + "'", con); //prüfen ob [1] stimmt [4]phone ist in postgreSQL bei properties auf allow null gesetzt
 
                 comm.ExecuteNonQuery();
             }

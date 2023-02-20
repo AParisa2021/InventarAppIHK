@@ -137,13 +137,12 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtCategory;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pbClose;
         public System.Windows.Forms.Button btnDelete;
         public System.Windows.Forms.Button btnUpdate;
         public System.Windows.Forms.Button btnSave;
+        public System.Windows.Forms.TextBox txtCategory;
     }
 }

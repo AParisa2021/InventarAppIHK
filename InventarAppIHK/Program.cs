@@ -16,7 +16,7 @@ namespace InventarAppIHK
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TotalForm());
+            Application.Run(new MainForm());
         }
     }
 }

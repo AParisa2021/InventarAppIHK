@@ -111,6 +111,7 @@
             this.btnUpdate.TabIndex = 7;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnClear
             // 
@@ -170,6 +171,7 @@
             this.dtOrder.Name = "dtOrder";
             this.dtOrder.Size = new System.Drawing.Size(276, 22);
             this.dtOrder.TabIndex = 12;
+            this.dtOrder.Value = new System.DateTime(2023, 2, 20, 0, 0, 0, 0);
             this.dtOrder.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keyDown);
             // 
             // txtID

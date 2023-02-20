@@ -38,12 +38,13 @@ namespace InventarAppIHK
                 ProductInsertForm productInsert = new ProductInsertForm();
                 productInsert.txtID.Text = dgvProduct.Rows[e.RowIndex].Cells[0].Value.ToString();
 
-                //productInsert.dtOrder.Text = (DateTime.Parse(dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString());
-                productInsert.txtName.Text = dgvProduct.Rows[e.RowIndex].Cells[2].Value.ToString(); ;
+                productInsert.dtOrder.Text = (dgvProduct.Rows[e.RowIndex].Cells[2].Value.ToString());
+                productInsert.txtName.Text = dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString(); ;
                 productInsert.txtPrice.Text = dgvProduct.Rows[e.RowIndex].Cells[3].Value.ToString();
                 productInsert.comboCategory.Text = dgvProduct.Rows[e.RowIndex].Cells[4].Value.ToString();
                 //CategoryInsertForm catInsert = new CategoryInsertForm();
                 //catInsert.Name = dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString();
+                productInsert.ShowDialog();
             }
             //else if(columnName == "delete")
             //{

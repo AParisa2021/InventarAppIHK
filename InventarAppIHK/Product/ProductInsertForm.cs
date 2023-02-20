@@ -164,5 +164,12 @@ namespace InventarAppIHK
                 dtOrder.CustomFormat = " ";
             }
         }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            int category_id = DataImport.GetCategoryId(comboCategory.Text);
+            Product updateProduct = new Product(txtName.Text, DateTime.Parse(dtOrder.Text), double.Parse(txtPrice.Text), category_id);
+            DataImport.UpdateProduct(updateProduct);
+        }
     }
 }

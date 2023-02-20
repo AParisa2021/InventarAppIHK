@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Google.Protobuf.Reflection.SourceCodeInfo.Types;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace InventarAppIHK.Import
@@ -317,7 +318,76 @@ namespace InventarAppIHK.Import
             }         
 
         }
-              /// <summary>
+
+        /// <summary>
+        /// Verändert oder Erweitert mit Update die Etage den Namen des Ortes
+        /// </summary>
+        /// <param name="location"></param>
+        public static void UpdateLocation(Location location)
+        {
+            string query = "UPDATE location SET floor=@floor, locationName=@locationName WHERE location_id=@location_id";
+            try
+            {
+                MySqlConnection con = GetConnection();
+                MySqlCommand command = new MySqlCommand(query, con);
+                command.Parameters.Add("@floor", MySqlDbType.VarChar).Value = location.Floor;
+                command.Parameters.Add("@locationName", MySqlDbType.VarChar).Value = location.LocationName;
+                command.ExecuteNonQuery();
+                MessageBox.Show("Ort update");
+
+                MySqlDataReader da = command.ExecuteReader();
+
+                if ((int)command.ExecuteScalar() == 1)
+                {
+                    MessageBox.Show(location.Floor.ToString());
+                    MessageBox.Show(location.LocationName.ToString());
+                }
+                con.Close();
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message + "Ort nicht hinzugefügt!");
+            }
+        }
+
+        public static void UpdateProduct(Product product)
+        {
+            string query = "UPDATE product SET productName =@productName, date =@date, price=@price, category_id=@category_id WHERE product_id=@product_id";
+            //string query = "UPDATE product SET P.productName =@productName, P.date =@date, P.price=@price, I.category_id=@category_id       /*productName, date, price, C.categoryName, L.floor, L.locationName*/ " +
+            //   "from product AS P " +
+            //   "INNER JOIN inventar AS I " +
+            //   "ON P.category_id=I.category_id WHERE UPPER(CONCAT(P.product_id, P.productName, P.date, P.price, P.category_id))";
+                     
+            try
+            {
+                MySqlConnection con = GetConnection();
+                MySqlCommand command = new MySqlCommand(query, con);
+                command.Parameters.Add("@productName", MySqlDbType.VarChar).Value = product.ProductName;
+                command.Parameters.Add("@date", MySqlDbType.VarChar).Value = product.Date.ToString("yyyy-MM-dd");
+                command.Parameters.Add("@price", MySqlDbType.Double).Value = product.Price;
+                command.Parameters.Add("@category_id", MySqlDbType.Int32).Value = product.Category_id;
+
+                command.ExecuteNonQuery();
+                MessageBox.Show("Ort update");
+
+                MySqlDataReader da = command.ExecuteReader();
+
+                //if ((int)command.ExecuteScalar() == 1)
+                //{
+                //    MessageBox.Show(product.ProductName.ToString());
+                //    MessageBox.Show(product.Date.ToString());
+                //    MessageBox.Show(product.Price.ToString());
+                //    MessageBox.Show(product.Category_id.ToString());
+                //}
+                con.Close();
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+        /// <summary>
         /// Damit bei einem leeren Datumseintrag das Programm nicht abstürzt, stattdessen in der DataGridView Tabelle ein - als Zeichen für leer bzw. Datum nicht vorhanden ausgibt
         /// </summary>
         /// <param name="datetime"></param>

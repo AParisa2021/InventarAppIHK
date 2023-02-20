@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InventarAppIHK.Import;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -44,6 +45,12 @@ namespace InventarAppIHK
         {
             txtfloor.Clear();
             txtRoomName.Clear();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            Location location = new Location(txtfloor.Text, txtRoomName.Text);
+            DataImport.UpdateLocation(location);
         }
     }
 }
