@@ -293,30 +293,27 @@ namespace InventarAppIHK.Import
         /// Den Namen der Kategorie verändert oder erweitern
         /// </summary>
         /// <param name="categoryName"></param>
-        public static void UpdateCategory(Category categoryName)
+        public static void UpdateCategory(Category category)
         {
             string query = "UPDATE category SET categoryName=@categoryName WHERE category_id=@category_id";
             try
             {
                 MySqlConnection con = GetConnection();
                 MySqlCommand command = new MySqlCommand(query, con);
-                command.Parameters.Add("categoryname", MySqlDbType.VarChar).Value = categoryName;
+                command.Parameters.Add("@category_id", MySqlDbType.Int32).Value = category.CategoryID;
+                command.Parameters.Add("@categoryName", MySqlDbType.VarChar).Value = category.CategoryName;                
+
                 command.ExecuteNonQuery();
                 MessageBox.Show("Kategorie update");
 
                 MySqlDataReader da = command.ExecuteReader();
 
-                if ((int)command.ExecuteScalar() == 1)
-                {
-                    MessageBox.Show(categoryName.ToString());
-                }
                 con.Close();
             }
             catch (MySqlException e)
             {
-                MessageBox.Show(e.Message + "Kategorie nicht hinzugefügt!");
-            }         
-
+                MessageBox.Show(e.Message);
+            }
         }
 
         /// <summary>
@@ -330,6 +327,7 @@ namespace InventarAppIHK.Import
             {
                 MySqlConnection con = GetConnection();
                 MySqlCommand command = new MySqlCommand(query, con);
+                command.Parameters.Add("@location_id", MySqlDbType.VarChar).Value = location.LocationID;
                 command.Parameters.Add("@floor", MySqlDbType.VarChar).Value = location.Floor;
                 command.Parameters.Add("@locationName", MySqlDbType.VarChar).Value = location.LocationName;
                 command.ExecuteNonQuery();
@@ -337,11 +335,11 @@ namespace InventarAppIHK.Import
 
                 MySqlDataReader da = command.ExecuteReader();
 
-                if ((int)command.ExecuteScalar() == 1)
-                {
-                    MessageBox.Show(location.Floor.ToString());
-                    MessageBox.Show(location.LocationName.ToString());
-                }
+                //if ((int)command.ExecuteScalar() == 1)
+                //{
+                //    MessageBox.Show(location.Floor.ToString());
+                //    MessageBox.Show(location.LocationName.ToString());
+                //}
                 con.Close();
             }
             catch (MySqlException e)
@@ -350,35 +348,30 @@ namespace InventarAppIHK.Import
             }
         }
 
+        /// <summary>
+        /// Änderung eines Datensatzes der Tabelle product mit Update-Query
+        /// </summary>
+        /// <param name="product"></param>
         public static void UpdateProduct(Product product)
         {
-            string query = "UPDATE product SET productName =@productName, date =@date, price=@price, category_id=@category_id WHERE product_id=@product_id";
-            //string query = "UPDATE product SET P.productName =@productName, P.date =@date, P.price=@price, I.category_id=@category_id       /*productName, date, price, C.categoryName, L.floor, L.locationName*/ " +
-            //   "from product AS P " +
-            //   "INNER JOIN inventar AS I " +
-            //   "ON P.category_id=I.category_id WHERE UPPER(CONCAT(P.product_id, P.productName, P.date, P.price, P.category_id))";
-                     
+            string query = "UPDATE product SET productName =@productName, date =@date, price=@price, " +
+                "category_id=@category_id WHERE product_id=@product_id";
+             
             try
             {
                 MySqlConnection con = GetConnection();
                 MySqlCommand command = new MySqlCommand(query, con);
+                command.Parameters.Add("@product_id", MySqlDbType.VarChar).Value = product.ProductID;
                 command.Parameters.Add("@productName", MySqlDbType.VarChar).Value = product.ProductName;
                 command.Parameters.Add("@date", MySqlDbType.VarChar).Value = product.Date.ToString("yyyy-MM-dd");
                 command.Parameters.Add("@price", MySqlDbType.Double).Value = product.Price;
                 command.Parameters.Add("@category_id", MySqlDbType.Int32).Value = product.Category_id;
 
                 command.ExecuteNonQuery();
-                MessageBox.Show("Ort update");
+                MessageBox.Show("Produkt update");
 
                 MySqlDataReader da = command.ExecuteReader();
-
-                //if ((int)command.ExecuteScalar() == 1)
-                //{
-                //    MessageBox.Show(product.ProductName.ToString());
-                //    MessageBox.Show(product.Date.ToString());
-                //    MessageBox.Show(product.Price.ToString());
-                //    MessageBox.Show(product.Category_id.ToString());
-                //}
+         
                 con.Close();
             }
             catch (MySqlException e)

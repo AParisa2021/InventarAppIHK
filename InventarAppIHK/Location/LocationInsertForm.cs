@@ -49,7 +49,7 @@ namespace InventarAppIHK
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            Location location = new Location(txtfloor.Text, txtRoomName.Text);
+            Location location = new Location(int.Parse(txtID.Text), txtfloor.Text, txtRoomName.Text);
             DataImport.UpdateLocation(location);
         }
     }

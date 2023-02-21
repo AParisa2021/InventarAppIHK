@@ -77,7 +77,6 @@ namespace InventarAppIHK
                     try
                     {
                         conn.Open();
-                        MessageBox.Show(query);
                         //comm.Parameters.AddWithValue("@price", Convert.ToDouble(txtFrom.Text));
 
                         if(txtSelect.Text.Trim() != "")

@@ -28,16 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LocationForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dgvLocation = new System.Windows.Forms.DataGridView();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.dgvLocation = new System.Windows.Forms.DataGridView();
             this.Ort_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.floor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.locationName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Edit = new System.Windows.Forms.DataGridViewImageColumn();
             this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocation)).BeginInit();
             this.SuspendLayout();
@@ -51,6 +53,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1058, 87);
             this.panel1.TabIndex = 0;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
+            this.btnAdd.Location = new System.Drawing.Point(987, 32);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(44, 43);
+            this.btnAdd.TabIndex = 2;
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // dgvLocation
             // 
@@ -78,16 +90,7 @@
             this.dgvLocation.RowTemplate.Height = 24;
             this.dgvLocation.Size = new System.Drawing.Size(1058, 376);
             this.dgvLocation.TabIndex = 1;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
-            this.btnAdd.Location = new System.Drawing.Point(987, 32);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(44, 43);
-            this.btnAdd.TabIndex = 2;
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.dgvLocation.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLocation_CellContentClick);
             // 
             // Ort_ID
             // 
@@ -128,6 +131,13 @@
             this.Delete.Name = "Delete";
             this.Delete.Width = 64;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
             // LocationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -155,5 +165,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn locationName;
         private System.Windows.Forms.DataGridViewImageColumn Edit;
         private System.Windows.Forms.DataGridViewImageColumn Delete;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }

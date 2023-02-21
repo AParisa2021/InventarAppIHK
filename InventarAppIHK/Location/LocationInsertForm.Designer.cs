@@ -38,6 +38,7 @@
             this.pbClose = new System.Windows.Forms.PictureBox();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.txtID = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbClose)).BeginInit();
             this.SuspendLayout();
@@ -136,11 +137,19 @@
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
+            // txtID
+            // 
+            this.txtID.Location = new System.Drawing.Point(652, 87);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(100, 22);
+            this.txtID.TabIndex = 9;
+            // 
             // LocationInsertForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 314);
+            this.Controls.Add(this.txtID);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.panel1);
@@ -159,15 +168,15 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtRoomName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtfloor;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pbClose;
         public System.Windows.Forms.Button btnSave;
         public System.Windows.Forms.Button btnUpdate;
         public System.Windows.Forms.Button btnDelete;
+        public System.Windows.Forms.TextBox txtID;
+        public System.Windows.Forms.TextBox txtRoomName;
+        public System.Windows.Forms.TextBox txtfloor;
     }
 }

@@ -40,7 +40,7 @@ namespace InventarAppIHK
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            Category category = new Category(txtCategory.Text.Trim());
+            Category category = new Category(int.Parse(txtId.Text), txtCategory.Text.Trim());
             DataImport.UpdateCategory(category);
         }
 

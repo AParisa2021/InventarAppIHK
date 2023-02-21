@@ -43,7 +43,9 @@ namespace InventarAppIHK
             if (columnName == "edit")
             {
                 CategoryInsertForm catInsert = new CategoryInsertForm();
-                catInsert.Name = dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString();
+                catInsert.txtId.Text = dgvCategory.Rows[e.RowIndex].Cells[0].Value.ToString();
+
+                catInsert.txtCategory.Text = dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString();
                 catInsert.ShowDialog();
             }
             else if (columnName == "delete")
@@ -51,7 +53,7 @@ namespace InventarAppIHK
                 //string query = "DELETE FROM category where categoryName LIKE" + dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString();
 
                 //MySqlCommand command = new MySqlCommand(query, con);
-                comm = new MySqlCommand("DELETE FROM category WHERE category_id '" + Convert.ToInt32(dgvCategory.Rows[e.RowIndex].Cells[0].Value.ToString()) + "'", con); //prüfen ob [1] stimmt [4]phone ist in postgreSQL bei properties auf allow null gesetzt
+                comm = new MySqlCommand("DELETE FROM category WHERE category_id= '" + Convert.ToInt32(dgvCategory.Rows[e.RowIndex].Cells[0].Value.ToString()) + "'", con); //prüfen ob [1] stimmt [4]phone ist in postgreSQL bei properties auf allow null gesetzt
 
                 comm.ExecuteNonQuery();
             }
