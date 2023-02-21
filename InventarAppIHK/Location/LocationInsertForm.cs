@@ -43,8 +43,7 @@ namespace InventarAppIHK
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            txtfloor.Clear();
-            txtRoomName.Clear();
+           DataImport.ClearAllText(this);
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)

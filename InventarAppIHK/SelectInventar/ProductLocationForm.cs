@@ -163,6 +163,11 @@ namespace InventarAppIHK
         {
             TxtSelectProd();
         }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            DataImport.ClearAllText(this);
+        }
     }
 }
 

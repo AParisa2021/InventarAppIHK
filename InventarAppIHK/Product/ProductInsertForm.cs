@@ -171,5 +171,10 @@ namespace InventarAppIHK
             Product updateProduct = new Product(int.Parse(txtID.Text), txtName.Text, DateTime.Parse(dtOrder.Text), double.Parse(txtPrice.Text), category_id);
             DataImport.UpdateProduct(updateProduct);
         }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            DataImport.ClearAllText(this);
+        }
     }
 }

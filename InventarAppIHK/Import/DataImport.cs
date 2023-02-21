@@ -556,46 +556,62 @@ namespace InventarAppIHK.Import
 
             return sql;
         }
-        
-        public static void EditDeleteCategory(DataGridView dgvCategory, DataGridViewCellEventArgs e/*, Category category*//*, string columnName*/)
-        {
-            string columnName = "";
-            columnName = dgvCategory.Columns[e.ColumnIndex].Name;
-            //if(columnName == "edit")
-            //{
-            //    CategoryInsertForm catInsert = new CategoryInsertForm();
-            //    catInsert.Name = dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString();
-            //}
-            //else if(columnName == "delete")
-            //{
-            //string query = "DELETE FROM category where categoryName LIKE" + dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString();
-            
-            string query = "DELETE FROM category where categoryName LIKE" + dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString() + "'";
-            MySqlConnection con = GetConnection();
-                MySqlCommand command = new MySqlCommand(query, con);
-                command.ExecuteNonQuery();
-                con.Close();
-            //}
-        }
-        public static void EditDeleteProduct(DataGridView dgvProduct, DataGridViewCellEventArgs e/*, Category category*//*, string columnName*/)
-        {
-            string columnName = "";
-            columnName = dgvProduct.Columns[e.ColumnIndex].Name;
-            //if(columnName == "edit")
-            //{
-            //    CategoryInsertForm catInsert = new CategoryInsertForm();
-            //    catInsert.Name = dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString();
-            //}
-            //else if(columnName == "delete")
-            //{
-            //string query = "DELETE FROM category where categoryName LIKE" + dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString();
 
-            string query = "DELETE FROM category where categoryName LIKE" + dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString() + "'";
-            MySqlConnection con = GetConnection();
-            MySqlCommand command = new MySqlCommand(query, con);
-            command.ExecuteNonQuery();
-            con.Close();
-            //}
+        //public static void EditDeleteCategory(DataGridView dgvCategory, DataGridViewCellEventArgs e/*, Category category*//*, string columnName*/)
+        //{
+        //    string columnName = "";
+        //    columnName = dgvCategory.Columns[e.ColumnIndex].Name;
+        //    //if(columnName == "edit")
+        //    //{
+        //    //    CategoryInsertForm catInsert = new CategoryInsertForm();
+        //    //    catInsert.Name = dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString();
+        //    //}
+        //    //else if(columnName == "delete")
+        //    //{
+        //    //string query = "DELETE FROM category where categoryName LIKE" + dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString();
+
+        //    string query = "DELETE FROM category where categoryName LIKE" + dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString() + "'";
+        //    MySqlConnection con = GetConnection();
+        //        MySqlCommand command = new MySqlCommand(query, con);
+        //        command.ExecuteNonQuery();
+        //        con.Close();
+        //    //}
+        //}
+        //public static void EditDeleteProduct(DataGridView dgvProduct, DataGridViewCellEventArgs e/*, Category category*//*, string columnName*/)
+        //{
+        //    string columnName = "";
+        //    columnName = dgvProduct.Columns[e.ColumnIndex].Name;
+        //    //if(columnName == "edit")
+        //    //{
+        //    //    CategoryInsertForm catInsert = new CategoryInsertForm();
+        //    //    catInsert.Name = dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString();
+        //    //}
+        //    //else if(columnName == "delete")
+        //    //{
+        //    //string query = "DELETE FROM category where categoryName LIKE" + dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString();
+
+        //    string query = "DELETE FROM category where categoryName LIKE" + dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString() + "'";
+        //    MySqlConnection con = GetConnection();
+        //    MySqlCommand command = new MySqlCommand(query, con);
+        //    command.ExecuteNonQuery();
+        //    con.Close();
+        //    //}
+        //}
+
+        /// <summary>
+        /// Clear Methode um alle TextBoxen vom Inhalt zu bereinigen
+        /// </summary>
+        /// <param name="con"></param>
+        public static void ClearAllText(Control con)
+        {
+            foreach (Control c in con.Controls)
+            {
+                if (c is TextBox)
+                    ((TextBox)c).Clear();
+                else
+                    ClearAllText(c);
+            }
         }
+
     }
 }
