@@ -317,6 +317,83 @@ namespace InventarAppIHK.Import
             }
         }
 
+        public static void UpdateProductLocation(Inventar inventar)
+        {
+            //dgvProduct.Rows.Clear();
+            ProductLocationForm pLForm = new ProductLocationForm();
+            int category_id = DataImport.GetCategoryId(pLForm.txtCatID.Text);
+
+            MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=;database=inventar");
+            string query = "UPDATE inventar SET product_id=@product_id, category_id=@category_id, location_id@location_id WHERE inventar_id=@inventar_id";
+            //    "select P.product_id, P.productName, P.date, P.price, C.categoryName " +
+            //"from product AS P INNER JOIN category AS C ON P.category_id=C.category_id " +
+            //"WHERE UPPER(CONCAT(P.product_id, P.productName, P.date, P.price, C.categoryName)) like concat('%' , @search_product , '%')";
+            //string query = "SELECT P.product_id, P.productName, P.date, P.price, C.categoryName FROM from product AS P INNER JOIN category AS C ON P.category_id = C.category_id WHERE productName = ('" + txtSelectProduct.Text+"') GROUP BY productName";
+
+
+            //string query = "SELECT product_id, productName, date, price, C.categoryName FROM from product AS P JOIN category AS C ON P.category_id=C.category_id WHERE product_id = ('" + txtSelectProduct.Text + "') GROUP BY product_id";
+            try
+            {
+                conn.Open();
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.Add("@inventar_id", MySqlDbType.Int32).Value = inventar.Inventar_id;
+                command.Parameters.Add("@product_id", MySqlDbType.Int32).Value = inventar.Product_id;
+                command.Parameters.Add("@category_id", MySqlDbType.VarChar).Value = inventar.Category_id;
+                command.Parameters.Add("@location_id", MySqlDbType.VarChar).Value = inventar.Location_id;
+                MessageBox.Show("Total update");
+
+                MySqlDataReader dr = command.ExecuteReader();
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+            //try
+            //{
+
+            //    int i = 0;
+            //    if (dr.HasRows)
+            //    {
+            //        while (dr.Read())
+            //        {
+            //            i++;        //Zählt Nummer der Customer. wird noch nicht verwendet aufgrund von Verschiebungen im DataGridView. SPäter prüfen, ob es notwendig ist
+            //            dgvProduct.Rows.Add(dr[0].ToString(), dr[1].ToString(), Datetime(dr[2].ToString()), dr[3].ToString(), dr[4].ToString());
+            //        }
+            //    }
+
+            //    command.Dispose();
+            //    conn.Close();
+            //    dr.Close();
+            //}
+            //catch (MySqlException e)
+            //{
+            //    MessageBox.Show(e.Message + "Error");
+            //}
+
+
+
+            //string query = "UPDATE category SET categoryName=@categoryName WHERE category_id=@category_id";
+            //try
+            //{
+            //    MySqlConnection con = GetConnection();
+            //    MySqlCommand command = new MySqlCommand(query, con);
+            //    command.Parameters.Add("@category_id", MySqlDbType.Int32).Value = category.CategoryID;
+            //    command.Parameters.Add("@categoryName", MySqlDbType.VarChar).Value = category.CategoryName;
+
+            //    command.ExecuteNonQuery();
+            //    MessageBox.Show("Kategorie update");
+
+            //    MySqlDataReader da = command.ExecuteReader();
+
+            //    con.Close();
+            //}
+            //catch (MySqlException e)
+            //{
+            //    MessageBox.Show(e.Message);
+            //}
+        }
+
         /// <summary>
         /// Verändert oder Erweitert mit Update die Etage den Namen des Ortes
         /// </summary>
@@ -335,12 +412,7 @@ namespace InventarAppIHK.Import
                 MessageBox.Show("Ort update");
 
                 MySqlDataReader da = command.ExecuteReader();
-
-                //if ((int)command.ExecuteScalar() == 1)
-                //{
-                //    MessageBox.Show(location.Floor.ToString());
-                //    MessageBox.Show(location.LocationName.ToString());
-                //}
+             
                 con.Close();
             }
             catch (MySqlException e)
@@ -455,17 +527,7 @@ namespace InventarAppIHK.Import
                 MessageBox.Show(e.Message + "Error");
             }
         }
-        /// <summary>
-        /// Damit bei einem leeren Datumseintrag das Programm nicht abstürzt, stattdessen in der DataGridView Tabelle ein - als Zeichen für leer bzw. Datum nicht vorhanden ausgibt
-        /// </summary>
-        /// <param name="datetime"></param>
-        /// <returns></returns>
-        //private static string Datetime(string datetime)
-        //{
-        //    //string timeFormat = datetime.Substring(datetime.Length - 7);
-        //   string timeFormat= Convert.ToDateTime(datetime.ToString()).ToString("yyyy-MM-dd");
-        //    return timeFormat;
-        //}
+
         /// <summary>
         /// Lädt User aus der Datenbank Tabelle category & gibt die jeweils in den einzelnen Zeilen des dgvCategory aus
         /// </summary>
@@ -554,11 +616,7 @@ namespace InventarAppIHK.Import
 
 
             if (/*textBoxSearch.Trim() != "" ||*/ price.Trim() != "") sql += " WHERE ";
-            //if (textBoxSearch.Trim() != "")
-            //{
-            //    sql += "UPPER(CONCAT(P.product_id, P.productName, P.date, P.price, C.categoryName)) " +
-            //           "LIKE '%" + textBoxSearch.ToUpper() + "%'";
-            //}
+    
             if (price.Trim() != "")
             {
                 if (price.Trim() != "") sql += " AND ";
@@ -568,46 +626,6 @@ namespace InventarAppIHK.Import
             return sql;
         }
 
-        //public static void EditDeleteCategory(DataGridView dgvCategory, DataGridViewCellEventArgs e/*, Category category*//*, string columnName*/)
-        //{
-        //    string columnName = "";
-        //    columnName = dgvCategory.Columns[e.ColumnIndex].Name;
-        //    //if(columnName == "edit")
-        //    //{
-        //    //    CategoryInsertForm catInsert = new CategoryInsertForm();
-        //    //    catInsert.Name = dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString();
-        //    //}
-        //    //else if(columnName == "delete")
-        //    //{
-        //    //string query = "DELETE FROM category where categoryName LIKE" + dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString();
-
-        //    string query = "DELETE FROM category where categoryName LIKE" + dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString() + "'";
-        //    MySqlConnection con = GetConnection();
-        //        MySqlCommand command = new MySqlCommand(query, con);
-        //        command.ExecuteNonQuery();
-        //        con.Close();
-        //    //}
-        //}
-        //public static void EditDeleteProduct(DataGridView dgvProduct, DataGridViewCellEventArgs e/*, Category category*//*, string columnName*/)
-        //{
-        //    string columnName = "";
-        //    columnName = dgvProduct.Columns[e.ColumnIndex].Name;
-        //    //if(columnName == "edit")
-        //    //{
-        //    //    CategoryInsertForm catInsert = new CategoryInsertForm();
-        //    //    catInsert.Name = dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString();
-        //    //}
-        //    //else if(columnName == "delete")
-        //    //{
-        //    //string query = "DELETE FROM category where categoryName LIKE" + dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString();
-
-        //    string query = "DELETE FROM category where categoryName LIKE" + dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString() + "'";
-        //    MySqlConnection con = GetConnection();
-        //    MySqlCommand command = new MySqlCommand(query, con);
-        //    command.ExecuteNonQuery();
-        //    con.Close();
-        //    //}
-        //}
 
         /// <summary>
         /// Clear Methode um alle TextBoxen vom Inhalt zu bereinigen   https://gist.github.com/rahuldass/028d2657ded7266c7893
@@ -623,6 +641,52 @@ namespace InventarAppIHK.Import
                     ClearAllText(c);
             }
         }
+        /// <summary>
+        /// Löschen und Bearbeiten des Datensatzes im DataGridView
 
+        /// </summary>
+        /// <param name="dgv"></param>
+        /// <param name="e"></param>
+        public static void TotalEditDelete(DataGridView dgv, DataGridViewCellEventArgs e, string categoryName)
+        {
+            string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
+            string columnName = dgv.Columns[e.ColumnIndex].Name;
+            int productID = DataImport.GetProductId(dgv.Rows[e.RowIndex].Cells[1].Value.ToString());
+
+            if (columnName == "edit")
+            {
+                ProductLocationForm productLocationForm = new ProductLocationForm();
+                //productLocationForm.txtLNumber.Text = dgv.Rows[e.RowIndex].Cells[0].Value.ToString();
+                productLocationForm.txtId.Text = dgv.Rows[e.RowIndex].Cells[0].Value.ToString();
+                //productLocationForm.txtPNumber = dgv.Rows[e.RowIndex].Cells[].Value.ToString();
+                productLocationForm.txtCatID = (DataImport.GetCategoryId(categoryName)).ToString();
+                productLocationForm.txtLName.Text = dgv.Rows[e.RowIndex].Cells[6].Value.ToString();
+                productLocationForm.txtDate.Text = (dgv.Rows[e.RowIndex].Cells[2].Value.ToString());
+                productLocationForm.txtPName.Text = dgv.Rows[e.RowIndex].Cells[1].Value.ToString(); 
+                productLocationForm.txtPrice.Text = dgv.Rows[e.RowIndex].Cells[3].Value.ToString();
+                productLocationForm.txtCategoryName.Text = dgv.Rows[e.RowIndex].Cells[4].Value.ToString();
+                //CategoryInsertForm catInsert = new CategoryInsertForm();
+                //catInsert.Name = dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString();
+                productLocationForm.ShowDialog();
+            }
+            //else if(columnName == "delete")
+            //{
+            //string query = "DELETE FROM category where categoryName LIKE" + dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString();
+            else if (columnName == "delete")
+            {
+                if (MessageBox.Show("Sind sie sich sicher, dass Sie diesen Datensatz löschen möchten?", "Löschen Datensatz", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    MySqlConnection con = new MySqlConnection(sql);
+
+                    con.Open();
+                    int product_id = Convert.ToInt32(dgv.Rows[e.RowIndex].Cells[0].Value);
+                    //MySqlCommand commandProduct = new MySqlCommand("DELETE FROM product WHERE product_id=" + Convert.ToInt32(dgvTotal.Rows[e.RowIndex].Cells[0].Value.ToString()), con);
+                    MySqlCommand commandProduct = new MySqlCommand("DELETE FROM inventar WHERE inventar_id=" + Convert.ToInt32(dgv.Rows[e.RowIndex].Cells[0].Value.ToString()), con);
+
+                    commandProduct.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+        }
     }
 }

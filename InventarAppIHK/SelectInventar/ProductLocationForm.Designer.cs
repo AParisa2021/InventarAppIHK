@@ -66,6 +66,8 @@
             this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtId = new System.Windows.Forms.TextBox();
+            this.txtCatID = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbClose)).BeginInit();
             this.panel2.SuspendLayout();
@@ -96,6 +98,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.txtCatID);
+            this.panel2.Controls.Add(this.txtId);
             this.panel2.Controls.Add(this.txtLName);
             this.panel2.Controls.Add(this.txtLNumber);
             this.panel2.Controls.Add(this.label3);
@@ -281,6 +285,7 @@
             this.btnUpdate.TabIndex = 18;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnSave
             // 
@@ -438,6 +443,20 @@
             this.categoryName.Name = "categoryName";
             this.categoryName.Width = 125;
             // 
+            // txtId
+            // 
+            this.txtId.Location = new System.Drawing.Point(16, 443);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(100, 22);
+            this.txtId.TabIndex = 9;
+            // 
+            // txtCatID
+            // 
+            this.txtCatID.Location = new System.Drawing.Point(135, 443);
+            this.txtCatID.Name = "txtCatID";
+            this.txtCatID.Size = new System.Drawing.Size(100, 22);
+            this.txtCatID.TabIndex = 10;
+            // 
             // ProductLocationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -464,18 +483,13 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox txtLName;
-        private System.Windows.Forms.TextBox txtLNumber;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtPName;
-        private System.Windows.Forms.TextBox txtPNumber;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
@@ -490,14 +504,21 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn locationName;
         public System.Windows.Forms.TextBox txtSelectLocation;
         public System.Windows.Forms.DataGridView dgvLocation;
-        private System.Windows.Forms.TextBox txtCategoryName;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtDate;
         public System.Windows.Forms.TextBox txtSelectProduct;
         private System.Windows.Forms.DataGridViewTextBoxColumn product_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn productName;
         private System.Windows.Forms.DataGridViewTextBoxColumn date;
         private System.Windows.Forms.DataGridViewTextBoxColumn price;
         private System.Windows.Forms.DataGridViewTextBoxColumn categoryName;
+        public System.Windows.Forms.TextBox txtLName;
+        public System.Windows.Forms.TextBox txtLNumber;
+        public System.Windows.Forms.TextBox txtPrice;
+        public System.Windows.Forms.TextBox txtPName;
+        public System.Windows.Forms.TextBox txtPNumber;
+        public System.Windows.Forms.TextBox txtCategoryName;
+        public System.Windows.Forms.TextBox txtDate;
+        public System.Windows.Forms.TextBox txtCatID;
+        public System.Windows.Forms.TextBox txtId;
     }
 }

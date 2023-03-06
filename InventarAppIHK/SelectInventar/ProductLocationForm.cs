@@ -179,6 +179,13 @@ namespace InventarAppIHK
         {
             DataImport.ClearAllText(this);
         }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            Inventar inventar = new Inventar(int.Parse(txtId.Text), int.Parse(txtLNumber.Text), int.Parse(txtCatID.Text), int.Parse(txtPNumber.Text));
+
+            DataImport.UpdateProductLocation(inventar);
+        }
     }
 }
 

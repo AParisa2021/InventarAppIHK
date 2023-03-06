@@ -191,48 +191,14 @@ namespace InventarAppIHK
         }
 
         /// <summary>
-        /// Köschen und Bearbeiten des Datensatzes im DataGridView
+        /// Löschen und Bearbeiten des Datensatzes im DataGridView
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void dgvTotal_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
-            string columnName = dgvTotal.Columns[e.ColumnIndex].Name;
-            int productID = DataImport.GetProductId(dgvTotal.Rows[e.RowIndex].Cells[1].Value.ToString());
-
-            if (columnName == "edit")
-            {
-                ProductInsertForm productInsert = new ProductInsertForm();
-                productInsert.txtID.Text = dgvTotal.Rows[e.RowIndex].Cells[0].Value.ToString();
-
-                productInsert.dtOrder.Text = (dgvTotal.Rows[e.RowIndex].Cells[2].Value.ToString());
-                productInsert.txtName.Text = dgvTotal.Rows[e.RowIndex].Cells[1].Value.ToString(); ;
-                productInsert.txtPrice.Text = dgvTotal.Rows[e.RowIndex].Cells[3].Value.ToString();
-                productInsert.comboCategory.Text = dgvTotal.Rows[e.RowIndex].Cells[4].Value.ToString();
-                //CategoryInsertForm catInsert = new CategoryInsertForm();
-                //catInsert.Name = dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString();
-                productInsert.ShowDialog();
-            }
-            //else if(columnName == "delete")
-            //{
-            //string query = "DELETE FROM category where categoryName LIKE" + dgvCategory.Rows[e.RowIndex].Cells[1].Value.ToString();
-            else if (columnName == "delete")
-            {
-                if (MessageBox.Show("Sind sie sich sicher, dass Sie diesen Datensatz inklusive Verknüpfungen löschen möchten?", "Löschen Datensatz", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    MySqlConnection con = new MySqlConnection(sql);
-
-                    con.Open();
-                    int product_id = Convert.ToInt32(dgvTotal.Rows[e.RowIndex].Cells[0].Value);
-                    //string deleteProduct = "DELETE FROM inventar where product_id LIKE" + dgvProduct.Rows[e.RowIndex].Cells[0].Value.ToString() + "'";
-                    //MySqlCommand commandProduct = new MySqlCommand("DELETE FROM product WHERE product_id=" + Convert.ToInt32(dgvTotal.Rows[e.RowIndex].Cells[0].Value.ToString()), con);
-                    MySqlCommand commandProduct = new MySqlCommand("DELETE FROM inventar WHERE inventar_id=" + Convert.ToInt32(dgvTotal.Rows[e.RowIndex].Cells[0].Value.ToString()), con);
-
-                    commandProduct.ExecuteNonQuery();
-                    con.Close();
-                }
-            }
+            DataImport.TotalEditDelete(dgvTotal, e);
+            
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
