@@ -50,6 +50,7 @@
             this.locationName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.edit = new System.Windows.Forms.DataGridViewImageColumn();
             this.delete = new System.Windows.Forms.DataGridViewImageColumn();
+            this.txtCatId = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTotal)).BeginInit();
             this.SuspendLayout();
@@ -57,6 +58,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.panel1.Controls.Add(this.txtCatId);
             this.panel1.Controls.Add(this.lblTotal);
             this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Controls.Add(this.label4);
@@ -262,6 +264,13 @@
             this.delete.Name = "delete";
             this.delete.Width = 64;
             // 
+            // txtCatId
+            // 
+            this.txtCatId.Location = new System.Drawing.Point(375, 136);
+            this.txtCatId.Name = "txtCatId";
+            this.txtCatId.Size = new System.Drawing.Size(100, 22);
+            this.txtCatId.TabIndex = 10;
+            // 
             // TotalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -302,5 +311,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn locationName;
         private System.Windows.Forms.DataGridViewImageColumn edit;
         private System.Windows.Forms.DataGridViewImageColumn delete;
+        public System.Windows.Forms.TextBox txtCatId;
     }
 }

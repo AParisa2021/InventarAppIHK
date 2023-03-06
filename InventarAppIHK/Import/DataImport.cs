@@ -647,8 +647,10 @@ namespace InventarAppIHK.Import
         /// </summary>
         /// <param name="dgv"></param>
         /// <param name="e"></param>
-        public static void TotalEditDelete(DataGridView dgv, DataGridViewCellEventArgs e, string categoryName)
+        public static void TotalEditDelete(DataGridView dgv, DataGridViewCellEventArgs e)
         {
+            string categoryName = "";
+            TotalForm catID = new TotalForm();
             string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
             string columnName = dgv.Columns[e.ColumnIndex].Name;
             int productID = DataImport.GetProductId(dgv.Rows[e.RowIndex].Cells[1].Value.ToString());
@@ -659,7 +661,7 @@ namespace InventarAppIHK.Import
                 //productLocationForm.txtLNumber.Text = dgv.Rows[e.RowIndex].Cells[0].Value.ToString();
                 productLocationForm.txtId.Text = dgv.Rows[e.RowIndex].Cells[0].Value.ToString();
                 //productLocationForm.txtPNumber = dgv.Rows[e.RowIndex].Cells[].Value.ToString();
-                productLocationForm.txtCatID = (DataImport.GetCategoryId(categoryName)).ToString();
+                productLocationForm.txtCatID.Text = (DataImport.GetCategoryId(catID.txtCatId.Text)).ToString();
                 productLocationForm.txtLName.Text = dgv.Rows[e.RowIndex].Cells[6].Value.ToString();
                 productLocationForm.txtDate.Text = (dgv.Rows[e.RowIndex].Cells[2].Value.ToString());
                 productLocationForm.txtPName.Text = dgv.Rows[e.RowIndex].Cells[1].Value.ToString(); 
