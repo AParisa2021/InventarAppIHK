@@ -38,6 +38,8 @@ namespace InventarAppIHK
             insertLocation.btnSave.Enabled = true;
             insertLocation.btnUpdate.Enabled = false;
             insertLocation.ShowDialog();
+            MyInitializeComponent();    //Laden von dgv nach einem neuen Eintrag
+
         }
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
@@ -74,6 +76,7 @@ namespace InventarAppIHK
 
                 comm.ExecuteNonQuery();
             }
+            MyInitializeComponent();        //laden dgv nach update
             con.Close();
         }
     }

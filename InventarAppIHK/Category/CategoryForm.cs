@@ -57,6 +57,8 @@ namespace InventarAppIHK
 
                 comm.ExecuteNonQuery();
             }
+            MyInitializeComponent();
+
             con.Close();
 
         }
@@ -67,6 +69,7 @@ namespace InventarAppIHK
             insertCategory.btnSave.Enabled = true;
             insertCategory.btnUpdate.Enabled = false;
             insertCategory.ShowDialog();
+            MyInitializeComponent();
         }
     }
 }

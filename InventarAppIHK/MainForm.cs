@@ -60,10 +60,10 @@ namespace InventarAppIHK
             panelLeft.Top= btnCategory.Top;
 
             openChildForm(new CategoryForm());
-            if (Load = !Load)
-            {
-                btnCategory.Text = _Load ? btnCategory.Text = "Update" : btnCategory.Text = "Users";
-            }
+            //if (Load = !Load)
+            //{
+            //    btnCategory.Text = _Load ? btnCategory.Text = "Update" : btnCategory.Text = "Users";
+            //}
         }
 
         private void btnProduct_Click(object sender, EventArgs e)
@@ -71,10 +71,10 @@ namespace InventarAppIHK
             panelLeft.Height = btnProduct.Height;
             panelLeft.Top = btnProduct.Top;
             openChildForm(new ProductForm());
-            if (Load = !Load)
-            {
-                btnCategory.Text = _Load ? btnCategory.Text = "Update" : btnCategory.Text = "Users";
-            }
+            //if (Load = !Load)
+            //{
+            //    btnCategory.Text = _Load ? btnCategory.Text = "Update" : btnCategory.Text = "Users";
+            //}
         }
 
         private void btnLocation_Click(object sender, EventArgs e)
@@ -83,10 +83,10 @@ namespace InventarAppIHK
             panelLeft.Top = btnLocation.Top;
 
             openChildForm(new LocationForm());
-            if (Load = !Load)
-            {
-                btnCategory.Text = _Load ? btnCategory.Text = "Update" : btnCategory.Text = "Users";
-            }
+            //if (Load = !Load)
+            //{
+            //    btnCategory.Text = _Load ? btnCategory.Text = "Update" : btnCategory.Text = "Users";
+            //}
         }
 
         private void btnOrder_Click(object sender, EventArgs e)
@@ -95,10 +95,10 @@ namespace InventarAppIHK
             panelLeft.Top = btnOrder.Top;
 
             openChildForm(new TotalForm());
-            if (Load = !Load)
-            {
-                btnCategory.Text = _Load ? btnCategory.Text = "Update" : btnCategory.Text = "Users";
-            }
+            //if (Load = !Load)
+            //{
+            //    btnCategory.Text = _Load ? btnCategory.Text = "Update" : btnCategory.Text = "Users";
+            //}
         }
     }
 }

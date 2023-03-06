@@ -20,15 +20,16 @@ namespace InventarAppIHK
         public ProductLocationForm()
         {
             InitializeComponent();
-            //MyInitializeComponent();
-            TxtLocation();
-            TxtSelectProd();
+            MyInitializeComponent();
+
         }
 
         public void MyInitializeComponent()
         {
-            DataImport.LoadFormProduct(dgvProduct);
+            //DataImport.LoadFormProduct(dgvProduct);
             //CSVDataImport.LoadFormLocation(dgvLocation);
+            TxtLocation();
+            TxtSelectProd();
         }
 
        
@@ -61,7 +62,7 @@ namespace InventarAppIHK
                         while (dr.Read())
                         {
                             i++;        //Zählt Nummer der Customer. wird noch nicht verwendet aufgrund von Verschiebungen im DataGridView. SPäter prüfen, ob es notwendig ist
-                        dgvProduct.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString());
+                        dgvProduct.Rows.Add(dr[0].ToString(), dr[1].ToString(), Datetime(dr[2].ToString()), dr[3].ToString(), dr[4].ToString());
                     }
                 }
 
@@ -74,7 +75,17 @@ namespace InventarAppIHK
                     MessageBox.Show(e.Message + "Error");
                 }
             }
-
+        /// <summary>
+        /// Datum-Formatierung. Datum ohne Uhrzeit ausgeben
+        /// </summary>
+        /// <param name="datetime"></param>
+        /// <returns></returns>
+        private static string Datetime(string datetime)
+        {
+            //string timeFormat = datetime.Substring(datetime.Length - 7);
+            string timeFormat = Convert.ToDateTime(datetime.ToString()).ToString("yyyy-MM-dd");
+            return timeFormat;
+        }
         public void TxtLocation()
         {
             dgvLocation.Rows.Clear();
@@ -130,7 +141,7 @@ namespace InventarAppIHK
         {
             txtPNumber.Text = dgvProduct.Rows[e.RowIndex].Cells[0].Value.ToString();
             txtPName.Text = dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString();
-            txtDate.Text = dgvProduct.Rows[e.RowIndex].Cells[2].Value.ToString();
+            txtDate.Text = dgvProduct.Rows[e.RowIndex].Cells[2].Value.ToString().Substring(0,10);
             txtPrice.Text = dgvProduct.Rows[e.RowIndex].Cells[3].Value.ToString();
             txtCategoryName.Text = dgvProduct.Rows[e.RowIndex].Cells[4].Value.ToString();
         }

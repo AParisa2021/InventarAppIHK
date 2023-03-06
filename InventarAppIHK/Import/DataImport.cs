@@ -1,4 +1,5 @@
-﻿using InventarAppIHK.SelectInventar;
+﻿using Google.Protobuf;
+using InventarAppIHK.SelectInventar;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -454,7 +455,17 @@ namespace InventarAppIHK.Import
                 MessageBox.Show(e.Message + "Error");
             }
         }
-
+        /// <summary>
+        /// Damit bei einem leeren Datumseintrag das Programm nicht abstürzt, stattdessen in der DataGridView Tabelle ein - als Zeichen für leer bzw. Datum nicht vorhanden ausgibt
+        /// </summary>
+        /// <param name="datetime"></param>
+        /// <returns></returns>
+        //private static string Datetime(string datetime)
+        //{
+        //    //string timeFormat = datetime.Substring(datetime.Length - 7);
+        //   string timeFormat= Convert.ToDateTime(datetime.ToString()).ToString("yyyy-MM-dd");
+        //    return timeFormat;
+        //}
         /// <summary>
         /// Lädt User aus der Datenbank Tabelle category & gibt die jeweils in den einzelnen Zeilen des dgvCategory aus
         /// </summary>
@@ -599,7 +610,7 @@ namespace InventarAppIHK.Import
         //}
 
         /// <summary>
-        /// Clear Methode um alle TextBoxen vom Inhalt zu bereinigen
+        /// Clear Methode um alle TextBoxen vom Inhalt zu bereinigen   https://gist.github.com/rahuldass/028d2657ded7266c7893
         /// </summary>
         /// <param name="con"></param>
         public static void ClearAllText(Control con)

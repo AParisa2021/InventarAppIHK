@@ -63,12 +63,22 @@ namespace InventarAppIHK
                     con.Close();
                 }
             }
-    
+            MyInitializeComponent();            //um Update automatisch zu laden
+
             //string query = "DELETE FROM category where categoryName LIKE" + dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString() + "'";
             //MySqlCommand command = new MySqlCommand(query, con);
             //command.ExecuteNonQuery();
             //con.Close();
             //}
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            ProductInsertForm insertProduct = new ProductInsertForm();
+            insertProduct.btnSave.Enabled = true;
+            insertProduct.btnUpdate.Enabled = false;
+            insertProduct.ShowDialog();
+            MyInitializeComponent();
         }
     }
 }

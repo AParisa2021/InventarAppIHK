@@ -418,11 +418,10 @@
             // 
             // date
             // 
-            this.date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.date.HeaderText = "Datum";
             this.date.MinimumWidth = 6;
             this.date.Name = "date";
-            this.date.Width = 75;
             // 
             // price
             // 
@@ -494,11 +493,11 @@
         private System.Windows.Forms.TextBox txtCategoryName;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtDate;
+        public System.Windows.Forms.TextBox txtSelectProduct;
         private System.Windows.Forms.DataGridViewTextBoxColumn product_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn productName;
         private System.Windows.Forms.DataGridViewTextBoxColumn date;
         private System.Windows.Forms.DataGridViewTextBoxColumn price;
         private System.Windows.Forms.DataGridViewTextBoxColumn categoryName;
-        public System.Windows.Forms.TextBox txtSelectProduct;
     }
 }
