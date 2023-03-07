@@ -149,16 +149,16 @@ namespace InventarAppIHK.Import
             {
                 MessageBox.Show(e.Message);
             }
-    
+
         }
         /// <summary>
         /// holt die jeweilige category_id des jeweiligen categoryName aus der category Tabelle und gibt die categoryId als Rückgabewert zurück
         /// </summary>
-        /// <param name="categoryName"></param>
-        /// <returns="categoryId"></returns>
+        /// <param name = "categoryName" ></ param >
+        /// < returns = "categoryId" ></ returns >
         public static int GetCategoryId(string categoryName)
         {
-        
+
             string query = "SELECT category_id FROM category WHERE categoryname = @categoryname ";
 
             string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
@@ -171,10 +171,10 @@ namespace InventarAppIHK.Import
                 {
                     command.Parameters.Add("@categoryname", MySqlDbType.VarChar).Value = categoryName;
 
-                    categoryId = (int) command.ExecuteScalar();
+                    categoryId = (int)command.ExecuteScalar();
                 }
                 con.Close();
-                
+
             }
             catch (MySqlException e)
             {
@@ -319,79 +319,28 @@ namespace InventarAppIHK.Import
 
         public static void UpdateProductLocation(Inventar inventar)
         {
-            //dgvProduct.Rows.Clear();
-            ProductLocationForm pLForm = new ProductLocationForm();
-            int category_id = DataImport.GetCategoryId(pLForm.txtCatID.Text);
-
             MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=;database=inventar");
-            string query = "UPDATE inventar SET product_id=@product_id, category_id=@category_id, location_id@location_id WHERE inventar_id=@inventar_id";
-            //    "select P.product_id, P.productName, P.date, P.price, C.categoryName " +
-            //"from product AS P INNER JOIN category AS C ON P.category_id=C.category_id " +
-            //"WHERE UPPER(CONCAT(P.product_id, P.productName, P.date, P.price, C.categoryName)) like concat('%' , @search_product , '%')";
-            //string query = "SELECT P.product_id, P.productName, P.date, P.price, C.categoryName FROM from product AS P INNER JOIN category AS C ON P.category_id = C.category_id WHERE productName = ('" + txtSelectProduct.Text+"') GROUP BY productName";
+            string query = "UPDATE inventar SET product_id=@product_id, category_id=@category_id, location_id=@location_id WHERE inventar_id=@inventar_id";
 
-
-            //string query = "SELECT product_id, productName, date, price, C.categoryName FROM from product AS P JOIN category AS C ON P.category_id=C.category_id WHERE product_id = ('" + txtSelectProduct.Text + "') GROUP BY product_id";
             try
             {
                 conn.Open();
                 MySqlCommand command = new MySqlCommand(query, conn);
                 command.Parameters.Add("@inventar_id", MySqlDbType.Int32).Value = inventar.Inventar_id;
                 command.Parameters.Add("@product_id", MySqlDbType.Int32).Value = inventar.Product_id;
-                command.Parameters.Add("@category_id", MySqlDbType.VarChar).Value = inventar.Category_id;
-                command.Parameters.Add("@location_id", MySqlDbType.VarChar).Value = inventar.Location_id;
+                command.Parameters.Add("@category_id", MySqlDbType.Int32).Value = inventar.Category_id;
+                command.Parameters.Add("@location_id", MySqlDbType.Int32).Value = inventar.Location_id;
+                command.ExecuteNonQuery();
+
                 MessageBox.Show("Total update");
 
                 MySqlDataReader dr = command.ExecuteReader();
+                conn.Close();
             }
             catch (MySqlException e)
             {
                 MessageBox.Show(e.Message);
             }
-
-            //try
-            //{
-
-            //    int i = 0;
-            //    if (dr.HasRows)
-            //    {
-            //        while (dr.Read())
-            //        {
-            //            i++;        //Zählt Nummer der Customer. wird noch nicht verwendet aufgrund von Verschiebungen im DataGridView. SPäter prüfen, ob es notwendig ist
-            //            dgvProduct.Rows.Add(dr[0].ToString(), dr[1].ToString(), Datetime(dr[2].ToString()), dr[3].ToString(), dr[4].ToString());
-            //        }
-            //    }
-
-            //    command.Dispose();
-            //    conn.Close();
-            //    dr.Close();
-            //}
-            //catch (MySqlException e)
-            //{
-            //    MessageBox.Show(e.Message + "Error");
-            //}
-
-
-
-            //string query = "UPDATE category SET categoryName=@categoryName WHERE category_id=@category_id";
-            //try
-            //{
-            //    MySqlConnection con = GetConnection();
-            //    MySqlCommand command = new MySqlCommand(query, con);
-            //    command.Parameters.Add("@category_id", MySqlDbType.Int32).Value = category.CategoryID;
-            //    command.Parameters.Add("@categoryName", MySqlDbType.VarChar).Value = category.CategoryName;
-
-            //    command.ExecuteNonQuery();
-            //    MessageBox.Show("Kategorie update");
-
-            //    MySqlDataReader da = command.ExecuteReader();
-
-            //    con.Close();
-            //}
-            //catch (MySqlException e)
-            //{
-            //    MessageBox.Show(e.Message);
-            //}
         }
 
         /// <summary>
@@ -434,7 +383,7 @@ namespace InventarAppIHK.Import
             {
                 MySqlConnection con = GetConnection();
                 MySqlCommand command = new MySqlCommand(query, con);
-                command.Parameters.Add("@product_id", MySqlDbType.VarChar).Value = product.ProductID;
+                command.Parameters.Add("@product_id", MySqlDbType.Int32).Value = product.ProductID;
                 command.Parameters.Add("@productName", MySqlDbType.VarChar).Value = product.ProductName;
                 command.Parameters.Add("@date", MySqlDbType.VarChar).Value = product.Date.ToString("yyyy-MM-dd");
                 command.Parameters.Add("@price", MySqlDbType.Double).Value = product.Price;
@@ -643,13 +592,12 @@ namespace InventarAppIHK.Import
         }
         /// <summary>
         /// Löschen und Bearbeiten des Datensatzes im DataGridView
-
+        /// dafür greife ich auf die Methoden GetId der anderen Tabellen zu
         /// </summary>
         /// <param name="dgv"></param>
         /// <param name="e"></param>
         public static void TotalEditDelete(DataGridView dgv, DataGridViewCellEventArgs e)
         {
-            string categoryName = "";
             TotalForm catID = new TotalForm();
             string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
             string columnName = dgv.Columns[e.ColumnIndex].Name;
@@ -659,9 +607,12 @@ namespace InventarAppIHK.Import
             {
                 ProductLocationForm productLocationForm = new ProductLocationForm();
                 //productLocationForm.txtLNumber.Text = dgv.Rows[e.RowIndex].Cells[0].Value.ToString();
-                productLocationForm.txtId.Text = dgv.Rows[e.RowIndex].Cells[0].Value.ToString();
+                productLocationForm.txtInventarId.Text = dgv.Rows[e.RowIndex].Cells[0].Value.ToString();
                 //productLocationForm.txtPNumber = dgv.Rows[e.RowIndex].Cells[].Value.ToString();
-                productLocationForm.txtCatID.Text = (DataImport.GetCategoryId(catID.txtCatId.Text)).ToString();
+                productLocationForm.txtCatID.Text = (DataImport.GetCategoryId(dgv.Rows[e.RowIndex].Cells[4].Value.ToString())).ToString();
+                productLocationForm.txtLocationID.Text = (DataImport.GetLocationId(dgv.Rows[e.RowIndex].Cells[6].Value.ToString())).ToString();
+                productLocationForm.txtProductID.Text = (DataImport.GetProductId(dgv.Rows[e.RowIndex].Cells[1].Value.ToString())).ToString();
+
                 productLocationForm.txtLName.Text = dgv.Rows[e.RowIndex].Cells[6].Value.ToString();
                 productLocationForm.txtDate.Text = (dgv.Rows[e.RowIndex].Cells[2].Value.ToString());
                 productLocationForm.txtPName.Text = dgv.Rows[e.RowIndex].Cells[1].Value.ToString(); 

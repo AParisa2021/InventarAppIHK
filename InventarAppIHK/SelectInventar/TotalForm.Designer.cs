@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TotalForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtCatId = new System.Windows.Forms.TextBox();
             this.lblTotal = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -50,7 +51,6 @@
             this.locationName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.edit = new System.Windows.Forms.DataGridViewImageColumn();
             this.delete = new System.Windows.Forms.DataGridViewImageColumn();
-            this.txtCatId = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTotal)).BeginInit();
             this.SuspendLayout();
@@ -75,14 +75,20 @@
             this.panel1.Size = new System.Drawing.Size(1050, 161);
             this.panel1.TabIndex = 0;
             // 
+            // txtCatId
+            // 
+            this.txtCatId.Location = new System.Drawing.Point(375, 136);
+            this.txtCatId.Name = "txtCatId";
+            this.txtCatId.Size = new System.Drawing.Size(100, 22);
+            this.txtCatId.TabIndex = 10;
+            // 
             // lblTotal
             // 
-            this.lblTotal.AutoSize = true;
-            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotal.ForeColor = System.Drawing.Color.White;
             this.lblTotal.Location = new System.Drawing.Point(892, 43);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(63, 20);
+            this.lblTotal.Size = new System.Drawing.Size(132, 39);
             this.lblTotal.TabIndex = 9;
             this.lblTotal.Text = "lblTotal";
             // 
@@ -263,13 +269,6 @@
             this.delete.MinimumWidth = 6;
             this.delete.Name = "delete";
             this.delete.Width = 64;
-            // 
-            // txtCatId
-            // 
-            this.txtCatId.Location = new System.Drawing.Point(375, 136);
-            this.txtCatId.Name = "txtCatId";
-            this.txtCatId.Size = new System.Drawing.Size(100, 22);
-            this.txtCatId.TabIndex = 10;
             // 
             // TotalForm
             // 

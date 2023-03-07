@@ -181,11 +181,14 @@ namespace InventarAppIHK
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            Inventar inventar = new Inventar(int.Parse(txtId.Text), int.Parse(txtLNumber.Text), int.Parse(txtCatID.Text), int.Parse(txtPNumber.Text));
+        {       
+            int category_id = DataImport.GetCategoryId(txtCategoryName.Text);
+            int product_id = DataImport.GetProductId(txtPName.Text);
+            int location_id = DataImport.GetLocationId(txtLName.Text);
+            Inventar updateInventar = new Inventar(int.Parse(txtInventarId.Text), product_id, category_id, location_id);
+            DataImport.UpdateProductLocation(updateInventar);
+        }       
 
-            DataImport.UpdateProductLocation(inventar);
-        }
     }
 }
 

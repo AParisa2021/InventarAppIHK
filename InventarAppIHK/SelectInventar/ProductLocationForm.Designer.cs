@@ -32,6 +32,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.pbClose = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtCatID = new System.Windows.Forms.TextBox();
+            this.txtInventarId = new System.Windows.Forms.TextBox();
             this.txtLName = new System.Windows.Forms.TextBox();
             this.txtLNumber = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -66,8 +68,12 @@
             this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtId = new System.Windows.Forms.TextBox();
-            this.txtCatID = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtLocationID = new System.Windows.Forms.TextBox();
+            this.txtProductID = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbClose)).BeginInit();
             this.panel2.SuspendLayout();
@@ -98,8 +104,14 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label15);
+            this.panel2.Controls.Add(this.txtProductID);
+            this.panel2.Controls.Add(this.txtLocationID);
+            this.panel2.Controls.Add(this.label14);
+            this.panel2.Controls.Add(this.label13);
+            this.panel2.Controls.Add(this.label12);
             this.panel2.Controls.Add(this.txtCatID);
-            this.panel2.Controls.Add(this.txtId);
+            this.panel2.Controls.Add(this.txtInventarId);
             this.panel2.Controls.Add(this.txtLName);
             this.panel2.Controls.Add(this.txtLNumber);
             this.panel2.Controls.Add(this.label3);
@@ -113,6 +125,20 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(450, 500);
             this.panel2.TabIndex = 1;
+            // 
+            // txtCatID
+            // 
+            this.txtCatID.Location = new System.Drawing.Point(118, 466);
+            this.txtCatID.Name = "txtCatID";
+            this.txtCatID.Size = new System.Drawing.Size(100, 22);
+            this.txtCatID.TabIndex = 10;
+            // 
+            // txtInventarId
+            // 
+            this.txtInventarId.Location = new System.Drawing.Point(12, 466);
+            this.txtInventarId.Name = "txtInventarId";
+            this.txtInventarId.Size = new System.Drawing.Size(100, 22);
+            this.txtInventarId.TabIndex = 9;
             // 
             // txtLName
             // 
@@ -443,19 +469,55 @@
             this.categoryName.Name = "categoryName";
             this.categoryName.Width = 125;
             // 
-            // txtId
+            // label12
             // 
-            this.txtId.Location = new System.Drawing.Point(16, 443);
-            this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(100, 22);
-            this.txtId.TabIndex = 9;
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(13, 443);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(72, 16);
+            this.label12.TabIndex = 11;
+            this.label12.Text = "inventar_id";
             // 
-            // txtCatID
+            // label13
             // 
-            this.txtCatID.Location = new System.Drawing.Point(135, 443);
-            this.txtCatID.Name = "txtCatID";
-            this.txtCatID.Size = new System.Drawing.Size(100, 22);
-            this.txtCatID.TabIndex = 10;
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(234, 443);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(72, 16);
+            this.label13.TabIndex = 12;
+            this.label13.Text = "location_id";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(115, 443);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(78, 16);
+            this.label14.TabIndex = 13;
+            this.label14.Text = "category_id";
+            // 
+            // txtLocationID
+            // 
+            this.txtLocationID.Location = new System.Drawing.Point(224, 466);
+            this.txtLocationID.Name = "txtLocationID";
+            this.txtLocationID.Size = new System.Drawing.Size(100, 22);
+            this.txtLocationID.TabIndex = 14;
+            // 
+            // txtProductID
+            // 
+            this.txtProductID.Location = new System.Drawing.Point(330, 466);
+            this.txtProductID.Name = "txtProductID";
+            this.txtProductID.Size = new System.Drawing.Size(100, 22);
+            this.txtProductID.TabIndex = 15;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(327, 443);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(70, 16);
+            this.label15.TabIndex = 16;
+            this.label15.Text = "product_id";
             // 
             // ProductLocationForm
             // 
@@ -519,6 +581,12 @@
         public System.Windows.Forms.TextBox txtCategoryName;
         public System.Windows.Forms.TextBox txtDate;
         public System.Windows.Forms.TextBox txtCatID;
-        public System.Windows.Forms.TextBox txtId;
+        public System.Windows.Forms.TextBox txtInventarId;
+        private System.Windows.Forms.Label label12;
+        public System.Windows.Forms.TextBox txtLocationID;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        public System.Windows.Forms.TextBox txtProductID;
+        private System.Windows.Forms.Label label15;
     }
 }
