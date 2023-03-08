@@ -340,7 +340,11 @@ namespace InventarAppIHK.Import
             }
         }
 
-        public static void UpdateProductLocation(Inventar inventar)
+        /// <summary>
+        /// Änderungen in der Zwischentabelle inventar können mit dieser Methode vorgenommen werden
+        /// </summary>
+        /// <param name="inventar"></param>
+        public static void UpdateProductLocation(Inventar inventar) 
         {
             MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=;database=inventar");
             string query = "UPDATE inventar SET product_id=@product_id, category_id=@category_id, location_id=@location_id WHERE inventar_id=@inventar_id";
@@ -643,6 +647,12 @@ namespace InventarAppIHK.Import
             }
         }
 
+        /// <summary>
+        ///  Im DataGridView im CategoryForm kann der User auf edit oder delete drücken. Um einen Datensatz zu löschen oder um das CategorynsertForm zu öffnen um den Datensatz zu ändern
+
+        /// </summary>
+        /// <param name="dgv"></param>
+        /// <param name="e"></param>
         public static void CategoryEditDelete(DataGridView dgv, DataGridViewCellEventArgs e)
         {
 
@@ -672,6 +682,11 @@ namespace InventarAppIHK.Import
             con.Close();
         }
 
+        /// <summary>
+        /// Im DataGridView im ProductForm kann der User auf edit oder delete drücken. Um einen Datensatz zu löschen oder um das ProductInsertForm zu öffnen um den Datensatz zu ändern
+        /// </summary>
+        /// <param name="dgv"></param>
+        /// <param name="e"></param>
         public static void ProductEditDelete(DataGridView dgv, DataGridViewCellEventArgs e)
         {
             string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
@@ -703,7 +718,7 @@ namespace InventarAppIHK.Import
                 }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Sie können diese Zeile nicht löschen, da sie in einer Elternspalte verwendet wird");
+                        MessageBox.Show(ex.Message,"Sie können diese Zeile nicht löschen, da sie in einer Elternspalte verwendet wird");
                         con.Close();
 
                     }
@@ -791,6 +806,11 @@ namespace InventarAppIHK.Import
             }
         }
 
+        /// <summary>
+        /// Mit select holt er die Orte aus der Tabelle location und gibt sie im DataGridViewLocation aus
+        /// </summary>
+        /// <param name="dgv"></param>
+        /// <param name="txtSelectLocation"></param>
         public static void TxtLocation(DataGridView dgv, string txtSelectLocation)
         {
             dgv.Rows.Clear();
