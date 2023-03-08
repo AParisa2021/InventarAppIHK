@@ -43,68 +43,17 @@ namespace InventarAppIHK
         private void btnSave_Click(object sender, EventArgs e)
         {
             int category_id = DataImport.GetCategoryId(comboCategory.Text);
-            Product insertProduct = new Product(txtName.Text, (DateTime.Parse(dtOrder.Text.Substring(0, 10))), double.Parse(txtPrice.Text), category_id);
+            Product insertProduct = new Product(txtName.Text, (DateTime.Parse(dtOrder.Text.Substring(0, 10))), double.Parse(DataImport.NullStringDatabase( txtPrice.Text).ToString()), category_id);
             DataImport.InsertProduct(insertProduct);
             MessageBox.Show("Ihre Auswahl wurde eingetragen!");
 
 
-            //try
-            //{
-            //    string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
-            //    int category_id =  CSVDataImport.GetCategoryId(comboCategory.Text);      //Mein return wird in category_id gespeichert
-
-            //    string query = "INSERT INTO product (productName, date, price, category_id)VALUES (@productName, @date, @price, @category_id)";
-            //    MySqlConnection con = new MySqlConnection(sql);
-            //    MySqlCommand cmd = new MySqlCommand(query, con);    //In der Datenbank klasse erstellen und immer wieder darauf zugreifen
-            //    cmd.CommandType = CommandType.Text;
-            //    con.Open();
-
-
-            //    cmd.Parameters.AddWithValue("@productName", txtName.Text/*.Replace(',', '.')*/);
-            //    cmd.Parameters.AddWithValue("@date", dtOrder.Value);
-            //    cmd.Parameters.AddWithValue("@price", Convert.ToDouble(txtPrice.Text));
-            //    //cmd.Parameters.AddWithValue("@category_id", GetRadioValue());
-            //    cmd.Parameters.AddWithValue("@category_id", category_id);
-
-            //    cmd.ExecuteNonQuery();
-            //    MessageBox.Show("success");
-
-            //    con.Close();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
+          
         }
 
         private void comboCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-
-            //comboCategory.Items.Clear();
-            //string select = "SELECT * FROM category";
-
-            //conn.Open();
-
-            //MySqlCommand cmd = new MySqlCommand(select, conn);
-            //MessageBox.Show(select);
-
-            //try
-            //{
-
-            //    MySqlDataAdapter adap = new MySqlDataAdapter(cmd);
-            //    DataSet ds = new DataSet();
-            //    adap.Fill(ds);
-            //    cmd.ExecuteNonQuery();
-            //    conn.Close();
-            //    comboCategory.DataSource= ds.Tables[0];
-            //    comboCategory.DisplayMember = "categoryName";
-            //    comboCategory.ValueMember = "category_id";
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
         }
         public void FillComboBox()
         {

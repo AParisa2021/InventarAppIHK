@@ -126,6 +126,20 @@ namespace InventarAppIHK.Import
 
         }
 
+        public static string NullStringDatabase(string valueString)
+        {
+            if (valueString == "") return "-";
+            else return (valueString);
+        }
+
+        public static string NullDoubleDatabase(double valueDouble)
+        {
+            if (valueDouble == 0) return null;
+            else return Convert.ToDouble(valueDouble.ToString()).ToString();
+            //else return Convert.ToDateTime(datetime.ToString()).ToString("yyyy-MM-dd");
+
+        }
+
         /// <summary>
         /// Die Zeilen mit ungültigen Daten, die einen Error verursachen werden ignoriert und die Zeilen mit gültigen Daten
         /// werden in die Tabelle category gespeichert
