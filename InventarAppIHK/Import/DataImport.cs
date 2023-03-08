@@ -4,6 +4,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -71,7 +72,7 @@ namespace InventarAppIHK.Import
         {
             string query = "INSERT INTO product (productName, date, price, category_id) VALUES (@productName, @date, @price, @category_id)";
             int categoryId = GetCategoryId(categoryName);
-         
+
             string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
             try
             {
@@ -87,11 +88,11 @@ namespace InventarAppIHK.Import
                 }
                 con.Close();
             }
-            catch(MySqlException e)
+            catch (MySqlException e)
             {
                 MessageBox.Show(e.Message);
             }
-         
+
         }
         /// <summary>
         /// Überladung? Ich versuche mit dieser Methode auf die Klasse Product zuzugreifen und Date-Format zu ändern
@@ -109,7 +110,7 @@ namespace InventarAppIHK.Import
                 MySqlConnection con = new MySqlConnection(sql);
                 con.Open();
                 using (MySqlCommand command = new MySqlCommand(query, con))
-                {                
+                {
                     command.Parameters.Add("@productName", MySqlDbType.VarChar).Value = product.ProductName;
                     command.Parameters.Add("@date", MySqlDbType.VarChar).Value = product.Date.ToString("yyyy-MM-dd");
                     command.Parameters.Add("@price", MySqlDbType.Double).Value = product.Price;
@@ -126,18 +127,11 @@ namespace InventarAppIHK.Import
 
         }
 
-        public static string NullStringDatabase(string valueString)
+        public static double formatDouble(string valueString)
         {
-            if (valueString == "") return "-";
-            else return (valueString);
-        }
+            if (valueString == "" || valueString == null) return 0;
 
-        public static string NullDoubleDatabase(double valueDouble)
-        {
-            if (valueDouble == 0) return null;
-            else return Convert.ToDouble(valueDouble.ToString()).ToString();
-            //else return Convert.ToDateTime(datetime.ToString()).ToString("yyyy-MM-dd");
-
+            return double.Parse(valueString);
         }
 
         /// <summary>
@@ -147,7 +141,7 @@ namespace InventarAppIHK.Import
         /// <param name="categoryName"></param>
         public static void InsertCategory(string categoryName)
         {
-  
+
             string query = "INSERT IGNORE INTO category (categoryname) VALUES (@categoryname)";
             string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
             try
@@ -282,8 +276,8 @@ namespace InventarAppIHK.Import
                 MySqlConnection con = GetConnection();
                 MySqlCommand command = new MySqlCommand(query, con);
                 MySqlDataReader dr = command.ExecuteReader();
-                command.Parameters.AddWithValue("@search_location", MySqlDbType.VarChar).Value = locationName; 
-                                
+                command.Parameters.AddWithValue("@search_location", MySqlDbType.VarChar).Value = locationName;
+
                 int i = 0;
                 if (dr.HasRows)
                 {
@@ -293,7 +287,7 @@ namespace InventarAppIHK.Import
                         dgv.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString());
                     }
                 }
-         
+
                 command.Dispose();
                 con.Close();
                 dr.Close();
@@ -316,7 +310,7 @@ namespace InventarAppIHK.Import
                 MySqlConnection con = GetConnection();
                 MySqlCommand command = new MySqlCommand(query, con);
                 command.Parameters.Add("@category_id", MySqlDbType.Int32).Value = category.CategoryID;
-                command.Parameters.Add("@categoryName", MySqlDbType.VarChar).Value = category.CategoryName;                
+                command.Parameters.Add("@categoryName", MySqlDbType.VarChar).Value = category.CategoryName;
 
                 command.ExecuteNonQuery();
                 MessageBox.Show("Kategorie update");
@@ -375,7 +369,7 @@ namespace InventarAppIHK.Import
                 MessageBox.Show("Ort update");
 
                 MySqlDataReader da = command.ExecuteReader();
-             
+
                 con.Close();
             }
             catch (MySqlException e)
@@ -392,7 +386,7 @@ namespace InventarAppIHK.Import
         {
             string query = "UPDATE product SET productName =@productName, date =@date, price=@price, " +
                 "category_id=@category_id WHERE product_id=@product_id";
-             
+
             try
             {
                 MySqlConnection con = GetConnection();
@@ -407,7 +401,7 @@ namespace InventarAppIHK.Import
                 MessageBox.Show("Produkt update");
 
                 MySqlDataReader da = command.ExecuteReader();
-         
+
                 con.Close();
             }
             catch (MySqlException e)
@@ -485,7 +479,7 @@ namespace InventarAppIHK.Import
                 con.Close();
                 dr.Close();
             }
-            catch(MySqlException e)
+            catch (MySqlException e)
             {
                 MessageBox.Show(e.Message + "Error");
             }
@@ -516,14 +510,14 @@ namespace InventarAppIHK.Import
                 con.Close();
                 dr.Close();
             }
-            catch(MySqlException e)
+            catch (MySqlException e)
             {
                 MessageBox.Show(e.Message + "Error");
             }
         }
 
-        public void PickDgv(string textBox, DataGridView dgv ,DataGridViewCellEventArgs e)
-        {           
+        public void PickDgv(string textBox, DataGridView dgv, DataGridViewCellEventArgs e)
+        {
             int i = 0;
             textBox = dgv.Rows[e.RowIndex].Cells[i].Value.ToString();
         }
@@ -552,7 +546,7 @@ namespace InventarAppIHK.Import
                 command.Parameters.AddWithValue("@product_id", MySqlDbType.Int32).Value = inventar.Product_id;
                 command.Parameters.AddWithValue("@category_id", MySqlDbType.Int32).Value = inventar.Category_id;
                 command.Parameters.AddWithValue("@location_id", MySqlDbType.Int32).Value = inventar.Location_id;
-                              
+
                 command.ExecuteNonQuery();
                 con.Close();
 
@@ -579,7 +573,7 @@ namespace InventarAppIHK.Import
 
 
             if (/*textBoxSearch.Trim() != "" ||*/ price.Trim() != "") sql += " WHERE ";
-    
+
             if (price.Trim() != "")
             {
                 if (price.Trim() != "") sql += " AND ";
@@ -629,7 +623,7 @@ namespace InventarAppIHK.Import
 
                 productLocationForm.txtLName.Text = dgv.Rows[e.RowIndex].Cells[6].Value.ToString();
                 productLocationForm.txtDate.Text = (dgv.Rows[e.RowIndex].Cells[2].Value.ToString());
-                productLocationForm.txtPName.Text = dgv.Rows[e.RowIndex].Cells[1].Value.ToString(); 
+                productLocationForm.txtPName.Text = dgv.Rows[e.RowIndex].Cells[1].Value.ToString();
                 productLocationForm.txtPrice.Text = dgv.Rows[e.RowIndex].Cells[3].Value.ToString();
                 productLocationForm.txtCategoryName.Text = dgv.Rows[e.RowIndex].Cells[4].Value.ToString();
                 //CategoryInsertForm catInsert = new CategoryInsertForm();

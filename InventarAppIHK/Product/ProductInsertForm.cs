@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using InventarAppIHK.Import;    //statische Methode implementiert die Datei in die Klasse ProductInsertForm
+using System.Data.SqlClient;
 
 namespace InventarAppIHK
 {
@@ -28,7 +29,7 @@ namespace InventarAppIHK
 
         private void pbClose_Click(object sender, EventArgs e)
         {
-            this.Dispose(); 
+            this.Dispose();
         }
 
 
@@ -42,13 +43,8 @@ namespace InventarAppIHK
         /// <param name="e"></param>
         private void btnSave_Click(object sender, EventArgs e)
         {
-            int category_id = DataImport.GetCategoryId(comboCategory.Text);
-            Product insertProduct = new Product(txtName.Text, (DateTime.Parse(dtOrder.Text.Substring(0, 10))), double.Parse(DataImport.NullStringDatabase( txtPrice.Text).ToString()), category_id);
-            DataImport.InsertProduct(insertProduct);
+            DataImport.InsertProduct(txtName.Text, dtOrder.Text, DataImport.formatDouble(txtPrice.Text), comboCategory.Text);
             MessageBox.Show("Ihre Auswahl wurde eingetragen!");
-
-
-          
         }
 
         private void comboCategory_SelectedIndexChanged(object sender, EventArgs e)
@@ -76,39 +72,12 @@ namespace InventarAppIHK
                 comm.Dispose();
                 conn.Close();
                 dr.Close();
-
-
-                //comboCategory.Items.Clear();
-                //string select = "SELECT * FROM category";
-                //    MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=;database=inventar");
-
-                //    conn.Open();
-
-                //    MySqlCommand cmd = new MySqlCommand(select, conn);
-                //    MessageBox.Show(select);
-
-                //    try
-                //    {
-
-                //        MySqlDataAdapter adap = new MySqlDataAdapter(cmd);
-                //        DataSet ds = new DataSet();
-                //        adap.Fill(ds);
-                //        cmd.ExecuteNonQuery();
-                //        conn.Close();
-                //        comboCategory.DataSource = ds.Tables[0];
-                //        comboCategory.DisplayMember = "categoryName";
-                //        comboCategory.ValueMember = "category_id";
-                //    }
-                //    catch (Exception ex)
-                //    {
-                //        MessageBox.Show(ex.Message);
-                //    }
             }
         }
 
         private void keyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Back)
+            if (e.KeyCode == Keys.Back)
             {
                 dtOrder.CustomFormat = " ";
             }
