@@ -21,6 +21,9 @@ namespace InventarAppIHK.Import
     {
         public static Mutex categoryAwait = new Mutex();
 
+        //static string connstring = string.Format("datasource=localhost;port=3306;username=root;password=;database=inventar");
+        //public MySqlConnection conn = new MySqlConnection(connstring);
+
         /// <summary>
         /// Herstellung der Verbindung mit der Datenbank MYSQL
         /// </summary>
@@ -127,6 +130,18 @@ namespace InventarAppIHK.Import
 
         }
 
+        public static string formatCategoryId(string valueString)
+        {
+            if (valueString == "" || valueString == null) return "";
+
+            return (valueString);
+        }
+
+        /// <summary>
+        /// Wenn im Price-TextBox nicht eingetragen wird, wird 0 gespeichert
+        /// </summary>
+        /// <param name="valueString"></param>
+        /// <returns></returns>
         public static double formatDouble(string valueString)
         {
             if (valueString == "" || valueString == null) return 0;
@@ -451,6 +466,35 @@ namespace InventarAppIHK.Import
                 MessageBox.Show(e.Message + "Error");
             }
         }
+
+        /// <summary>
+        /// Füllt die ComboBox auf der ProductInsertForm mit den Kategorien aus der Tabelle Kategorie
+        /// </summary>
+        /// <param name="comboCategory"></param>
+        public static void FillComboBox(ComboBox comboCategory)
+        {
+            {
+                comboCategory.Items.Clear();
+                MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=;database=inventar");
+                string sql = "select categoryName from category";
+                conn.Open();
+                MySqlCommand comm = new MySqlCommand(sql, conn);
+                MySqlDataReader dr = comm.ExecuteReader();
+                int i = 0;
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        i++;
+                        comboCategory.Items.Add(dr[0].ToString());
+                    }
+                }
+                comm.Dispose();
+                conn.Close();
+                dr.Close();
+            }
+        }
+
         /// <summary>
         /// Lädt User aus der Datenbank Tabelle product & gibt die jeweils in den einzelnen Zeilen des dgvProduct aus,
         /// indem mit Hilfe eines Joins zwei Tabellen ausgegeben werden
@@ -472,7 +516,7 @@ namespace InventarAppIHK.Import
                     while (dr.Read())
                     {
                         i++;        //wird noch nicht verwendet
-                        dgv.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString());
+                        dgv.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString().Substring(0,10), dr[3].ToString(), dr[4].ToString());
                     }
                 }
                 command.Dispose();
@@ -598,6 +642,102 @@ namespace InventarAppIHK.Import
                     ClearAllText(c);
             }
         }
+
+        public static void CategoryEditDelete(DataGridView dgv, DataGridViewCellEventArgs e)
+        {
+
+            string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
+
+            MySqlConnection con = new MySqlConnection(sql);
+
+            string columnName = "";
+            columnName = dgv.Columns[e.ColumnIndex].Name;
+            con.Open();
+            if (columnName == "edit")
+            {
+                CategoryInsertForm catInsert = new CategoryInsertForm();
+                catInsert.txtId.Text = dgv.Rows[e.RowIndex].Cells[0].Value.ToString();
+
+                catInsert.txtCategory.Text = dgv.Rows[e.RowIndex].Cells[1].Value.ToString();
+                catInsert.ShowDialog();
+            }
+            else if (columnName == "delete")
+            {
+
+                MySqlCommand comm = new MySqlCommand("DELETE FROM category WHERE category_id= '" + Convert.ToInt32(dgv.Rows[e.RowIndex].Cells[0].Value.ToString()) + "'", con); //prüfen ob [1] stimmt [4]phone ist in postgreSQL bei properties auf allow null gesetzt
+
+                comm.ExecuteNonQuery();
+            }
+
+            con.Close();
+        }
+
+        public static void ProductEditDelete(DataGridView dgv, DataGridViewCellEventArgs e)
+        {
+            string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
+            string columnName = dgv.Columns[e.ColumnIndex].Name;
+            int productID = DataImport.GetProductId(dgv.Rows[e.RowIndex].Cells[1].Value.ToString());
+
+            if (columnName == "edit")
+            {
+                ProductInsertForm productInsert = new ProductInsertForm();
+                productInsert.txtID.Text = dgv.Rows[e.RowIndex].Cells[0].Value.ToString();
+                productInsert.dtOrder.Text = (dgv.Rows[e.RowIndex].Cells[2].Value.ToString());
+                productInsert.txtName.Text = dgv.Rows[e.RowIndex].Cells[1].Value.ToString(); ;
+                productInsert.txtPrice.Text = dgv.Rows[e.RowIndex].Cells[3].Value.ToString();
+                productInsert.comboCategory.Text = dgv.Rows[e.RowIndex].Cells[4].Value.ToString();
+             
+                productInsert.ShowDialog();
+            }
+          
+            else if (columnName == "delete")
+            {
+                if (MessageBox.Show("Sind sie sich sicher, dass Sie diesen Datensatz inklusive Verknüpfungen löschen möchten?", "Löschen Datensatz", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    MySqlConnection con = new MySqlConnection(sql);
+                    try { 
+                    con.Open();
+                    int product_id = Convert.ToInt32(dgv.Rows[e.RowIndex].Cells[0].Value);
+                    MySqlCommand commandProduct = new MySqlCommand("DELETE FROM product WHERE product_id=" + Convert.ToInt32(dgv.Rows[e.RowIndex].Cells[0].Value.ToString()), con);
+                    commandProduct.ExecuteNonQuery();
+                }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Sie können diese Zeile nicht löschen, da sie in einer Elternspalte verwendet wird");
+                        con.Close();
+
+                    }
+                }
+            } 
+        }
+
+        public static void LocationEditDelete(DataGridView dgv, DataGridViewCellEventArgs e)
+        {
+            string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
+
+            MySqlConnection con = new MySqlConnection(sql);
+
+            string columnName = "";
+            columnName = dgv.Columns[e.ColumnIndex].Name;
+            con.Open();
+            if (columnName == "Edit")
+            {
+                LocationInsertForm locInsert = new LocationInsertForm();
+                locInsert.txtID.Text = dgv.Rows[e.RowIndex].Cells[0].Value.ToString();
+                locInsert.txtfloor.Text = dgv.Rows[e.RowIndex].Cells[1].Value.ToString();
+                locInsert.txtRoomName.Text = dgv.Rows[e.RowIndex].Cells[2].Value.ToString();
+
+                locInsert.ShowDialog();
+            }
+            else if (columnName == "Delete")
+            {
+                MySqlCommand comm = new MySqlCommand("DELETE FROM location WHERE location_id= '" + Convert.ToInt32(dgv.Rows[e.RowIndex].Cells[0].Value.ToString()) + "'", con); //prüfen ob [1] stimmt [4]phone ist in postgreSQL bei properties auf allow null gesetzt
+
+                comm.ExecuteNonQuery();
+            }
+            con.Close();
+        }
+
         /// <summary>
         /// Löschen und Bearbeiten des Datensatzes im DataGridView
         /// dafür greife ich auf die Methoden GetId der anderen Tabellen zu
@@ -621,8 +761,9 @@ namespace InventarAppIHK.Import
                 productLocationForm.txtLocationID.Text = (DataImport.GetLocationId(dgv.Rows[e.RowIndex].Cells[6].Value.ToString())).ToString();
                 productLocationForm.txtProductID.Text = (DataImport.GetProductId(dgv.Rows[e.RowIndex].Cells[1].Value.ToString())).ToString();
 
+                productLocationForm.txtLNumber.Text = dgv.Rows[e.RowIndex].Cells[4].Value.ToString();
                 productLocationForm.txtLName.Text = dgv.Rows[e.RowIndex].Cells[6].Value.ToString();
-                productLocationForm.txtDate.Text = (dgv.Rows[e.RowIndex].Cells[2].Value.ToString());
+                productLocationForm.txtDate.Text = dgv.Rows[e.RowIndex].Cells[2].Value.ToString();
                 productLocationForm.txtPName.Text = dgv.Rows[e.RowIndex].Cells[1].Value.ToString();
                 productLocationForm.txtPrice.Text = dgv.Rows[e.RowIndex].Cells[3].Value.ToString();
                 productLocationForm.txtCategoryName.Text = dgv.Rows[e.RowIndex].Cells[4].Value.ToString();
@@ -649,5 +790,175 @@ namespace InventarAppIHK.Import
                 }
             }
         }
+
+        public static void TxtLocation(DataGridView dgv, string txtSelectLocation)
+        {
+            dgv.Rows.Clear();
+            MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=;database=inventar");
+            //string query = "select location_id, floor, locationName from location where concat(location_id, floor, locationName) like '" + txtSelectLocation.Text + "'"; // || in sql ist wie das + in C#. Hierdruch werden strings zusammengesetzt  https://stackoverflow.com/questions/13950279/like-statement-for-npgsql-using-parameter
+            string query = "select location_id, floor, locationName from location where concat(location_id, floor, locationName) like concat('%' , @search_location , '%')"; // || in sql ist wie das + in C#. Hierdruch werden strings zusammengesetzt  https://stackoverflow.com/questions/13950279/like-statement-for-npgsql-using-parameter
+            conn.Open();
+            MySqlCommand command = new MySqlCommand(query, conn);
+            command.Parameters.AddWithValue("@search_location", txtSelectLocation.ToUpper());
+            MySqlDataReader dr = command.ExecuteReader();
+
+            try
+            {
+
+                int i = 0;
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        i++;        //Zählt Nummer der Customer. wird noch nicht verwendet aufgrund von Verschiebungen im DataGridView. SPäter prüfen, ob es notwendig ist
+                        dgv.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString());
+                    }
+                }
+
+                command.Dispose();
+                conn.Close();
+                dr.Close();
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message + "Error");
+            }
+        }
+
+        /// <summary>
+        /// lädt die Daten aus den Tabellen product und category mit einem INNER JOIN in ProductLocationForm
+        /// </summary>
+        /// <param name="dgv"></param>
+        /// <param name="txtSelectProduct"></param>
+        public static void TxtSelectProd(DataGridView dgv, string txtSelectProduct)
+        {
+            dgv.Rows.Clear();
+            MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=;database=inventar");
+            
+            string query = "select P.product_id, P.productName, P.date, P.price, C.categoryName " +
+            "from product AS P INNER JOIN category AS C ON P.category_id=C.category_id " +
+            "WHERE UPPER(CONCAT(P.product_id, P.productName, P.date, P.price, C.categoryName)) like concat('%' , @search_product , '%')";
+
+            conn.Open();
+            MySqlCommand command = new MySqlCommand(query, conn);
+            command.Parameters.AddWithValue("@search_product", txtSelectProduct);  //**************klappt nicht******
+            MySqlDataReader dr = command.ExecuteReader();
+
+            try
+            {
+
+                int i = 0;
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        i++;        //Zählt Nummer der Customer. wird noch nicht verwendet aufgrund von Verschiebungen im DataGridView. SPäter prüfen, ob es notwendig ist
+                        dgv.Rows.Add(dr[0].ToString(), dr[1].ToString(), Datetime(dr[2].ToString()), dr[3].ToString(), dr[4].ToString());
+                    }
+                }
+
+                command.Dispose();
+                conn.Close();
+                dr.Close();
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message + "Error");
+            }
+        }
+        private static string Datetime(string datetime)
+        {
+            //string timeFormat = datetime.Substring(datetime.Length - 7);
+            string timeFormat = Convert.ToDateTime(datetime.ToString()).ToString("yyyy-MM-dd");
+            return timeFormat;
+        }
+
+
+        /// <summary>
+        /// Filterung Preis von, Preis bis und Filterung nach Produktnamen
+        /// </summary>
+        /// <param name="dgv"></param>
+        /// <param name="txtFrom"></param>
+        /// <param name="txtTo"></param>
+        /// <param name="txtSelect"></param>
+        /// <param name="lblTotal"></param>
+        public static void SelectPriceProduct(DataGridView dgv, string txtFrom, string txtTo, string txtSelect, Label lblTotal)
+        {
+            string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
+
+            double total = 0;
+            dgv.Rows.Clear();
+            MySqlConnection conn = new MySqlConnection(sql);
+            string query = "SELECT inventar_id, P.productName, P.date, P.price, C.categoryName, L.floor, L.locationName " +
+                "from inventar AS I " +
+                "INNER JOIN product AS P " +
+                 "ON I.product_id=P.product_id " +
+                "INNER JOIN category AS C " +
+                "ON I.category_id=C.category_id " +
+                "INNER JOIN location AS L " +
+                "ON I.location_id=L.location_id ";
+
+            if (txtFrom.Trim() != "" || txtTo.Trim() != "" || txtSelect.ToUpper().Trim() != "") query += " WHERE ";
+
+            if (txtFrom.Trim().Length > 0 && txtTo.Trim().Length > 0)
+            {
+                query += " price BETWEEN @priceFrom AND @priceTo";
+            }
+            else if (txtFrom.Trim().Length > 0)
+            {
+                query += "price >= @priceFrom";
+            }
+            else if (txtTo.Trim().Length > 0)
+            {
+                query += " price <= @priceTo";
+            }
+            if (txtSelect.Trim() != "")
+            {
+                if (txtFrom.Trim().Length > 0 || txtTo.Trim().Length > 0)
+                    query += " AND ";
+
+                query += " concat(I.inventar_id, P.productName, P.date, P.price, C.categoryName, L.floor, L.locationName ) like concat('%' , @search_totalinventar , '%')";
+            }
+            using (MySqlCommand comm = new MySqlCommand(query, conn))
+            {
+                {
+                    try
+                    {
+                        conn.Open();
+                        if (txtSelect.Trim() != "")
+                            comm.Parameters.AddWithValue("@search_totalinventar", txtSelect.ToUpper());
+
+                        if (txtFrom.Trim() != "")
+                            comm.Parameters.AddWithValue("@priceFrom", double.Parse(txtFrom));
+
+                        if (txtTo.Trim() != "")
+                            comm.Parameters.AddWithValue("@priceTo", double.Parse(txtTo));
+
+                        MySqlDataReader dr = comm.ExecuteReader();
+                        int i = 0;
+                        if (dr.HasRows)
+                        {
+                            while (dr.Read())
+                            {
+                                dgv.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString().Substring(0, 10), double.Parse(dr[3].ToString()), dr[4].ToString(), dr[5].ToString(), dr[6].ToString());
+
+                                total += double.Parse(dr[3].ToString());
+                            }
+                        }
+                        comm.Dispose();
+                        conn.Close();
+                        dr.Close();
+
+                        lblTotal.Text = total.ToString();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+
+        }
+
     }
 }

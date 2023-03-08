@@ -115,56 +115,10 @@ namespace InventarAppIHK
 
         public static void FillCombobox(Category category)
         {
-            //string select = "SELECT * FROM category";
-            //MySqlConnection con = GetConnection();
-            //MySqlCommand cmd = new MySqlCommand(select, con);
-
-            //try
-            //{
-               
-            //    MySqlDataAdapter adap = new MySqlDataAdapter(cmd);
-            //    DataSet ds = new DataSet();
-            //    adap.Fill(ds);
-            //    cmd.ExecuteNonQuery();
-            //    con.Close();
-            //    comboCategory.Items.Clear();
-            //    comboCategory.DataSource =
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-       
-
+   
       
         }
 
-        //Unten kommt ein Join Befehl hin
-
-        //public static void JoinAll(JoinAll join)
-        //{
-        //    string insert = "INSERT INTO joindaten(p_id, vorname, nachname, a_id, strasse, plz, land) VALUES (@p_id, @vorname, @nachname, @a_id, @strasse, @plz, @land)";
-        //    MySqlConnection con = GetConnection();
-        //    MySqlCommand cmd = new MySqlCommand(insert, con);
-        //    cmd.CommandType = CommandType.Text;
-        //    cmd.Parameters.Add("@p_id", MySqlDbType.VarChar).Value = join.P_id;
-        //    cmd.Parameters.Add("@vorname", MySqlDbType.VarChar).Value = join.Vorname;
-        //    cmd.Parameters.Add("@nachname", MySqlDbType.VarChar).Value = join.Nachname;
-        //    cmd.Parameters.Add("@a_id", MySqlDbType.VarChar).Value = join.A_id;
-        //    cmd.Parameters.Add("@strasse", MySqlDbType.VarChar).Value = join.Strasse;
-        //    cmd.Parameters.Add("@plz", MySqlDbType.VarChar).Value = join.Plz;
-        //    cmd.Parameters.Add("@land", MySqlDbType.VarChar).Value = join.Land;
-        //    try
-        //    {
-        //        cmd.ExecuteNonQuery();
-        //        MessageBox.Show("JoinAll added");
-        //    }
-        //    catch (MySqlException ex)
-        //    {
-        //        MessageBox.Show("Person not inserted");
-        //    }
-        //    con.Close();
-        //}
 
         public static void ShowPerson(string query, DataGridView gvdPerson)
         {

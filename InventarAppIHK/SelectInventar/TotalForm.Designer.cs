@@ -30,11 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TotalForm));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtCatId = new System.Windows.Forms.TextBox();
             this.lblTotal = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.txtTo = new System.Windows.Forms.TextBox();
             this.txtFrom = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -58,11 +56,9 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.panel1.Controls.Add(this.txtCatId);
             this.panel1.Controls.Add(this.lblTotal);
             this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.textBox4);
             this.panel1.Controls.Add(this.txtTo);
             this.panel1.Controls.Add(this.txtFrom);
             this.panel1.Controls.Add(this.label3);
@@ -75,18 +71,11 @@
             this.panel1.Size = new System.Drawing.Size(1050, 161);
             this.panel1.TabIndex = 0;
             // 
-            // txtCatId
-            // 
-            this.txtCatId.Location = new System.Drawing.Point(375, 136);
-            this.txtCatId.Name = "txtCatId";
-            this.txtCatId.Size = new System.Drawing.Size(100, 22);
-            this.txtCatId.TabIndex = 10;
-            // 
             // lblTotal
             // 
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotal.ForeColor = System.Drawing.Color.White;
-            this.lblTotal.Location = new System.Drawing.Point(892, 43);
+            this.lblTotal.Location = new System.Drawing.Point(190, 95);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(132, 39);
             this.lblTotal.TabIndex = 9;
@@ -112,13 +101,6 @@
             this.label4.Size = new System.Drawing.Size(107, 20);
             this.label4.TabIndex = 7;
             this.label4.Text = "Preis Total:";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(133, 99);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(433, 22);
-            this.textBox4.TabIndex = 6;
             // 
             // txtTo
             // 
@@ -294,7 +276,6 @@
         private System.Windows.Forms.TextBox txtSelect;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox txtTo;
         private System.Windows.Forms.TextBox txtFrom;
         private System.Windows.Forms.Label label3;
@@ -310,6 +291,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn locationName;
         private System.Windows.Forms.DataGridViewImageColumn edit;
         private System.Windows.Forms.DataGridViewImageColumn delete;
-        public System.Windows.Forms.TextBox txtCatId;
     }
 }
