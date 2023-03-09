@@ -40,7 +40,7 @@ namespace InventarAppIHK
         {
              DataImport.TxtSelectProd(dgvProduct, txtSelectProduct.Text.ToUpper());
         }
-
+        g
         /// <summary>
         /// Datum-Formatierung. Datum ohne Uhrzeit ausgeben
         /// </summary>
