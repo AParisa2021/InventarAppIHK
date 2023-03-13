@@ -123,6 +123,7 @@
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(100, 22);
             this.txtId.TabIndex = 13;
+            this.txtId.Visible = false;
             // 
             // CategoryInsertForm
             // 

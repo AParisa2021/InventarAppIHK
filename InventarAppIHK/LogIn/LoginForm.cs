@@ -32,7 +32,15 @@ namespace InventarAppIHK
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            selectItem.SelectData(txtUser.Text, txtPassword.Text);        
+            if(txtUser.Text == "" && txtPassword.Text == "")
+            {
+                MessageBox.Show("Bitte registrieren");
+            }
+            else
+            {
+                selectItem.SelectData(txtUser.Text, txtPassword.Text);
+
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)

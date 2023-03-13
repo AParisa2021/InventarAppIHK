@@ -143,6 +143,7 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(100, 22);
             this.txtID.TabIndex = 9;
+            this.txtID.Visible = false;
             // 
             // LocationInsertForm
             // 

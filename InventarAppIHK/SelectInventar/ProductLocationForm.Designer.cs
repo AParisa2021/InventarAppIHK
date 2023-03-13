@@ -32,8 +32,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.pbClose = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label15 = new System.Windows.Forms.Label();
-            this.txtProductID = new System.Windows.Forms.TextBox();
             this.txtLocationID = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -51,6 +49,8 @@
             this.location_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.floor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.locationName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtProductID = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.txtDate = new System.Windows.Forms.TextBox();
             this.txtCategoryName = new System.Windows.Forms.TextBox();
@@ -124,23 +124,6 @@
             this.panel2.Size = new System.Drawing.Size(450, 517);
             this.panel2.TabIndex = 1;
             // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(432, 417);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(77, 18);
-            this.label15.TabIndex = 16;
-            this.label15.Text = "product_id";
-            // 
-            // txtProductID
-            // 
-            this.txtProductID.Location = new System.Drawing.Point(507, 414);
-            this.txtProductID.Name = "txtProductID";
-            this.txtProductID.Size = new System.Drawing.Size(174, 22);
-            this.txtProductID.TabIndex = 15;
-            // 
             // txtLocationID
             // 
             this.txtLocationID.Location = new System.Drawing.Point(164, 324);
@@ -156,6 +139,7 @@
             this.label14.Size = new System.Drawing.Size(78, 16);
             this.label14.TabIndex = 13;
             this.label14.Text = "category_id";
+            this.label14.Visible = false;
             // 
             // label13
             // 
@@ -175,6 +159,7 @@
             this.label12.Size = new System.Drawing.Size(72, 16);
             this.label12.TabIndex = 11;
             this.label12.Text = "inventar_id";
+            this.label12.Visible = false;
             // 
             // txtCatID
             // 
@@ -182,6 +167,7 @@
             this.txtCatID.Name = "txtCatID";
             this.txtCatID.Size = new System.Drawing.Size(100, 22);
             this.txtCatID.TabIndex = 10;
+            this.txtCatID.Visible = false;
             // 
             // txtInventarId
             // 
@@ -189,6 +175,7 @@
             this.txtInventarId.Name = "txtInventarId";
             this.txtInventarId.Size = new System.Drawing.Size(100, 22);
             this.txtInventarId.TabIndex = 9;
+            this.txtInventarId.Visible = false;
             // 
             // txtLName
             // 
@@ -291,6 +278,25 @@
             this.locationName.HeaderText = "Bezeichnung";
             this.locationName.MinimumWidth = 6;
             this.locationName.Name = "locationName";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(432, 417);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(77, 18);
+            this.label15.TabIndex = 16;
+            this.label15.Text = "product_id";
+            this.label15.Visible = false;
+            // 
+            // txtProductID
+            // 
+            this.txtProductID.Location = new System.Drawing.Point(507, 414);
+            this.txtProductID.Name = "txtProductID";
+            this.txtProductID.Size = new System.Drawing.Size(174, 22);
+            this.txtProductID.TabIndex = 15;
+            this.txtProductID.Visible = false;
             // 
             // panel3
             // 

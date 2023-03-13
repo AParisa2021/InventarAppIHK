@@ -63,6 +63,12 @@ namespace InventarAppIHK
             ProductLocationForm openOrder = new ProductLocationForm();
             openOrder.ShowDialog();
         }
+
+        private void txtID_TextChanged(object sender, EventArgs e)
+        {
+            string query = "select product_id from product where productName =@productName";
+
+        }
     }
 }
 //https://stackoverflow.com/questions/23106780/c-sharp-mysql-select-with-textbox-text

@@ -75,8 +75,9 @@ namespace InventarAppIHK
         }
 
         private void btnClear_Click(object sender, EventArgs e)
-        {
-            DataImport.ClearAllText(this);
+        {        
+            comboCategory.SelectedItem = null;
+            DataImport.ClearAllFields(this);
         }
     }
 }

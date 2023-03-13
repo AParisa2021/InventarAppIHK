@@ -181,6 +181,7 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(100, 22);
             this.txtID.TabIndex = 13;
+            this.txtID.Visible = false;
             // 
             // ProductInsertForm
             // 

@@ -241,6 +241,38 @@ namespace InventarAppIHK.Import
         }
 
         /// <summary>
+        /// holt die jeweilige product_id des jeweiligen locationName aus der category Tabelle und gibt die LocationId als Rückgabewert zurück
+        /// </summary>
+        /// <param name="productName"></param>
+        /// <returns="productid"></returns>
+        //public static int GetInventarId(string productName)
+        //{
+        //    string query = "SELECT product_id FROM product where productName=@productName";
+        //    //MessageBox.Show(query);
+        //    string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
+        //    int productid = 0;
+        //    try
+        //    {
+        //        MySqlConnection con = new MySqlConnection(sql);
+        //        con.Open();
+        //        using (MySqlCommand command = new MySqlCommand(query, con))
+        //        {
+        //            command.Parameters.Add("@productName", MySqlDbType.VarChar).Value = productName;
+
+        //            productid = (int)command.ExecuteScalar();
+        //        }
+        //        con.Close();
+
+        //    }
+        //    catch (MySqlException e)
+        //    {
+        //        MessageBox.Show(e.Message);
+        //    }
+
+        //    return productid;
+        //}
+
+        /// <summary>
         /// holt die jeweilige location_id des jeweiligen locationName aus der category Tabelle und gibt die LocationId als Rückgabewert zurück
         /// </summary>
         /// <param name="floor"></param>
@@ -636,15 +668,47 @@ namespace InventarAppIHK.Import
         /// Clear Methode um alle TextBoxen vom Inhalt zu bereinigen   https://gist.github.com/rahuldass/028d2657ded7266c7893
         /// </summary>
         /// <param name="con"></param>
-        public static void ClearAllText(Control con)
+        //public static void ClearAllText(Control con)
+        //{
+        //    foreach (Control c in con.Controls)
+        //    {
+
+        //        //                if (c is TextBox) and txtBox!= txtID.Test nachdem ich ein Objekt erstellt habe
+
+        //        if (c is TextBox)
+        //            ((TextBox)c).Clear();
+        //        else
+        //            ClearAllText(c);
+        //    }
+        //}
+
+
+        /// <summary>
+        /// Nachdem Button edit gedrück wurde, löscht es zum Bearbeiten bei Button.Click alle TextBoxen außer die Id TextBoxen, um bei der Bearbeitunf
+        /// das richtige Product zu ändern. In der Schleife durchläuft jedes Controll Element. wenn der Name nicht den angegebenen c.Name(ID TextBoxen) 
+        /// entspricht, leert er die TextBoxe, so durchläuft er die Schleife für jeden Element und prüft, ob sie gelöscht wird
+        /// in der if Bedingung, wenn es eine TextBox mit einer ID ist, springt er raus aus der Bedingung und geht nicht in den else Teil
+        /// The Control class implements very basic functionality required by classes that display information to the user. 
+        /// It handles user input through the keyboard and pointing devices. It handles message routing and security. It defines the 
+        /// bounds of a control (its position and size), although it does not implement painting. It provides a window handle
+        /// </summary>
+        /// <param name="con"></param>
+        public static void ClearAllFields(Control con)
         {
             foreach (Control c in con.Controls)
             {
-                if (c is TextBox)
-                    ((TextBox)c).Clear();
+                if (c is TextBox && c != null)
+                {
+                    if (c.Name != "txtInventarId" && c.Name != "txtCatID" && c.Name != "txtLocationID" && 
+                        c.Name != "txtProductID" && c.Name != "txtId" && c.Name != "txtID") // just put in the name of special textBoxes between double quotes
+                        c.Text = "";    //wenn eine TextBox durchlaufen wird springt er in den If Teil, wenn die Bedingung erfüllt ist leer er TXT
+                }
                 else
-                    ClearAllText(c);
+                {
+                    ClearAllFields(c);      //bei allen anderen außer TextBox Button Label geht er (ZUSÄTZLICH) in den else Teil
+                }
             }
+
         }
 
         /// <summary>
@@ -765,7 +829,7 @@ namespace InventarAppIHK.Import
             string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
             string columnName = dgv.Columns[e.ColumnIndex].Name;
             int productID = DataImport.GetProductId(dgv.Rows[e.RowIndex].Cells[1].Value.ToString());
-
+            int pID = DataImport.GetProductId(catID.txtID.Text);
             if (columnName == "edit")
             {
                 ProductLocationForm productLocationForm = new ProductLocationForm();
@@ -775,6 +839,7 @@ namespace InventarAppIHK.Import
                 productLocationForm.txtCatID.Text = (DataImport.GetCategoryId(dgv.Rows[e.RowIndex].Cells[4].Value.ToString())).ToString();
                 productLocationForm.txtLocationID.Text = (DataImport.GetLocationId(dgv.Rows[e.RowIndex].Cells[6].Value.ToString())).ToString();
                 productLocationForm.txtProductID.Text = (DataImport.GetProductId(dgv.Rows[e.RowIndex].Cells[1].Value.ToString())).ToString();
+                productLocationForm.txtPNumber.Text = (DataImport.GetProductId(dgv.Rows[e.RowIndex].Cells[1].Value.ToString())).ToString();
 
                 productLocationForm.txtLNumber.Text = dgv.Rows[e.RowIndex].Cells[4].Value.ToString();
                 productLocationForm.txtLName.Text = dgv.Rows[e.RowIndex].Cells[6].Value.ToString();
