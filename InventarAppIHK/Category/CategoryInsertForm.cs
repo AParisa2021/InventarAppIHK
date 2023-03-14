@@ -33,7 +33,7 @@ namespace InventarAppIHK
             else
             {
                 Category category = new Category(txtCategory.Text.Trim());
-                DBInventar.AddCategory(category);
+                DataImport.InsertCategory(txtCategory.Text);
             }       
            
         }
