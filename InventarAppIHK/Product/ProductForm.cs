@@ -30,7 +30,7 @@ namespace InventarAppIHK
         private void dgvProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             DataImport.ProductEditDelete(dgvProduct, e);
-            MyInitializeComponent();            //um Update automatisch zu laden
+            MyInitializeComponent();            
 
         }
 

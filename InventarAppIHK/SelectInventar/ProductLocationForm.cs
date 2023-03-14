@@ -21,12 +21,10 @@ namespace InventarAppIHK
         {
             InitializeComponent();
             MyInitializeComponent();
-
         }
 
         public void MyInitializeComponent()
         {
-            //DataImport.LoadFormProduct(dgvProduct);
             //CSVDataImport.LoadFormLocation(dgvLocation);
             DataImport.TxtLocation(dgvLocation, txtSelectLocation.Text.ToUpper());
             TxtSelectProd();
@@ -48,7 +46,6 @@ namespace InventarAppIHK
         /// <returns></returns>
         private static string Datetime(string datetime)
         {
-            //string timeFormat = datetime.Substring(datetime.Length - 7);
             string timeFormat = Convert.ToDateTime(datetime.ToString()).ToString("yyyy-MM-dd");
             return timeFormat;
         }
@@ -65,7 +62,8 @@ namespace InventarAppIHK
 
         private void dgvLocation_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            txtLNumber.Text = dgvLocation.Rows[e.RowIndex].Cells[0].Value.ToString();
+            txtLocationID.Text = dgvLocation.Rows[e.RowIndex].Cells[0].Value.ToString();
+            txtLNumber.Text = dgvLocation.Rows[e.RowIndex].Cells[1].Value.ToString();
             txtLName.Text = dgvLocation.Rows[e.RowIndex].Cells[2].Value.ToString();   
         }
 
@@ -110,7 +108,6 @@ namespace InventarAppIHK
         private void btnClear_Click(object sender, EventArgs e)
         {
             DataImport.ClearAllFields(this);
-            //DataImport.ClearAllText(this);
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)

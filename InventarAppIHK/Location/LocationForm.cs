@@ -36,7 +36,7 @@ namespace InventarAppIHK
             insertLocation.btnSave.Enabled = true;
             insertLocation.btnUpdate.Enabled = false;
             insertLocation.ShowDialog();
-            MyInitializeComponent();    //Laden von dgv nach einem neuen Eintrag
+            MyInitializeComponent();   
 
         }
 
@@ -48,7 +48,7 @@ namespace InventarAppIHK
         private void dgvLocation_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             DataImport.LocationEditDelete(dgvLocation, e);
-            MyInitializeComponent();        //laden dgv nach update
+            MyInitializeComponent();        
         }
     }
 }

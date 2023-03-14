@@ -29,8 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.btnCategory = new System.Windows.Forms.Button();
             this.btnLocation = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -38,14 +41,16 @@
             this.btnOrder = new System.Windows.Forms.Button();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.panelMain = new System.Windows.Forms.Panel();
+            this.Inventarchart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panelMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Inventarchart)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.BackColor = System.Drawing.Color.SteelBlue;
             this.panel1.Controls.Add(this.btnCategory);
             this.panel1.Controls.Add(this.btnLocation);
             this.panel1.Controls.Add(this.pictureBox1);
@@ -57,24 +62,9 @@
             this.panel1.Size = new System.Drawing.Size(124, 549);
             this.panel1.TabIndex = 0;
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Rubik", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(12, 452);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(119, 85);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Bestellung";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button1.UseVisualStyleBackColor = false;
-            // 
             // btnCategory
             // 
-            this.btnCategory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnCategory.BackColor = System.Drawing.Color.SteelBlue;
             this.btnCategory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCategory.Font = new System.Drawing.Font("Rubik", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCategory.ForeColor = System.Drawing.Color.White;
@@ -90,7 +80,7 @@
             // 
             // btnLocation
             // 
-            this.btnLocation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnLocation.BackColor = System.Drawing.Color.SteelBlue;
             this.btnLocation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLocation.Font = new System.Drawing.Font("Rubik", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLocation.ForeColor = System.Drawing.Color.White;
@@ -115,7 +105,7 @@
             // 
             // btnProduct
             // 
-            this.btnProduct.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnProduct.BackColor = System.Drawing.Color.SteelBlue;
             this.btnProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProduct.Font = new System.Drawing.Font("Rubik", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnProduct.ForeColor = System.Drawing.Color.White;
@@ -131,7 +121,7 @@
             // 
             // btnOrder
             // 
-            this.btnOrder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnOrder.BackColor = System.Drawing.Color.SteelBlue;
             this.btnOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOrder.Font = new System.Drawing.Font("Rubik", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOrder.ForeColor = System.Drawing.Color.White;
@@ -155,11 +145,34 @@
             // 
             // panelMain
             // 
+            this.panelMain.Controls.Add(this.Inventarchart);
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.Location = new System.Drawing.Point(124, 0);
             this.panelMain.Name = "panelMain";
             this.panelMain.Size = new System.Drawing.Size(1160, 549);
             this.panelMain.TabIndex = 3;
+            // 
+            // Inventarchart
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.Inventarchart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.Inventarchart.Legends.Add(legend1);
+            this.Inventarchart.Location = new System.Drawing.Point(145, 102);
+            this.Inventarchart.Name = "Inventarchart";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Legend = "Legend1";
+            series1.Name = "Inventar";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Legend = "Legend1";
+            series2.Name = "Series2";
+            this.Inventarchart.Series.Add(series1);
+            this.Inventarchart.Series.Add(series2);
+            this.Inventarchart.Size = new System.Drawing.Size(637, 357);
+            this.Inventarchart.TabIndex = 0;
+            this.Inventarchart.Text = "chart1";
             // 
             // MainForm
             // 
@@ -173,6 +186,8 @@
             this.Text = "MainForm";
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panelMain.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Inventarchart)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -186,7 +201,7 @@
         private System.Windows.Forms.Button btnCategory;
         private System.Windows.Forms.Button btnLocation;
         private System.Windows.Forms.Panel panelLeft;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panelMain;
+        private System.Windows.Forms.DataVisualization.Charting.Chart Inventarchart;
     }
 }

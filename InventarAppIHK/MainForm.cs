@@ -59,22 +59,14 @@ namespace InventarAppIHK
             panelLeft.Height = btnCategory.Height;
             panelLeft.Top= btnCategory.Top;
 
-            openChildForm(new CategoryForm());
-            //if (Load = !Load)
-            //{
-            //    btnCategory.Text = _Load ? btnCategory.Text = "Update" : btnCategory.Text = "Users";
-            //}
+            openChildForm(new CategoryForm());            
         }
 
         private void btnProduct_Click(object sender, EventArgs e)
         {
             panelLeft.Height = btnProduct.Height;
             panelLeft.Top = btnProduct.Top;
-            openChildForm(new ProductForm());
-            //if (Load = !Load)
-            //{
-            //    btnCategory.Text = _Load ? btnCategory.Text = "Update" : btnCategory.Text = "Users";
-            //}
+            openChildForm(new ProductForm());           
         }
 
         private void btnLocation_Click(object sender, EventArgs e)
@@ -82,11 +74,7 @@ namespace InventarAppIHK
             panelLeft.Height = btnLocation.Height;
             panelLeft.Top = btnLocation.Top;
 
-            openChildForm(new LocationForm());
-            //if (Load = !Load)
-            //{
-            //    btnCategory.Text = _Load ? btnCategory.Text = "Update" : btnCategory.Text = "Users";
-            //}
+            openChildForm(new LocationForm());           
         }
 
         private void btnOrder_Click(object sender, EventArgs e)
@@ -94,11 +82,7 @@ namespace InventarAppIHK
             panelLeft.Height = btnOrder.Height;
             panelLeft.Top = btnOrder.Top;
 
-            openChildForm(new TotalForm());
-            //if (Load = !Load)
-            //{
-            //    btnCategory.Text = _Load ? btnCategory.Text = "Update" : btnCategory.Text = "Users";
-            //}
+            openChildForm(new TotalForm());           
         }
     }
 }

@@ -84,7 +84,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.panel1.BackColor = System.Drawing.Color.SteelBlue;
             this.panel1.Controls.Add(this.pbClose);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -351,7 +351,7 @@
             // 
             // btnClear
             // 
-            this.btnClear.Font = new System.Drawing.Font("Rubik", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClear.Font = new System.Drawing.Font("Rubik", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClear.Location = new System.Drawing.Point(495, 451);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(120, 45);
@@ -362,7 +362,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Font = new System.Drawing.Font("Rubik", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.Font = new System.Drawing.Font("Rubik", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.Location = new System.Drawing.Point(336, 451);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(120, 45);
@@ -373,7 +373,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Font = new System.Drawing.Font("Rubik", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Font = new System.Drawing.Font("Rubik", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Location = new System.Drawing.Point(180, 451);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(120, 45);
@@ -566,8 +566,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView dgvProduct;
         private System.Windows.Forms.Button btnClear;
-        private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.PictureBox pbClose;
         private System.Windows.Forms.DataGridViewTextBoxColumn location_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn floor;
@@ -596,5 +594,7 @@
         private System.Windows.Forms.Label label13;
         public System.Windows.Forms.TextBox txtProductID;
         private System.Windows.Forms.Label label15;
+        public System.Windows.Forms.Button btnUpdate;
+        public System.Windows.Forms.Button btnSave;
     }
 }

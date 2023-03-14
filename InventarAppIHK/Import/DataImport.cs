@@ -730,6 +730,7 @@ namespace InventarAppIHK.Import
             if (columnName == "edit")
             {
                 CategoryInsertForm catInsert = new CategoryInsertForm();
+                catInsert.btnSave.Enabled = false;
                 catInsert.txtId.Text = dgv.Rows[e.RowIndex].Cells[0].Value.ToString();
 
                 catInsert.txtCategory.Text = dgv.Rows[e.RowIndex].Cells[1].Value.ToString();
@@ -760,6 +761,7 @@ namespace InventarAppIHK.Import
             if (columnName == "edit")
             {
                 ProductInsertForm productInsert = new ProductInsertForm();
+                productInsert.btnSave.Enabled = false;
                 productInsert.txtID.Text = dgv.Rows[e.RowIndex].Cells[0].Value.ToString();
                 productInsert.dtOrder.Text = (dgv.Rows[e.RowIndex].Cells[2].Value.ToString());
                 productInsert.txtName.Text = dgv.Rows[e.RowIndex].Cells[1].Value.ToString(); ;
@@ -802,6 +804,7 @@ namespace InventarAppIHK.Import
             if (columnName == "Edit")
             {
                 LocationInsertForm locInsert = new LocationInsertForm();
+                locInsert.btnSave.Enabled = false;
                 locInsert.txtID.Text = dgv.Rows[e.RowIndex].Cells[0].Value.ToString();
                 locInsert.txtfloor.Text = dgv.Rows[e.RowIndex].Cells[1].Value.ToString();
                 locInsert.txtRoomName.Text = dgv.Rows[e.RowIndex].Cells[2].Value.ToString();
@@ -829,10 +832,10 @@ namespace InventarAppIHK.Import
             string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
             string columnName = dgv.Columns[e.ColumnIndex].Name;
             int productID = DataImport.GetProductId(dgv.Rows[e.RowIndex].Cells[1].Value.ToString());
-            int pID = DataImport.GetProductId(catID.txtID.Text);
             if (columnName == "edit")
             {
                 ProductLocationForm productLocationForm = new ProductLocationForm();
+                productLocationForm.btnSave.Enabled = false;
                 //productLocationForm.txtLNumber.Text = dgv.Rows[e.RowIndex].Cells[0].Value.ToString();
                 productLocationForm.txtInventarId.Text = dgv.Rows[e.RowIndex].Cells[0].Value.ToString();
                 //productLocationForm.txtPNumber = dgv.Rows[e.RowIndex].Cells[].Value.ToString();
@@ -841,7 +844,7 @@ namespace InventarAppIHK.Import
                 productLocationForm.txtProductID.Text = (DataImport.GetProductId(dgv.Rows[e.RowIndex].Cells[1].Value.ToString())).ToString();
                 productLocationForm.txtPNumber.Text = (DataImport.GetProductId(dgv.Rows[e.RowIndex].Cells[1].Value.ToString())).ToString();
 
-                productLocationForm.txtLNumber.Text = dgv.Rows[e.RowIndex].Cells[4].Value.ToString();
+                productLocationForm.txtLNumber.Text = dgv.Rows[e.RowIndex].Cells[5].Value.ToString();
                 productLocationForm.txtLName.Text = dgv.Rows[e.RowIndex].Cells[6].Value.ToString();
                 productLocationForm.txtDate.Text = dgv.Rows[e.RowIndex].Cells[2].Value.ToString();
                 productLocationForm.txtPName.Text = dgv.Rows[e.RowIndex].Cells[1].Value.ToString();

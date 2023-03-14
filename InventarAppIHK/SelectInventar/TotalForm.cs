@@ -31,7 +31,6 @@ namespace InventarAppIHK
         private void txtTo_TextChanged(object sender, EventArgs e)
         {
             DataImport.SelectPriceProduct(dgvTotal, txtFrom.Text, txtTo.Text, txtSelect.Text, lblTotal);
-            //SelectPriceProduct();
         }
 
 
@@ -44,8 +43,6 @@ namespace InventarAppIHK
         private void txtSelect_TextChanged(object sender, EventArgs e)
         {
             DataImport.SelectPriceProduct(dgvTotal, txtFrom.Text, txtTo.Text, txtSelect.Text, lblTotal);
-            //SelectPriceProduct();
-
         }
 
         /// <summary>
@@ -56,19 +53,18 @@ namespace InventarAppIHK
         private void dgvTotal_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             DataImport.TotalEditDelete(dgvTotal, e);
-            //SelectPriceProduct();
+            MyInitializeComponent();
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
             ProductLocationForm openOrder = new ProductLocationForm();
+            openOrder.btnUpdate.Enabled= false;
             openOrder.ShowDialog();
         }
 
         private void txtID_TextChanged(object sender, EventArgs e)
         {
-            string query = "select product_id from product where productName =@productName";
 
         }
     }
 }
-//https://stackoverflow.com/questions/23106780/c-sharp-mysql-select-with-textbox-text

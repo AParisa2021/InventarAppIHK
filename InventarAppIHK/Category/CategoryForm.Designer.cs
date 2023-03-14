@@ -43,18 +43,18 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.panel1.BackColor = System.Drawing.Color.SteelBlue;
             this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 388);
+            this.panel1.Location = new System.Drawing.Point(0, 413);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1142, 87);
+            this.panel1.Size = new System.Drawing.Size(1200, 87);
             this.panel1.TabIndex = 0;
             // 
             // btnAdd
             // 
             this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
-            this.btnAdd.Location = new System.Drawing.Point(1045, 22);
+            this.btnAdd.Location = new System.Drawing.Point(1080, 20);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(44, 43);
             this.btnAdd.TabIndex = 1;
@@ -67,7 +67,7 @@
             this.dgvCategory.BackgroundColor = System.Drawing.Color.White;
             this.dgvCategory.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SteelBlue;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -87,7 +87,7 @@
             this.dgvCategory.Name = "dgvCategory";
             this.dgvCategory.RowHeadersWidth = 51;
             this.dgvCategory.RowTemplate.Height = 24;
-            this.dgvCategory.Size = new System.Drawing.Size(1142, 388);
+            this.dgvCategory.Size = new System.Drawing.Size(1200, 413);
             this.dgvCategory.TabIndex = 1;
             this.dgvCategory.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCategory_CellContentClick);
             // 
@@ -126,7 +126,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1142, 475);
+            this.ClientSize = new System.Drawing.Size(1200, 500);
             this.Controls.Add(this.dgvCategory);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
