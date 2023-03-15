@@ -69,11 +69,16 @@ namespace InventarAppIHK
 
         private void dgvProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            txtPNumber.Text = dgvProduct.Rows[e.RowIndex].Cells[0].Value.ToString();
-            txtPName.Text = dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString();
-            txtDate.Text = dgvProduct.Rows[e.RowIndex].Cells[2].Value.ToString().Substring(0,10);
-            txtPrice.Text = dgvProduct.Rows[e.RowIndex].Cells[3].Value.ToString();
-            txtCategoryName.Text = dgvProduct.Rows[e.RowIndex].Cells[4].Value.ToString();
+            Inventar inventar  =  new Inventar(int.Parse(txtProductID.Text), int.Parse(txtCatID.Text), int.Parse(txtLocationID.Text));
+            if (inventar.Product_id > 0 && inventar.Category_id > 0 && inventar.Location_id > 0)
+            {
+                txtPNumber.Text = dgvProduct.Rows[e.RowIndex].Cells[0].Value.ToString();
+                txtPName.Text = dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString();
+                txtDate.Text = dgvProduct.Rows[e.RowIndex].Cells[2].Value.ToString().Substring(0, 10);
+                txtPrice.Text = dgvProduct.Rows[e.RowIndex].Cells[3].Value.ToString();
+                txtCategoryName.Text = dgvProduct.Rows[e.RowIndex].Cells[4].Value.ToString();
+            }
+             
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -88,14 +93,20 @@ namespace InventarAppIHK
                 MessageBox.Show("Bitte wählen Sie ein Produkt!");
 
             }
-            else
+            else if (txtProductID.Text != "" || txtLocationID.Text != "")
             {
-                int category_id = DataImport.GetCategoryId(txtCategoryName.Text);
-                int location_id = DataImport.GetLocationId(txtLName.Text);
-                int product_id = DataImport.GetProductId(txtPName.Text);
-                Inventar inventar = new Inventar(product_id, category_id, location_id);
-                DataImport.ChooseInventar(inventar);
-                MessageBox.Show("Ihre Auswahl wurde eingetragen!");
+                try
+                {
+                    int category_id = DataImport.GetCategoryId(txtCategoryName.Text);
+                    int location_id = DataImport.GetLocationId(txtLName.Text);
+                    int product_id = DataImport.GetProductId(txtPName.Text);
+                    Inventar inventar = new Inventar(product_id, category_id, location_id);
+                    DataImport.ChooseInventar(inventar);
+                }
+                catch(Exception ex)
+                { 
+                    MessageBox.Show(ex.Message);
+                }
             }
            
         }
@@ -115,7 +126,7 @@ namespace InventarAppIHK
             int category_id = DataImport.GetCategoryId(txtCategoryName.Text);
             int product_id = DataImport.GetProductId(txtPName.Text);
             int location_id = DataImport.GetLocationId(txtLName.Text);
-            Inventar updateInventar = new Inventar(int.Parse(txtInventarId.Text), product_id, category_id, location_id);
+            Inventar updateInventar = new Inventar(int.Parse(txtProductID.Text), /*product_id, */category_id, location_id);
             DataImport.UpdateProductLocation(updateInventar);
         }       
 

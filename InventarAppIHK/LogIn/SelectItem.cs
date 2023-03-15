@@ -33,7 +33,7 @@ namespace InventarAppIHK
                 }
                 else
                 {
-                    MessageBox.Show("Fehler!", "Information", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    MessageBox.Show("Bitte registrieren Sie sich!");
                 }
                 return userInsert + passwordInsert;
             }

@@ -25,9 +25,16 @@ namespace InventarAppIHK
         private void btnRegister_Click(object sender, EventArgs e)
         {
             string time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        
             if (txtUser.Text.Length < 3 || txtPassword.Text.Length < 3)
-                MessageBox.Show("Benutzername oder Passwort sind zu kurz!", "Infomation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            insertdata.InsertData(txtUser.Text, txtPassword.Text, time);
+            {
+                MessageBox.Show("Benutzername oder Passwort sind zu kurz!");
+            }
+            else
+            {
+                insertdata.InsertData(txtUser.Text, txtPassword.Text, time);
+                MessageBox.Show("Sind haben sich erfolgreich registriert");
+            }
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -36,10 +43,14 @@ namespace InventarAppIHK
             {
                 MessageBox.Show("Bitte registrieren");
             }
-            else
+            else if(txtUser.Text != "" && txtPassword.Text != "")
             {
                 selectItem.SelectData(txtUser.Text, txtPassword.Text);
 
+            }
+            else
+            {
+                MessageBox.Show("Bitte Benutzername und Passwort eingeben!");
             }
         }
 

@@ -37,7 +37,7 @@ namespace InventarAppIHK
             else
             {
                 Location location = new Location(txtfloor.Text.Trim(), txtRoomName.Text.Trim());
-                DBInventar.AddLocation(location);
+                DataImport.AddLocation(location);
             }
         }
 

@@ -33,7 +33,8 @@ namespace InventarAppIHK
             else
             {
                 Category category = new Category(txtCategory.Text.Trim());
-                DBInventar.AddCategory(category);
+                DataImport.InsertCategory(txtCategory.Text);
+                MessageBox.Show("Kategorie gespeichert");
             }       
            
         }
@@ -49,5 +50,21 @@ namespace InventarAppIHK
             DataImport.ClearAllFields(this);
         }
 
+        private void txtCategory_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (txtCategory.Text == "")
+                {
+                    MessageBox.Show("Bitte geben Sie eine Kategorie an!");
+                }
+                else
+                {
+                    Category category = new Category(txtCategory.Text.Trim());
+                    DataImport.InsertCategory(txtCategory.Text);
+                    MessageBox.Show("Kategorie gespeichert");
+                }
+            }
+        }
     }
 }

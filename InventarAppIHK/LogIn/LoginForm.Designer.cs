@@ -51,6 +51,7 @@
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(375, 22);
             this.txtUser.TabIndex = 0;
+            this.txtUser.Tag = "";
             // 
             // btnLogin
             // 
@@ -60,6 +61,7 @@
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(160, 55);
             this.btnLogin.TabIndex = 2;
+            this.btnLogin.Tag = "3";
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -167,7 +169,8 @@
             this.txtPassword.Location = new System.Drawing.Point(87, 293);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(369, 22);
-            this.txtPassword.TabIndex = 10;
+            this.txtPassword.TabIndex = 1;
+            this.txtPassword.Tag = "2";
             this.txtPassword.UseSystemPasswordChar = true;
             // 
             // LoginForm

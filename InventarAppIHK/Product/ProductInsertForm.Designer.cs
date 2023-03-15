@@ -53,6 +53,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(435, 22);
             this.txtName.TabIndex = 0;
+            this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtName_KeyDown);
             // 
             // label1
             // 
@@ -89,7 +90,8 @@
             this.txtPrice.Location = new System.Drawing.Point(253, 246);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(435, 22);
-            this.txtPrice.TabIndex = 4;
+            this.txtPrice.TabIndex = 1;
+            this.txtPrice.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPrice_KeyDown);
             // 
             // btnSave
             // 
@@ -130,8 +132,9 @@
             this.comboCategory.Location = new System.Drawing.Point(252, 304);
             this.comboCategory.Name = "comboCategory";
             this.comboCategory.Size = new System.Drawing.Size(436, 24);
-            this.comboCategory.TabIndex = 9;
+            this.comboCategory.TabIndex = 2;
             this.comboCategory.SelectedIndexChanged += new System.EventHandler(this.comboCategory_SelectedIndexChanged);
+            this.comboCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboCategory_KeyDown);
             // 
             // label4
             // 

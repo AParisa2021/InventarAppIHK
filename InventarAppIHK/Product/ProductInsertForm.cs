@@ -42,16 +42,23 @@ namespace InventarAppIHK
         /// <param name="e"></param>
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if(txtName.Text == "" || comboCategory.Text == "")
+            try
             {
-                MessageBox.Show("Bitte wählen Sie einen Produktnamen und eine Kategorie.");
+                if (txtName.Text == "" || comboCategory.Text == "")
+                {
+                    MessageBox.Show("Bitte wählen Sie einen Produktnamen und eine Kategorie.");
 
+                }
+                else if (txtName.Text != "" && comboCategory.Text != "")
+                {
+                    DataImport.InsertProduct(txtName.Text, dtOrder.Text, DataImport.formatDouble(txtPrice.Text), DataImport.formatCategoryId(comboCategory.Text));
+                    MessageBox.Show("Ihre Auswahl wurde eingetragen!");
+                }
             }
-            else if (txtName.Text != "" && comboCategory.Text != "")
-            {
-                DataImport.InsertProduct(txtName.Text, dtOrder.Text, DataImport.formatDouble(txtPrice.Text), DataImport.formatCategoryId(comboCategory.Text));
-                MessageBox.Show("Ihre Auswahl wurde eingetragen!");
-            }      
+            catch(Exception ex)
+            { 
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void comboCategory_SelectedIndexChanged(object sender, EventArgs e)
@@ -78,6 +85,40 @@ namespace InventarAppIHK
         {        
             comboCategory.SelectedItem = null;
             DataImport.ClearAllFields(this);
+        }
+
+        private void txtName_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void txtPrice_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void comboCategory_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    if (txtName.Text == "" || comboCategory.Text == "")
+                    {
+                        MessageBox.Show("Bitte wählen Sie einen Produktnamen und eine Kategorie.");
+
+                    }
+                    else if (txtName.Text != "" && comboCategory.Text != "")
+                    {
+                        DataImport.InsertProduct(txtName.Text, dtOrder.Text, DataImport.formatDouble(txtPrice.Text), DataImport.formatCategoryId(comboCategory.Text));
+                        MessageBox.Show("Ihre Auswahl wurde eingetragen!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
     }
 }

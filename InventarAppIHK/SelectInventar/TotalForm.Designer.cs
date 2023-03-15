@@ -203,10 +203,10 @@
             this.total_id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             this.total_id.DefaultCellStyle = dataGridViewCellStyle3;
-            this.total_id.HeaderText = "Nummer";
+            this.total_id.HeaderText = "ProduktNummer";
             this.total_id.MinimumWidth = 6;
             this.total_id.Name = "total_id";
-            this.total_id.Width = 87;
+            this.total_id.Width = 133;
             // 
             // productName
             // 
@@ -240,7 +240,7 @@
             // 
             // floor
             // 
-            this.floor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.floor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.floor.HeaderText = "Etage";
             this.floor.MinimumWidth = 6;
             this.floor.Name = "floor";
@@ -248,7 +248,7 @@
             // 
             // locationName
             // 
-            this.locationName.HeaderText = "Raumbezeichnung";
+            this.locationName.HeaderText = "Bezeichnung";
             this.locationName.MinimumWidth = 6;
             this.locationName.Name = "locationName";
             this.locationName.Width = 125;

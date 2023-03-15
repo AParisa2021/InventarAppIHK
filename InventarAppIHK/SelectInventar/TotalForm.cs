@@ -25,7 +25,6 @@ namespace InventarAppIHK
         private void MyInitializeComponent()
         {
             DataImport.SelectPriceProduct(dgvTotal, txtFrom.Text, txtTo.Text, txtSelect.Text, lblTotal);
-
         }
 
         private void txtTo_TextChanged(object sender, EventArgs e)
@@ -52,8 +51,12 @@ namespace InventarAppIHK
         /// <param name="e"></param>
         private void dgvTotal_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            //DataImport.LoadFormTotal(dgvTotal);
             DataImport.TotalEditDelete(dgvTotal, e);
-            MyInitializeComponent();
+            DataImport.LoadFormTotal(dgvTotal, e);
+            DataImport.SelectPriceProduct(dgvTotal, txtFrom.Text, txtTo.Text, txtSelect.Text, lblTotal);
+
+            //MyInitializeComponent();
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {

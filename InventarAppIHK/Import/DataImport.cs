@@ -21,7 +21,7 @@ namespace InventarAppIHK.Import
     {
         public static Mutex categoryAwait = new Mutex();
 
-        //static string connstring = string.Format("datasource=localhost;port=3306;username=root;password=;database=inventar");
+        //static string connstring = string.Format("datasource=localhost;port=3306;username=user;password=Inventar2023;database=inventar");
         //public MySqlConnection conn = new MySqlConnection(connstring);
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace InventarAppIHK.Import
         /// <returns></returns>
         public static MySqlConnection GetConnection()
         {
-            string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
+            string sql = "datasource=localhost;port=3306;username=user;password=Inventar2023;database=inventar";
 
             MySqlConnection con = new MySqlConnection(sql);
             try
@@ -76,7 +76,7 @@ namespace InventarAppIHK.Import
             string query = "INSERT INTO product (productName, date, price, category_id) VALUES (@productName, @date, @price, @category_id)";
             int categoryId = GetCategoryId(categoryName);
 
-            string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
+            string sql = "datasource=localhost;port=3306;username=user;password=Inventar2023;database=inventar";
             try
             {
                 MySqlConnection con = new MySqlConnection(sql);
@@ -97,38 +97,7 @@ namespace InventarAppIHK.Import
             }
 
         }
-        /// <summary>
-        /// Überladung? Ich versuche mit dieser Methode auf die Klasse Product zuzugreifen und Date-Format zu ändern
-        /// Jedoch klappt dan die Methode in der CSV Implementierung nicht mehr wegen der Parameteranzahl*****************
-        /// </summary>
-        /// <param name="product"></param>
-        public static void InsertProduct(Product product)
-        {
-            string query = "INSERT INTO product (productName, date, price, category_id) VALUES (@productName, @date, @price, @category_id)";
-            //int categoryId = GetCategoryId(product.CategoryName);
-
-            string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
-            try
-            {
-                MySqlConnection con = new MySqlConnection(sql);
-                con.Open();
-                using (MySqlCommand command = new MySqlCommand(query, con))
-                {
-                    command.Parameters.Add("@productName", MySqlDbType.VarChar).Value = product.ProductName;
-                    command.Parameters.Add("@date", MySqlDbType.VarChar).Value = product.Date.ToString("yyyy-MM-dd");
-                    command.Parameters.Add("@price", MySqlDbType.Double).Value = product.Price;
-                    command.Parameters.AddWithValue("@category_id", MySqlDbType.Int32).Value = product.Category_id;
-
-                    command.ExecuteNonQuery();
-                }
-                con.Close();
-            }
-            catch (MySqlException e)
-            {
-                MessageBox.Show(e.Message);
-            }
-
-        }
+       
 
         public static string formatCategoryId(string valueString)
         {
@@ -149,6 +118,8 @@ namespace InventarAppIHK.Import
             return double.Parse(valueString);
         }
 
+
+
         /// <summary>
         /// Die Zeilen mit ungültigen Daten, die einen Error verursachen werden ignoriert und die Zeilen mit gültigen Daten
         /// werden in die Tabelle category gespeichert
@@ -158,11 +129,9 @@ namespace InventarAppIHK.Import
         {
 
             string query = "INSERT IGNORE INTO category (categoryname) VALUES (@categoryname)";
-            string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
             try
             {
-                MySqlConnection con = new MySqlConnection(sql);
-                con.Open();
+               MySqlConnection con = GetConnection();
                 MySqlCommand command = new MySqlCommand(query, con);
                 command.Parameters.Add("categoryname", MySqlDbType.VarChar).Value = categoryName;
                 command.ExecuteNonQuery();
@@ -174,6 +143,32 @@ namespace InventarAppIHK.Import
             }
 
         }
+
+        /// <summary>
+        /// Ort, an dem sich das Inventar befindet in die Datenbank hinzufügen und SQL injection verhindern
+        /// </summary>
+        /// <param name="location"></param>
+        public static void AddLocation(Location location)
+        {
+            string insert = "INSERT INTO location(floor, locationName) VALUES (@floor, @locationName)";
+            MySqlConnection con = GetConnection();
+            MySqlCommand cmd = new MySqlCommand(insert, con);
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.Add("@floor", MySqlDbType.VarChar).Value = location.Floor;
+            cmd.Parameters.Add("@locationName", MySqlDbType.VarChar).Value = location.LocationName;
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Ort hinzugefügt");
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Ort nicht hinzugefügt!");
+            }
+            con.Close();
+        }
+
         /// <summary>
         /// holt die jeweilige category_id des jeweiligen categoryName aus der category Tabelle und gibt die categoryId als Rückgabewert zurück
         /// </summary>
@@ -184,18 +179,16 @@ namespace InventarAppIHK.Import
 
             string query = "SELECT category_id FROM category WHERE categoryname = @categoryname ";
 
-            string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
             int categoryId = 0;
             try
             {
-                MySqlConnection con = new MySqlConnection(sql);
-                con.Open();
-                using (MySqlCommand command = new MySqlCommand(query, con))
-                {
+                MySqlConnection con = GetConnection();
+                MySqlCommand command = new MySqlCommand(query, con);
+                
                     command.Parameters.Add("@categoryname", MySqlDbType.VarChar).Value = categoryName;
 
                     categoryId = (int)command.ExecuteScalar();
-                }
+                
                 con.Close();
 
             }
@@ -217,12 +210,10 @@ namespace InventarAppIHK.Import
 
             string query = "SELECT product_id FROM product WHERE productName = @productName";
 
-            string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
             int productid = 0;
             try
             {
-                MySqlConnection con = new MySqlConnection(sql);
-                con.Open();
+                MySqlConnection con = GetConnection();
                 using (MySqlCommand command = new MySqlCommand(query, con))
                 {
                     command.Parameters.Add("@productName", MySqlDbType.VarChar).Value = productName;
@@ -249,7 +240,7 @@ namespace InventarAppIHK.Import
         //{
         //    string query = "SELECT product_id FROM product where productName=@productName";
         //    //MessageBox.Show(query);
-        //    string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
+        //    string sql = "datasource=localhost;port=3306;username=user;password=Inventar2023;database=inventar";
         //    int productid = 0;
         //    try
         //    {
@@ -280,28 +271,32 @@ namespace InventarAppIHK.Import
         /// <returns="locationId"></returns>
         public static int GetLocationId(string locationName)
         {
-
+            MySqlConnection con = GetConnection();
             string query = "SELECT location_id FROM location WHERE locationName = @locationName";
 
-            string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
             int locationId = 0;
             try
             {
-                MySqlConnection con = new MySqlConnection(sql);
-                con.Open();
                 using (MySqlCommand command = new MySqlCommand(query, con))
                 {
-                    command.Parameters.Add("@locationName", MySqlDbType.VarChar).Value = locationName;
+                    try
+                    {
+                        command.Parameters.Add("@locationName", MySqlDbType.VarChar).Value = locationName;
 
-                    locationId = (int)command.ExecuteScalar();
+                        locationId = (int)command.ExecuteScalar();
+                    }
+                    catch (MySqlException e)
+                    {
+                        MessageBox.Show(e.Message);
+                    }
                 }
-                con.Close();
 
             }
             catch (MySqlException e)
             {
                 MessageBox.Show(e.Message);
             }
+            con.Close();
 
             return locationId;
         }
@@ -378,16 +373,15 @@ namespace InventarAppIHK.Import
         /// <param name="inventar"></param>
         public static void UpdateProductLocation(Inventar inventar) 
         {
-            MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=;database=inventar");
-            string query = "UPDATE inventar SET product_id=@product_id, category_id=@category_id, location_id=@location_id WHERE inventar_id=@inventar_id";
+            string query = "UPDATE inventarfk SET product_id=@product_id, /*category_id=@category_id, */location_id=@location_id WHERE product_id=@product_id";
 
             try
             {
-                conn.Open();
+                MySqlConnection conn = GetConnection();
                 MySqlCommand command = new MySqlCommand(query, conn);
-                command.Parameters.Add("@inventar_id", MySqlDbType.Int32).Value = inventar.Inventar_id;
+                //command.Parameters.Add("@inventar_id", MySqlDbType.Int32).Value = inventar.Inventar_id;
                 command.Parameters.Add("@product_id", MySqlDbType.Int32).Value = inventar.Product_id;
-                command.Parameters.Add("@category_id", MySqlDbType.Int32).Value = inventar.Category_id;
+                //command.Parameters.Add("@category_id", MySqlDbType.Int32).Value = inventar.Category_id;
                 command.Parameters.Add("@location_id", MySqlDbType.Int32).Value = inventar.Location_id;
                 command.ExecuteNonQuery();
 
@@ -504,6 +498,54 @@ namespace InventarAppIHK.Import
         }
 
         /// <summary>
+        /// Lädt User aus der Datenbank Tabelle category & gibt die jeweils in den einzelnen Zeilen des dgvCategory aus
+        /// </summary>
+        public static void LoadFormTotal(DataGridView dgv, DataGridViewCellEventArgs e)              //update datagridview mit einem Button updaten
+        {
+            dgv.Rows.Clear();
+            string query = "SELECT P.product_id, P.productName, P.date, P.price, C.categoryName, L.floor, L.locationName " +
+                "from inventarfk AS I " +
+                "INNER JOIN product AS P " +
+                "ON I.product_id=P.product_id " +
+                "INNER JOIN location AS L " +
+                "ON I.location_id=L.location_id " +
+                "INNER JOIN category AS C " +
+                "ON P.category_id=C.category_id ";
+
+            //"SELECT P.product_id, P.productName, P.date, P.price, C.categoryName, L.floor, L.locationName " +
+            //   "from inventarfk AS I " +
+            //   "INNER JOIN product AS P " +
+            //    "ON I.product_id=P.product_id " +
+            //   "INNER JOIN category AS C " +
+            //   "ON P.category_id=C.category_id " +
+            //   "INNER JOIN location AS L " +
+            //   "ON I.location_id=L.location_id ";
+
+            try
+            {
+                MySqlConnection con = GetConnection();
+                MySqlCommand command = new MySqlCommand(query, con);
+                MySqlDataReader dr = command.ExecuteReader();
+                int i = 0;
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        i++;        //wird noch nicht verwendet
+                        dgv.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString().Substring(0, 10), double.Parse(dr[3].ToString()), dr[4].ToString(), dr[5].ToString(), dr[6].ToString());
+                    }
+                }
+                command.Dispose();
+                con.Close();
+                dr.Close();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message + "Error");
+            }
+        }
+
+        /// <summary>
         /// Füllt die ComboBox auf der ProductInsertForm mit den Kategorien aus der Tabelle Kategorie
         /// </summary>
         /// <param name="comboCategory"></param>
@@ -511,9 +553,9 @@ namespace InventarAppIHK.Import
         {
             {
                 comboCategory.Items.Clear();
-                MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=;database=inventar");
+                MySqlConnection conn = GetConnection();                
                 string sql = "select categoryName from category";
-                conn.Open();
+            
                 MySqlCommand comm = new MySqlCommand(sql, conn);
                 MySqlDataReader dr = comm.ExecuteReader();
                 int i = 0;
@@ -611,29 +653,31 @@ namespace InventarAppIHK.Import
         /// <param name="location_id"></param>
         public static void ChooseInventar(Inventar inventar)
         {
-            try
-            {
-                string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
-                string query = "INSERT INTO inventar(product_id, category_id, location_id) VALUES (@product_id, @category_id, @location_id)";
+            MySqlConnection con = GetConnection();
+
+           
+                string query = "INSERT INTO inventarfk(product_id, /*category_id,*/ location_id) VALUES (@product_id, /*@category_id,*/ @location_id)";
 
                 //category_id = CSVDataImport.GetCategoryId(txtCategoryName.Text);
                 //location_id = CSVDataImport.GetLocationId(txtLName.Text);
-                MySqlConnection con = new MySqlConnection(sql);
                 MySqlCommand command = new MySqlCommand(query, con);    //In der Datenbank klasse erstellen und immer wieder darauf zugreifen
                 command.CommandType = CommandType.Text;
-                con.Open();
 
                 command.Parameters.AddWithValue("@product_id", MySqlDbType.Int32).Value = inventar.Product_id;
-                command.Parameters.AddWithValue("@category_id", MySqlDbType.Int32).Value = inventar.Category_id;
+                //command.Parameters.AddWithValue("@category_id", MySqlDbType.Int32).Value = inventar.Category_id;
                 command.Parameters.AddWithValue("@location_id", MySqlDbType.Int32).Value = inventar.Location_id;
 
+            try
+            {
                 command.ExecuteNonQuery();
-                con.Close();
+                MessageBox.Show("Ihre Auswahl wurde eingetragen!");
 
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Produkt ist bereits reserviert!");
+                con.Close();
+
             }
 
         }
@@ -699,7 +743,7 @@ namespace InventarAppIHK.Import
             {
                 if (c is TextBox && c != null)
                 {
-                    if (c.Name != "txtInventarId" && c.Name != "txtCatID" && c.Name != "txtLocationID" && 
+                    if (/*c.Name != "txtInventarId" &&*/ c.Name != "txtCatID" && c.Name != "txtLocationID" && 
                         c.Name != "txtProductID" && c.Name != "txtId" && c.Name != "txtID") // just put in the name of special textBoxes between double quotes
                         c.Text = "";    //wenn eine TextBox durchlaufen wird springt er in den If Teil, wenn die Bedingung erfüllt ist leer er TXT
                 }
@@ -720,13 +764,10 @@ namespace InventarAppIHK.Import
         public static void CategoryEditDelete(DataGridView dgv, DataGridViewCellEventArgs e)
         {
 
-            string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
-
-            MySqlConnection con = new MySqlConnection(sql);
-
+            MySqlConnection con = GetConnection();
+            
             string columnName = "";
             columnName = dgv.Columns[e.ColumnIndex].Name;
-            con.Open();
             if (columnName == "edit")
             {
                 CategoryInsertForm catInsert = new CategoryInsertForm();
@@ -738,10 +779,13 @@ namespace InventarAppIHK.Import
             }
             else if (columnName == "delete")
             {
+                try
+                {
+                    MySqlCommand comm = new MySqlCommand("DELETE FROM category WHERE category_id= '" + Convert.ToInt32(dgv.Rows[e.RowIndex].Cells[0].Value.ToString()) + "'", con); //prüfen ob [1] stimmt [4]phone ist in postgreSQL bei properties auf allow null gesetzt
 
-                MySqlCommand comm = new MySqlCommand("DELETE FROM category WHERE category_id= '" + Convert.ToInt32(dgv.Rows[e.RowIndex].Cells[0].Value.ToString()) + "'", con); //prüfen ob [1] stimmt [4]phone ist in postgreSQL bei properties auf allow null gesetzt
-
-                comm.ExecuteNonQuery();
+                    comm.ExecuteNonQuery();
+                }
+                catch(Exception ex) { MessageBox.Show("Löschung nicht möglich!"); }
             }
 
             con.Close();
@@ -754,7 +798,6 @@ namespace InventarAppIHK.Import
         /// <param name="e"></param>
         public static void ProductEditDelete(DataGridView dgv, DataGridViewCellEventArgs e)
         {
-            string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
             string columnName = dgv.Columns[e.ColumnIndex].Name;
             int productID = DataImport.GetProductId(dgv.Rows[e.RowIndex].Cells[1].Value.ToString());
 
@@ -775,17 +818,20 @@ namespace InventarAppIHK.Import
             {
                 if (MessageBox.Show("Sind sie sich sicher, dass Sie diesen Datensatz inklusive Verknüpfungen löschen möchten?", "Löschen Datensatz", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    MySqlConnection con = new MySqlConnection(sql);
-                    try { 
-                    con.Open();
-                    int product_id = Convert.ToInt32(dgv.Rows[e.RowIndex].Cells[0].Value);
+
+                    try
+                    {
+                        MySqlConnection con = GetConnection();
+
+                        int product_id = Convert.ToInt32(dgv.Rows[e.RowIndex].Cells[0].Value);
                     MySqlCommand commandProduct = new MySqlCommand("DELETE FROM product WHERE product_id=" + Convert.ToInt32(dgv.Rows[e.RowIndex].Cells[0].Value.ToString()), con);
                     commandProduct.ExecuteNonQuery();
-                }
+                        con.Close();
+
+                    }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message,"Sie können diese Zeile nicht löschen, da sie in einer Elternspalte verwendet wird");
-                        con.Close();
 
                     }
                 }
@@ -794,13 +840,10 @@ namespace InventarAppIHK.Import
 
         public static void LocationEditDelete(DataGridView dgv, DataGridViewCellEventArgs e)
         {
-            string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
 
-            MySqlConnection con = new MySqlConnection(sql);
-
+            MySqlConnection con = GetConnection();
             string columnName = "";
             columnName = dgv.Columns[e.ColumnIndex].Name;
-            con.Open();
             if (columnName == "Edit")
             {
                 LocationInsertForm locInsert = new LocationInsertForm();
@@ -813,9 +856,13 @@ namespace InventarAppIHK.Import
             }
             else if (columnName == "Delete")
             {
-                MySqlCommand comm = new MySqlCommand("DELETE FROM location WHERE location_id= '" + Convert.ToInt32(dgv.Rows[e.RowIndex].Cells[0].Value.ToString()) + "'", con); //prüfen ob [1] stimmt [4]phone ist in postgreSQL bei properties auf allow null gesetzt
+                try
+                {
+                    MySqlCommand comm = new MySqlCommand("DELETE FROM location WHERE location_id= '" + Convert.ToInt32(dgv.Rows[e.RowIndex].Cells[0].Value.ToString()) + "'", con); //prüfen ob [1] stimmt [4]phone ist in postgreSQL bei properties auf allow null gesetzt
 
-                comm.ExecuteNonQuery();
+                    comm.ExecuteNonQuery();
+                }
+                catch(Exception ex) { MessageBox.Show("Löschung nicht möglich!"); }
             }
             con.Close();
         }
@@ -829,16 +876,13 @@ namespace InventarAppIHK.Import
         public static void TotalEditDelete(DataGridView dgv, DataGridViewCellEventArgs e)
         {
             TotalForm catID = new TotalForm();
-            string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
             string columnName = dgv.Columns[e.ColumnIndex].Name;
             int productID = DataImport.GetProductId(dgv.Rows[e.RowIndex].Cells[1].Value.ToString());
             if (columnName == "edit")
             {
                 ProductLocationForm productLocationForm = new ProductLocationForm();
                 productLocationForm.btnSave.Enabled = false;
-                //productLocationForm.txtLNumber.Text = dgv.Rows[e.RowIndex].Cells[0].Value.ToString();
-                productLocationForm.txtInventarId.Text = dgv.Rows[e.RowIndex].Cells[0].Value.ToString();
-                //productLocationForm.txtPNumber = dgv.Rows[e.RowIndex].Cells[].Value.ToString();
+                //productLocationForm.txtInventarId.Text = dgv.Rows[e.RowIndex].Cells[0].Value.ToString();
                 productLocationForm.txtCatID.Text = (DataImport.GetCategoryId(dgv.Rows[e.RowIndex].Cells[4].Value.ToString())).ToString();
                 productLocationForm.txtLocationID.Text = (DataImport.GetLocationId(dgv.Rows[e.RowIndex].Cells[6].Value.ToString())).ToString();
                 productLocationForm.txtProductID.Text = (DataImport.GetProductId(dgv.Rows[e.RowIndex].Cells[1].Value.ToString())).ToString();
@@ -861,13 +905,12 @@ namespace InventarAppIHK.Import
             {
                 if (MessageBox.Show("Sind sie sich sicher, dass Sie diesen Datensatz löschen möchten?", "Löschen Datensatz", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    MySqlConnection con = new MySqlConnection(sql);
+                    MySqlConnection con = GetConnection();
 
-                    con.Open();
                     int product_id = Convert.ToInt32(dgv.Rows[e.RowIndex].Cells[0].Value);
-                    //MySqlCommand commandProduct = new MySqlCommand("DELETE FROM product WHERE product_id=" + Convert.ToInt32(dgvTotal.Rows[e.RowIndex].Cells[0].Value.ToString()), con);
-                    MySqlCommand commandProduct = new MySqlCommand("DELETE FROM inventar WHERE inventar_id=" + Convert.ToInt32(dgv.Rows[e.RowIndex].Cells[0].Value.ToString()), con);
-
+                    MySqlCommand commandProduct = new MySqlCommand("DELETE FROM inventarfk WHERE product_id=" + Convert.ToInt32(dgv.Rows[e.RowIndex].Cells[0].Value.ToString()), con);
+                    //in der Inventartabelle nach product-id suchen da uique
+                    //Tabelle mit unique product_id und location_id
                     commandProduct.ExecuteNonQuery();
                     con.Close();
                 }
@@ -882,11 +925,10 @@ namespace InventarAppIHK.Import
         public static void TxtLocation(DataGridView dgv, string txtSelectLocation)
         {
             dgv.Rows.Clear();
-            MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=;database=inventar");
+            MySqlConnection con = GetConnection();
             //string query = "select location_id, floor, locationName from location where concat(location_id, floor, locationName) like '" + txtSelectLocation.Text + "'"; // || in sql ist wie das + in C#. Hierdruch werden strings zusammengesetzt  https://stackoverflow.com/questions/13950279/like-statement-for-npgsql-using-parameter
             string query = "select location_id, floor, locationName from location where concat(location_id, floor, locationName) like concat('%' , @search_location , '%')"; // || in sql ist wie das + in C#. Hierdruch werden strings zusammengesetzt  https://stackoverflow.com/questions/13950279/like-statement-for-npgsql-using-parameter
-            conn.Open();
-            MySqlCommand command = new MySqlCommand(query, conn);
+            MySqlCommand command = new MySqlCommand(query, con);
             command.Parameters.AddWithValue("@search_location", txtSelectLocation.ToUpper());
             MySqlDataReader dr = command.ExecuteReader();
 
@@ -904,7 +946,7 @@ namespace InventarAppIHK.Import
                 }
 
                 command.Dispose();
-                conn.Close();
+                con.Close();
                 dr.Close();
             }
             catch (MySqlException e)
@@ -921,14 +963,13 @@ namespace InventarAppIHK.Import
         public static void TxtSelectProd(DataGridView dgv, string txtSelectProduct)
         {
             dgv.Rows.Clear();
-            MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=;database=inventar");
-            
+            MySqlConnection con = GetConnection();
+
             string query = "select P.product_id, P.productName, P.date, P.price, C.categoryName " +
             "from product AS P INNER JOIN category AS C ON P.category_id=C.category_id " +
             "WHERE UPPER(CONCAT(P.product_id, P.productName, P.date, P.price, C.categoryName)) like concat('%' , @search_product , '%')";
 
-            conn.Open();
-            MySqlCommand command = new MySqlCommand(query, conn);
+            MySqlCommand command = new MySqlCommand(query, con);
             command.Parameters.AddWithValue("@search_product", txtSelectProduct);  //**************klappt nicht******
             MySqlDataReader dr = command.ExecuteReader();
 
@@ -946,7 +987,7 @@ namespace InventarAppIHK.Import
                 }
 
                 command.Dispose();
-                conn.Close();
+                con.Close();
                 dr.Close();
             }
             catch (MySqlException e)
@@ -972,17 +1013,17 @@ namespace InventarAppIHK.Import
         /// <param name="lblTotal"></param>
         public static void SelectPriceProduct(DataGridView dgv, string txtFrom, string txtTo, string txtSelect, Label lblTotal)
         {
-            string sql = "datasource=localhost;port=3306;username=root;password=;database=inventar";
 
             double total = 0;
             dgv.Rows.Clear();
-            MySqlConnection conn = new MySqlConnection(sql);
-            string query = "SELECT inventar_id, P.productName, P.date, P.price, C.categoryName, L.floor, L.locationName " +
-                "from inventar AS I " +
+            MySqlConnection con = GetConnection();
+            ////////RICHTIG???????????????
+            string query = "SELECT P.product_id, P.productName, P.date, P.price, C.categoryName, L.floor, L.locationName " +
+                "from inventarfk AS I " +
                 "INNER JOIN product AS P " +
                  "ON I.product_id=P.product_id " +
                 "INNER JOIN category AS C " +
-                "ON I.category_id=C.category_id " +
+                "ON P.category_id=C.category_id " +
                 "INNER JOIN location AS L " +
                 "ON I.location_id=L.location_id ";
 
@@ -1005,14 +1046,13 @@ namespace InventarAppIHK.Import
                 if (txtFrom.Trim().Length > 0 || txtTo.Trim().Length > 0)
                     query += " AND ";
 
-                query += " concat(I.inventar_id, P.productName, P.date, P.price, C.categoryName, L.floor, L.locationName ) like concat('%' , @search_totalinventar , '%')";
+                query += " concat(I.product_id, P.productName, P.date, P.price, C.categoryName, L.floor, L.locationName ) like concat('%' , @search_totalinventar , '%')";
             }
-            using (MySqlCommand comm = new MySqlCommand(query, conn))
+            using (MySqlCommand comm = new MySqlCommand(query, con))
             {
                 {
                     try
                     {
-                        conn.Open();
                         if (txtSelect.Trim() != "")
                             comm.Parameters.AddWithValue("@search_totalinventar", txtSelect.ToUpper());
 
@@ -1034,7 +1074,7 @@ namespace InventarAppIHK.Import
                             }
                         }
                         comm.Dispose();
-                        conn.Close();
+                        con.Close();
                         dr.Close();
 
                         lblTotal.Text = total.ToString();
