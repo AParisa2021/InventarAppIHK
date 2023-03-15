@@ -963,11 +963,21 @@ namespace InventarAppIHK.Import
         public static void TxtSelectProd(DataGridView dgv, string txtSelectProduct)
         {
             dgv.Rows.Clear();
+            //Select* from Inventar where productid Not in (select ID from product)
+            //string query = "SELECT P.product_id, P.productName, P.date, P.price, C.categoryName " +
+            //    "FROM product AS P JOIN category AS C ON C.category_id=P.category_id " +
+            //    "  WHERE product_id NOT IN (select product_id from inventarfk AS I WHERE P.product_id=I.product_id) ";
+
+
+
+
+            dgv.Rows.Clear();
             MySqlConnection con = GetConnection();
 
             string query = "select P.product_id, P.productName, P.date, P.price, C.categoryName " +
             "from product AS P INNER JOIN category AS C ON P.category_id=C.category_id " +
-            "WHERE UPPER(CONCAT(P.product_id, P.productName, P.date, P.price, C.categoryName)) like concat('%' , @search_product , '%')";
+            "WHERE UPPER(CONCAT(P.product_id, P.productName, P.date, P.price, C.categoryName)) like concat('%' , @search_product , '%')" +
+            " AND product_id NOT IN (select product_id from inventarfk AS I WHERE P.product_id=I.product_id) ";
 
             MySqlCommand command = new MySqlCommand(query, con);
             command.Parameters.AddWithValue("@search_product", txtSelectProduct);  //**************klappt nicht******
@@ -995,7 +1005,7 @@ namespace InventarAppIHK.Import
                 MessageBox.Show(e.Message + "Error");
             }
         }
-        private static string Datetime(string datetime)
+        public static string Datetime(string datetime)
         {
             //string timeFormat = datetime.Substring(datetime.Length - 7);
             string timeFormat = Convert.ToDateTime(datetime.ToString()).ToString("yyyy-MM-dd");

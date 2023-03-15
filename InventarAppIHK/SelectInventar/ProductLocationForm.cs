@@ -69,15 +69,13 @@ namespace InventarAppIHK
 
         private void dgvProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            Inventar inventar  =  new Inventar(int.Parse(txtProductID.Text), int.Parse(txtCatID.Text), int.Parse(txtLocationID.Text));
-            if (inventar.Product_id > 0 && inventar.Category_id > 0 && inventar.Location_id > 0)
-            {
+           
                 txtPNumber.Text = dgvProduct.Rows[e.RowIndex].Cells[0].Value.ToString();
                 txtPName.Text = dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString();
                 txtDate.Text = dgvProduct.Rows[e.RowIndex].Cells[2].Value.ToString().Substring(0, 10);
                 txtPrice.Text = dgvProduct.Rows[e.RowIndex].Cells[3].Value.ToString();
                 txtCategoryName.Text = dgvProduct.Rows[e.RowIndex].Cells[4].Value.ToString();
-            }
+            
              
         }
 
