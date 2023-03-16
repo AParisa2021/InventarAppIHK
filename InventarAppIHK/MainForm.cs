@@ -84,5 +84,12 @@ namespace InventarAppIHK
 
             openChildForm(new TotalForm());           
         }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            Inventarchart.Series["Inventar"].Points.AddXY("2023", 2000);
+            Inventarchart.Series["Inventar"].Points.AddXY("2023", 2000);
+
+        }
     }
 }

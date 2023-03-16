@@ -55,8 +55,8 @@ namespace InventarAppIHK
                     MessageBox.Show("Ihre Auswahl wurde eingetragen!");
                 }
             }
-            catch(Exception ex)
-            { 
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.Message);
             }
         }
@@ -82,28 +82,19 @@ namespace InventarAppIHK
         }
 
         private void btnClear_Click(object sender, EventArgs e)
-        {        
+        {
             comboCategory.SelectedItem = null;
             DataImport.ClearAllFields(this);
         }
 
         private void txtName_KeyDown(object sender, KeyEventArgs e)
         {
-
-        }
-
-        private void txtPrice_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void comboCategory_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
+            if (btnUpdate.Enabled == false)
             {
-                try
+                if (e.KeyCode == Keys.Enter)
                 {
-                    if (txtName.Text == "" || comboCategory.Text == "")
+
+                    if (txtName.Text == "" && comboCategory.Text == "")
                     {
                         MessageBox.Show("Bitte wählen Sie einen Produktnamen und eine Kategorie.");
 
@@ -113,10 +104,110 @@ namespace InventarAppIHK
                         DataImport.InsertProduct(txtName.Text, dtOrder.Text, DataImport.formatDouble(txtPrice.Text), DataImport.formatCategoryId(comboCategory.Text));
                         MessageBox.Show("Ihre Auswahl wurde eingetragen!");
                     }
+
+
                 }
-                catch (Exception ex)
+
+            }
+            else if (btnSave.Enabled == false)
+            {
+                if (e.KeyCode == Keys.Enter)
                 {
-                    MessageBox.Show(ex.Message);
+                    if (txtName.Text == "" && comboCategory.Text == "" && txtPrice.Text == "")
+                    {
+                        MessageBox.Show("Bitte geben Sie einen Ort an!");
+                    }
+                    else
+                    {
+                        int category_id = DataImport.GetCategoryId(comboCategory.Text);
+                        Product updateProduct = new Product(int.Parse(txtID.Text), txtName.Text, DateTime.Parse(dtOrder.Text), double.Parse(DataImport.formatDouble(txtPrice.Text).ToString()), category_id);
+                        DataImport.UpdateProduct(updateProduct);
+                    }
+                }
+            }
+        }
+
+        private void txtPrice_KeyDown(object sender, KeyEventArgs e)
+        {
+      
+             if (btnSave.Enabled == false)
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (txtName.Text == "" && comboCategory.Text == "" && txtPrice.Text == "")
+                    {
+                        MessageBox.Show("Bitte geben Sie einen Ort an!");
+                    }
+                    else
+                    {
+                        int category_id = DataImport.GetCategoryId(comboCategory.Text);
+                        Product updateProduct = new Product(int.Parse(txtID.Text), txtName.Text, DateTime.Parse(dtOrder.Text), double.Parse(DataImport.formatDouble(txtPrice.Text).ToString()), category_id);
+                        DataImport.UpdateProduct(updateProduct);
+                    }
+                }
+            }
+        }
+
+        private void comboCategory_KeyDown(object sender, KeyEventArgs e)
+        {
+            //if (e.KeyCode == Keys.Enter)
+            //{
+            //    try
+            //    {
+            //        if (txtName.Text == "" || comboCategory.Text == "")
+            //        {
+            //            MessageBox.Show("Bitte wählen Sie einen Produktnamen und eine Kategorie.");
+
+            //        }
+            //        else if (txtName.Text != "" && comboCategory.Text != "")
+            //        {
+            //            DataImport.InsertProduct(txtName.Text, dtOrder.Text, DataImport.formatDouble(txtPrice.Text), DataImport.formatCategoryId(comboCategory.Text));
+            //            MessageBox.Show("Ihre Auswahl wurde eingetragen!");
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show(ex.Message);
+            //    }
+            //}
+
+
+
+
+            if (btnUpdate.Enabled == false)
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                   
+                        if (txtName.Text == "" && comboCategory.Text == "")
+                        {
+                            MessageBox.Show("Bitte wählen Sie einen Produktnamen und eine Kategorie.");
+
+                        }
+                        else if (txtName.Text != "" && comboCategory.Text != "")
+                        {
+                            DataImport.InsertProduct(txtName.Text, dtOrder.Text, DataImport.formatDouble(txtPrice.Text), DataImport.formatCategoryId(comboCategory.Text));
+                            MessageBox.Show("Ihre Auswahl wurde eingetragen!");
+                        }
+                 
+
+                }
+
+            }
+            else if (btnSave.Enabled == false)
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (txtName.Text == "" && comboCategory.Text == "" && txtPrice.Text == "")
+                    {
+                        MessageBox.Show("Bitte geben Sie einen Ort an!");
+                    }
+                    else
+                    {
+                        int category_id = DataImport.GetCategoryId(comboCategory.Text);
+                        Product updateProduct = new Product(int.Parse(txtID.Text), txtName.Text, DateTime.Parse(dtOrder.Text), double.Parse(DataImport.formatDouble(txtPrice.Text).ToString()), category_id);
+                        DataImport.UpdateProduct(updateProduct);
+                    }
                 }
             }
         }

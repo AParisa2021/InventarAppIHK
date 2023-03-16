@@ -87,6 +87,7 @@
             this.dgvLocation.EnableHeadersVisualStyles = false;
             this.dgvLocation.Location = new System.Drawing.Point(0, 0);
             this.dgvLocation.Name = "dgvLocation";
+            this.dgvLocation.ReadOnly = true;
             this.dgvLocation.RowHeadersWidth = 51;
             this.dgvLocation.RowTemplate.Height = 24;
             this.dgvLocation.Size = new System.Drawing.Size(1200, 413);
@@ -105,6 +106,7 @@
             this.Ort_ID.HeaderText = "Nummer";
             this.Ort_ID.MinimumWidth = 6;
             this.Ort_ID.Name = "Ort_ID";
+            this.Ort_ID.ReadOnly = true;
             this.Ort_ID.Width = 125;
             // 
             // floor
@@ -112,6 +114,7 @@
             this.floor.HeaderText = "Etage";
             this.floor.MinimumWidth = 6;
             this.floor.Name = "floor";
+            this.floor.ReadOnly = true;
             this.floor.Width = 125;
             // 
             // locationName
@@ -120,6 +123,7 @@
             this.locationName.HeaderText = "Bezeichnung";
             this.locationName.MinimumWidth = 6;
             this.locationName.Name = "locationName";
+            this.locationName.ReadOnly = true;
             // 
             // Edit
             // 
@@ -128,6 +132,7 @@
             this.Edit.Image = ((System.Drawing.Image)(resources.GetObject("Edit.Image")));
             this.Edit.MinimumWidth = 6;
             this.Edit.Name = "Edit";
+            this.Edit.ReadOnly = true;
             this.Edit.Width = 79;
             // 
             // Delete
@@ -137,6 +142,7 @@
             this.Delete.Image = ((System.Drawing.Image)(resources.GetObject("Delete.Image")));
             this.Delete.MinimumWidth = 6;
             this.Delete.Name = "Delete";
+            this.Delete.ReadOnly = true;
             this.Delete.Width = 64;
             // 
             // LocationForm

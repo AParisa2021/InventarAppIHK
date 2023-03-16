@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductLocationForm));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pbClose = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtLocationID = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -74,8 +72,6 @@
             this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbClose)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocation)).BeginInit();
             this.panel3.SuspendLayout();
@@ -85,22 +81,11 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.SteelBlue;
-            this.panel1.Controls.Add(this.pbClose);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1185, 75);
             this.panel1.TabIndex = 0;
-            // 
-            // pbClose
-            // 
-            this.pbClose.Image = ((System.Drawing.Image)(resources.GetObject("pbClose.Image")));
-            this.pbClose.Location = new System.Drawing.Point(1126, 12);
-            this.pbClose.Name = "pbClose";
-            this.pbClose.Size = new System.Drawing.Size(47, 49);
-            this.pbClose.TabIndex = 1;
-            this.pbClose.TabStop = false;
-            this.pbClose.Click += new System.EventHandler(this.pbClose_Click);
             // 
             // panel2
             // 
@@ -250,6 +235,7 @@
             this.locationName});
             this.dgvLocation.Location = new System.Drawing.Point(3, 0);
             this.dgvLocation.Name = "dgvLocation";
+            this.dgvLocation.ReadOnly = true;
             this.dgvLocation.RowHeadersWidth = 51;
             this.dgvLocation.RowTemplate.Height = 24;
             this.dgvLocation.Size = new System.Drawing.Size(447, 251);
@@ -262,6 +248,7 @@
             this.location_id.HeaderText = "Nummer";
             this.location_id.MinimumWidth = 6;
             this.location_id.Name = "location_id";
+            this.location_id.ReadOnly = true;
             this.location_id.Width = 87;
             // 
             // floor
@@ -270,6 +257,7 @@
             this.floor.HeaderText = "Etage";
             this.floor.MinimumWidth = 6;
             this.floor.Name = "floor";
+            this.floor.ReadOnly = true;
             this.floor.Width = 72;
             // 
             // locationName
@@ -278,6 +266,7 @@
             this.locationName.HeaderText = "Bezeichnung";
             this.locationName.MinimumWidth = 6;
             this.locationName.Name = "locationName";
+            this.locationName.ReadOnly = true;
             // 
             // label15
             // 
@@ -484,6 +473,7 @@
             this.categoryName});
             this.dgvProduct.Location = new System.Drawing.Point(3, 0);
             this.dgvProduct.Name = "dgvProduct";
+            this.dgvProduct.ReadOnly = true;
             this.dgvProduct.RowHeadersWidth = 51;
             this.dgvProduct.RowTemplate.Height = 24;
             this.dgvProduct.Size = new System.Drawing.Size(700, 251);
@@ -496,6 +486,7 @@
             this.product_id.HeaderText = "Nummer";
             this.product_id.MinimumWidth = 6;
             this.product_id.Name = "product_id";
+            this.product_id.ReadOnly = true;
             this.product_id.Width = 87;
             // 
             // productName
@@ -504,6 +495,7 @@
             this.productName.HeaderText = "Produktname";
             this.productName.MinimumWidth = 6;
             this.productName.Name = "productName";
+            this.productName.ReadOnly = true;
             // 
             // date
             // 
@@ -511,6 +503,7 @@
             this.date.HeaderText = "Datum";
             this.date.MinimumWidth = 6;
             this.date.Name = "date";
+            this.date.ReadOnly = true;
             // 
             // price
             // 
@@ -518,6 +511,7 @@
             this.price.HeaderText = "Preis";
             this.price.MinimumWidth = 6;
             this.price.Name = "price";
+            this.price.ReadOnly = true;
             this.price.Width = 67;
             // 
             // categoryName
@@ -525,6 +519,7 @@
             this.categoryName.HeaderText = "Kategorie";
             this.categoryName.MinimumWidth = 6;
             this.categoryName.Name = "categoryName";
+            this.categoryName.ReadOnly = true;
             this.categoryName.Width = 125;
             // 
             // ProductLocationForm
@@ -537,8 +532,6 @@
             this.Controls.Add(this.panel1);
             this.Name = "ProductLocationForm";
             this.Text = "ProductLocationForm";
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbClose)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocation)).EndInit();
@@ -566,7 +559,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView dgvProduct;
         private System.Windows.Forms.Button btnClear;
-        private System.Windows.Forms.PictureBox pbClose;
         private System.Windows.Forms.DataGridViewTextBoxColumn location_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn floor;
         private System.Windows.Forms.DataGridViewTextBoxColumn locationName;

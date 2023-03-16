@@ -160,25 +160,26 @@
   </metadata>
   <data name="edit.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        /9j/4AAQSkZJRgABAQEAdwB3AAD/4QBoRXhpZgAATU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAAB
-        AAAARgEoAAMAAAABAAIAAAExAAIAAAARAAAATgAAAAAAAdS1AAAD6AAB1LUAAAPocGFpbnQubmV0IDQu
-        My4xMQAA/9sAQwAEAgMDAwIEAwMDBAQEBAUJBgUFBQULCAgGCQ0LDQ0NCwwMDhAUEQ4PEw8MDBIYEhMV
-        FhcXFw4RGRsZFhoUFhcW/9sAQwEEBAQFBQUKBgYKFg8MDxYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYW
-        FhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYW/8AAEQgAFAAUAwEhAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAA
-        AAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGh
-        CCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0
-        dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh
-        4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIB
-        AgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBka
-        JicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZ
-        mqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwD
-        AQACEQMRAD8A+2qwfHGvf2Tp7R2u172UYiU84PbIrzc1zKnl2FeIqK+yS6tt2sdOEw0sTWVOJV+H+n+K
-        bbw3Gmuaos10zs2Wj5VT0BOevWiuynGairs3xFfC1KspQp2Te19i94u16PSLdURfMuJeI0FVPCOgSx3B
-        1bVj5l5Jyqn/AJZf/Xr5asnmmeqn/wAusPq/ObWn3I6Kf+yYFz+1U0Xklv8AedLRX1545mabaQzXD3c4
-        86ZJW2M+Pk+ladZU6MKbk4rVu7NKlSU7cz2VgorUzP/Z
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAADKSURBVEhL7ZJBDgFBEEX7CiIOY+UUYsHaKQiHwI4LuAOn
+        sHEJJHYE77eupFl2F6t5ycvM1CS/qmsmNCQmeMZBfHJmjs/kHUfohoXfcJvdu5wkn3ytAliTU3yqwMK1
+        kkdyg5pedX2TYvLwIY5RDVSTMywm37ntWVc1U13vi/meXPTR1uIyeRP+wV/C5VQF0N9i4XpfRRtXqLAj
+        qolbuNFBO4VZHa5dd9+3kRbaSVwmX+AF8yZal9ta9qhpr9hTwZsD7nCJ9ms2/JIQXno/WzLbUZI/AAAA
+        AElFTkSuQmCC
 </value>
   </data>
   <metadata name="delete.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="delete.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAEXSURBVEhL5ZTBzUFBFIVnY0MTVEAFVEAF/iiACthYUgEV
+        UAEF+OlABewUwEbCOXdIJjfj3Xmz5Eu+5J3k3ju8NzPuZ5jCh3IGS6OH5PqRWHGOhRwhi5qS0mAte9hr
+        soUs7kpKowfZs5FksIQsHkryMNM3Oo8g80KSwQSyONwleqDOc8g8lmTwB1m8kuTRA3VeQ+a+JIMOZPFe
+        kkcP1PkAmduSDBqQxSdJHj1Q5zNkrksyqMD7Sz6TogVi9Sb6FxUtEPvHJvqdhgNJmGPfzETvinAgCXNs
+        15nofR0OJGGOnRsTnmI28VSTf6gX2PnH6Mk3KXO35NxdrgXZlHI75ty+rgZvkI0pXmEVlmIALzA2MJQ1
+        3ElfiXNP+0+m+fQJx5cAAAAASUVORK5CYII=
+</value>
+  </data>
 </root>

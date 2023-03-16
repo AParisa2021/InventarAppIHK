@@ -85,6 +85,7 @@
             this.dgvCategory.EnableHeadersVisualStyles = false;
             this.dgvCategory.Location = new System.Drawing.Point(0, 0);
             this.dgvCategory.Name = "dgvCategory";
+            this.dgvCategory.ReadOnly = true;
             this.dgvCategory.RowHeadersWidth = 51;
             this.dgvCategory.RowTemplate.Height = 24;
             this.dgvCategory.Size = new System.Drawing.Size(1200, 413);
@@ -96,6 +97,7 @@
             this.category_id.HeaderText = "Kategorienummer";
             this.category_id.MinimumWidth = 6;
             this.category_id.Name = "category_id";
+            this.category_id.ReadOnly = true;
             this.category_id.Width = 125;
             // 
             // categoryname
@@ -104,6 +106,7 @@
             this.categoryname.HeaderText = "Kategoriename";
             this.categoryname.MinimumWidth = 6;
             this.categoryname.Name = "categoryname";
+            this.categoryname.ReadOnly = true;
             // 
             // edit
             // 
@@ -112,14 +115,17 @@
             this.edit.Image = ((System.Drawing.Image)(resources.GetObject("edit.Image")));
             this.edit.MinimumWidth = 6;
             this.edit.Name = "edit";
+            this.edit.ReadOnly = true;
             this.edit.Width = 79;
             // 
             // delete
             // 
             this.delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.delete.HeaderText = "Löschen";
+            this.delete.Image = ((System.Drawing.Image)(resources.GetObject("delete.Image")));
             this.delete.MinimumWidth = 6;
             this.delete.Name = "delete";
+            this.delete.ReadOnly = true;
             this.delete.Width = 64;
             // 
             // CategoryForm
@@ -142,10 +148,10 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dgvCategory;
+        private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.DataGridViewTextBoxColumn category_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn categoryname;
         private System.Windows.Forms.DataGridViewImageColumn edit;
         private System.Windows.Forms.DataGridViewImageColumn delete;
-        private System.Windows.Forms.Button btnAdd;
     }
 }

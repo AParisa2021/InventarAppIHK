@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -50,21 +51,45 @@ namespace InventarAppIHK
             DataImport.ClearAllFields(this);
         }
 
-        private void txtCategory_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
+      
+            private void txtCategory_KeyDown(object sender, KeyEventArgs e)
             {
-                if (txtCategory.Text == "")
+
+            //DataImport.KeyEnter(txtCategory.Text, btnUpdate.Text, btnSave.Text, e, code, category)
+
+                if (btnUpdate.Enabled == false)
                 {
-                    MessageBox.Show("Bitte geben Sie eine Kategorie an!");
-                }
-                else
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        if (txtCategory.Text == "")
+                        {
+                            MessageBox.Show("Bitte geben Sie eine Kategorie an!");
+                        }
+                        else
+                        {
+                            Category category = new Category(txtCategory.Text.Trim());
+                            DataImport.InsertCategory(txtCategory.Text);
+                            MessageBox.Show("Kategorie gespeichert");
+                        }
+                    }              
+
+                }     
+                else if (btnSave.Enabled == false)            
                 {
-                    Category category = new Category(txtCategory.Text.Trim());
-                    DataImport.InsertCategory(txtCategory.Text);
-                    MessageBox.Show("Kategorie gespeichert");
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        if (txtCategory.Text == "")
+                        {
+                            MessageBox.Show("Bitte geben Sie eine Kategorie an!");
+                        }
+                        else
+                        {
+                        Category category = new Category(int.Parse(txtId.Text), txtCategory.Text.Trim());
+                        DataImport.UpdateCategory(category);
+                        }
+                    }
                 }
-            }
+
         }
     }
 }

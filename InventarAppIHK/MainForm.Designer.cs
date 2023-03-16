@@ -33,6 +33,7 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnCategory = new System.Windows.Forms.Button();
             this.btnLocation = new System.Windows.Forms.Button();
@@ -173,6 +174,8 @@
             this.Inventarchart.Size = new System.Drawing.Size(637, 357);
             this.Inventarchart.TabIndex = 0;
             this.Inventarchart.Text = "chart1";
+            title1.Name = "Lager";
+            this.Inventarchart.Titles.Add(title1);
             // 
             // MainForm
             // 

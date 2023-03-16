@@ -115,7 +115,7 @@ namespace InventarAppIHK.Import
         {
             if (valueString == "" || valueString == null) return 0;
 
-            return double.Parse(valueString);
+            return double.Parse(valueString.Replace(".",","));
         }
 
 
@@ -1097,6 +1097,40 @@ namespace InventarAppIHK.Import
             }
 
         }
-
+        //public static void KeyEnter(string category, Button btnUpdate, Button btnSave, DataGridViewCellEventArgs e, Keys code, Category cat)
+        //{
+        //    if (btnUpdate.Enabled == false)
+        //    {
+        //        //if (e.KeyCode == Keys.Enter)
+        //        {
+        //            if (category == "")
+        //            {
+        //                MessageBox.Show("Bitte geben Sie eine Kategorie an!");
+        //            }
+        //            else
+        //            {
+        //                //Category category = new Category(category.Trim().ToString());
+        //                DataImport.InsertCategory(category.ToString());
+        //                MessageBox.Show("Kategorie gespeichert");
+        //            }
+        //        }
+        //        else if (btnSave.Enabled == false)              //GEHT NICHT****************************************************
+        //        {
+        //            //if (e.KeyCode == Keys.Enter)
+        //            {
+        //                if (category == "")
+        //                {
+        //                    MessageBox.Show("Bitte geben Sie eine Kategorie an!");
+        //                }
+        //                else
+        //                {
+        //                    //Category category = new Category(txtCategory.Text.Trim());
+        //                    DataImport.UpdateCategory(cat);
+        //                    MessageBox.Show("Kategorie geändert");
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
     }
 }

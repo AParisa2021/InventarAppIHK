@@ -192,6 +192,7 @@
             this.dgvTotal.EnableHeadersVisualStyles = false;
             this.dgvTotal.Location = new System.Drawing.Point(0, 0);
             this.dgvTotal.Name = "dgvTotal";
+            this.dgvTotal.ReadOnly = true;
             this.dgvTotal.RowHeadersWidth = 51;
             this.dgvTotal.RowTemplate.Height = 24;
             this.dgvTotal.Size = new System.Drawing.Size(1200, 339);
@@ -206,6 +207,7 @@
             this.total_id.HeaderText = "ProduktNummer";
             this.total_id.MinimumWidth = 6;
             this.total_id.Name = "total_id";
+            this.total_id.ReadOnly = true;
             this.total_id.Width = 133;
             // 
             // productName
@@ -214,6 +216,7 @@
             this.productName.HeaderText = "Produktname";
             this.productName.MinimumWidth = 6;
             this.productName.Name = "productName";
+            this.productName.ReadOnly = true;
             // 
             // date
             // 
@@ -221,6 +224,7 @@
             this.date.HeaderText = "Datum";
             this.date.MinimumWidth = 6;
             this.date.Name = "date";
+            this.date.ReadOnly = true;
             this.date.Width = 75;
             // 
             // price
@@ -228,6 +232,7 @@
             this.price.HeaderText = "Preis";
             this.price.MinimumWidth = 6;
             this.price.Name = "price";
+            this.price.ReadOnly = true;
             this.price.Width = 125;
             // 
             // categoryName
@@ -236,6 +241,7 @@
             this.categoryName.HeaderText = "Kategorie";
             this.categoryName.MinimumWidth = 6;
             this.categoryName.Name = "categoryName";
+            this.categoryName.ReadOnly = true;
             this.categoryName.Width = 94;
             // 
             // floor
@@ -244,6 +250,7 @@
             this.floor.HeaderText = "Etage";
             this.floor.MinimumWidth = 6;
             this.floor.Name = "floor";
+            this.floor.ReadOnly = true;
             this.floor.Width = 72;
             // 
             // locationName
@@ -251,6 +258,7 @@
             this.locationName.HeaderText = "Bezeichnung";
             this.locationName.MinimumWidth = 6;
             this.locationName.Name = "locationName";
+            this.locationName.ReadOnly = true;
             this.locationName.Width = 125;
             // 
             // edit
@@ -260,6 +268,7 @@
             this.edit.Image = ((System.Drawing.Image)(resources.GetObject("edit.Image")));
             this.edit.MinimumWidth = 6;
             this.edit.Name = "edit";
+            this.edit.ReadOnly = true;
             this.edit.Width = 79;
             // 
             // delete
@@ -269,6 +278,7 @@
             this.delete.Image = ((System.Drawing.Image)(resources.GetObject("delete.Image")));
             this.delete.MinimumWidth = 6;
             this.delete.Name = "delete";
+            this.delete.ReadOnly = true;
             this.delete.Width = 64;
             // 
             // TotalForm

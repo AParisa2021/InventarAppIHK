@@ -90,6 +90,7 @@
             this.dgvProduct.EnableHeadersVisualStyles = false;
             this.dgvProduct.Location = new System.Drawing.Point(0, 0);
             this.dgvProduct.Name = "dgvProduct";
+            this.dgvProduct.ReadOnly = true;
             this.dgvProduct.RowHeadersWidth = 51;
             this.dgvProduct.RowTemplate.Height = 24;
             this.dgvProduct.Size = new System.Drawing.Size(1200, 413);
@@ -101,6 +102,7 @@
             this.product_id.HeaderText = "Produktnummer";
             this.product_id.MinimumWidth = 6;
             this.product_id.Name = "product_id";
+            this.product_id.ReadOnly = true;
             this.product_id.Width = 125;
             // 
             // productName
@@ -109,12 +111,14 @@
             this.productName.HeaderText = "Produktname";
             this.productName.MinimumWidth = 6;
             this.productName.Name = "productName";
+            this.productName.ReadOnly = true;
             // 
             // date
             // 
             this.date.HeaderText = "Datum";
             this.date.MinimumWidth = 6;
             this.date.Name = "date";
+            this.date.ReadOnly = true;
             this.date.Width = 125;
             // 
             // price
@@ -122,6 +126,7 @@
             this.price.HeaderText = "Preis";
             this.price.MinimumWidth = 6;
             this.price.Name = "price";
+            this.price.ReadOnly = true;
             this.price.Width = 125;
             // 
             // category_id
@@ -129,6 +134,7 @@
             this.category_id.HeaderText = "Kategorie";
             this.category_id.MinimumWidth = 6;
             this.category_id.Name = "category_id";
+            this.category_id.ReadOnly = true;
             this.category_id.Width = 125;
             // 
             // edit
@@ -138,14 +144,17 @@
             this.edit.Image = ((System.Drawing.Image)(resources.GetObject("edit.Image")));
             this.edit.MinimumWidth = 6;
             this.edit.Name = "edit";
+            this.edit.ReadOnly = true;
             this.edit.Width = 79;
             // 
             // delete
             // 
             this.delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.delete.HeaderText = "Löschen";
+            this.delete.Image = ((System.Drawing.Image)(resources.GetObject("delete.Image")));
             this.delete.MinimumWidth = 6;
             this.delete.Name = "delete";
+            this.delete.ReadOnly = true;
             this.delete.Width = 64;
             // 
             // ProductForm
@@ -168,6 +177,7 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dgvProduct;
+        private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.DataGridViewTextBoxColumn product_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn productName;
         private System.Windows.Forms.DataGridViewTextBoxColumn date;
@@ -175,6 +185,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn category_id;
         private System.Windows.Forms.DataGridViewImageColumn edit;
         private System.Windows.Forms.DataGridViewImageColumn delete;
-        private System.Windows.Forms.Button btnAdd;
     }
 }
