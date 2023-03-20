@@ -187,6 +187,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "MainForm";
             this.Text = "MainForm";
+            this.VisibleChanged += new System.EventHandler(this.MainForm_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelMain.ResumeLayout(false);

@@ -34,7 +34,7 @@ namespace InventarAppIHK
             else
             {
                 Category category = new Category(txtCategory.Text.Trim());
-                DataImport.InsertCategory(txtCategory.Text);
+                CatMethods.InsertCategory(txtCategory.Text);
                 MessageBox.Show("Kategorie gespeichert");
             }       
            
@@ -43,12 +43,12 @@ namespace InventarAppIHK
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             Category category = new Category(int.Parse(txtId.Text), txtCategory.Text.Trim());
-            DataImport.UpdateCategory(category);
+            CatMethods.UpdateCategory(category);
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            DataImport.ClearAllFields(this);
+            Utility.ClearAllFields(this);
         }
 
       
@@ -68,7 +68,7 @@ namespace InventarAppIHK
                         else
                         {
                             Category category = new Category(txtCategory.Text.Trim());
-                            DataImport.InsertCategory(txtCategory.Text);
+                            CatMethods.InsertCategory(txtCategory.Text);
                             MessageBox.Show("Kategorie gespeichert");
                         }
                     }              
@@ -85,7 +85,7 @@ namespace InventarAppIHK
                         else
                         {
                         Category category = new Category(int.Parse(txtId.Text), txtCategory.Text.Trim());
-                        DataImport.UpdateCategory(category);
+                        CatMethods.UpdateCategory(category);
                         }
                     }
                 }

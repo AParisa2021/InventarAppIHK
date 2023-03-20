@@ -24,24 +24,24 @@ namespace InventarAppIHK
 
         private void MyInitializeComponent()
         {
-            DataImport.SelectPriceProduct(dgvTotal, txtFrom.Text, txtTo.Text, txtSelect.Text, lblTotal);
+            ProdMethods.SelectPriceProduct(dgvTotal, txtFrom.Text, txtTo.Text, txtSelect.Text, lblTotal);
         }
 
         private void txtTo_TextChanged(object sender, EventArgs e)
         {
-            DataImport.SelectPriceProduct(dgvTotal, txtFrom.Text, txtTo.Text, txtSelect.Text, lblTotal);
+            ProdMethods.SelectPriceProduct(dgvTotal, txtFrom.Text, txtTo.Text, txtSelect.Text, lblTotal);
         }
 
 
         private void txtFrom_TextChanged(object sender, EventArgs e)
         {
             //SelectPriceProduct();
-            DataImport.SelectPriceProduct(dgvTotal, txtFrom.Text, txtTo.Text, txtSelect.Text, lblTotal);
+            ProdMethods.SelectPriceProduct(dgvTotal, txtFrom.Text, txtTo.Text, txtSelect.Text, lblTotal);
         }
 
         private void txtSelect_TextChanged(object sender, EventArgs e)
         {
-            DataImport.SelectPriceProduct(dgvTotal, txtFrom.Text, txtTo.Text, txtSelect.Text, lblTotal);
+            ProdMethods.SelectPriceProduct(dgvTotal, txtFrom.Text, txtTo.Text, txtSelect.Text, lblTotal);
         }
 
         /// <summary>
@@ -52,9 +52,9 @@ namespace InventarAppIHK
         private void dgvTotal_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //DataImport.LoadFormTotal(dgvTotal);
-            DataImport.TotalEditDelete(dgvTotal, e);
-            DataImport.LoadFormTotal(dgvTotal, e);
-            DataImport.SelectPriceProduct(dgvTotal, txtFrom.Text, txtTo.Text, txtSelect.Text, lblTotal);
+            InventarMethods.TotalEditDelete(dgvTotal, e);
+            InventarMethods.LoadFormTotal(dgvTotal, e);
+            ProdMethods.SelectPriceProduct(dgvTotal, txtFrom.Text, txtTo.Text, txtSelect.Text, lblTotal);
 
             //MyInitializeComponent();
         }
@@ -68,6 +68,11 @@ namespace InventarAppIHK
         private void txtID_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void TotalForm_Load(object sender, EventArgs e)
+        {
+            MyInitializeComponent();
         }
     }
 }

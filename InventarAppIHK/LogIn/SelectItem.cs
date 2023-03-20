@@ -8,9 +8,11 @@ using MySql.Data.MySqlClient;
 
 namespace InventarAppIHK
 {
-    public class SelectItem
+    public class SelectItem 
     {
         DBConnection conn =new DBConnection();
+        private static bool startButtonWasClicked = false;
+
         public string SelectData(string userInsert, string passwordInsert)
         {
             try
@@ -29,7 +31,8 @@ namespace InventarAppIHK
                     MessageBox.Show("Sie haben sich erfolgreich eingeloggt!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                   
                         MainForm openMainForm = new MainForm();
-                        openMainForm.ShowDialog();                      
+                        openMainForm.ShowDialog();
+                    Close();
                 }
                 else
                 {
@@ -48,6 +51,20 @@ namespace InventarAppIHK
                 conn.connClose();
             }
 
+        }
+
+        //***************************************LogIn Form schließt nicht
+        public static void Close()
+        {
+            startButtonWasClicked = true;
+            if (startButtonWasClicked)
+            {
+                LoginForm frm = new LoginForm();
+                frm.Hide();
+            }
+        }
+        public static void CloseForm()
+        {
         }
     }
 }

@@ -22,7 +22,7 @@ namespace InventarAppIHK
 
         public void MyInitializeComponent()
         {
-            DataImport.LoadFormLocation(dgvLocation);
+            LocMethods.LoadFormLocation(dgvLocation);
         }
 
         private void LocationForm_Load(object sender, EventArgs e)
@@ -47,7 +47,7 @@ namespace InventarAppIHK
 
         private void dgvLocation_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataImport.LocationEditDelete(dgvLocation, e);
+            LocMethods.LocationEditDelete(dgvLocation, e);
             MyInitializeComponent();        
         }
     }

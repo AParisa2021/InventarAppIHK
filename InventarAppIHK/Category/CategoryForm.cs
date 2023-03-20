@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+//using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace InventarAppIHK
 {
@@ -24,12 +24,12 @@ namespace InventarAppIHK
 
         public void MyInitializeComponent()
         {
-            DataImport.LoadFormCategory(dgvCategory);
+            CatMethods.LoadFormCategory(dgvCategory);
         }
 
         private void dgvCategory_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataImport.CategoryEditDelete(dgvCategory, e);
+            CatMethods.CategoryEditDelete(dgvCategory, e);
             MyInitializeComponent();
         }
 

@@ -15,6 +15,8 @@ namespace InventarAppIHK
         public MainForm()
         {
             InitializeComponent();
+            SelectItem.Close();
+
         }
 
         //to show subform form in mainform
@@ -90,6 +92,13 @@ namespace InventarAppIHK
             Inventarchart.Series["Inventar"].Points.AddXY("2023", 2000);
             Inventarchart.Series["Inventar"].Points.AddXY("2023", 2000);
 
+
         }
+
+        private void MainForm_Load_1(object sender, EventArgs e)
+        {
+        }
+
+     
     }
 }

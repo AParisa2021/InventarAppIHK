@@ -26,7 +26,7 @@ namespace InventarAppIHK
         public void MyInitializeComponent()
         {
             //CSVDataImport.LoadFormLocation(dgvLocation);
-            DataImport.TxtLocation(dgvLocation, txtSelectLocation.Text.ToUpper());
+            InventarMethods.TxtLocation(dgvLocation, txtSelectLocation.Text.ToUpper());
             TxtSelectProd();
         }
 
@@ -36,7 +36,7 @@ namespace InventarAppIHK
 
         public void TxtSelectProd()
         {
-             DataImport.TxtSelectProd(dgvProduct, txtSelectProduct.Text.ToUpper());
+             InventarMethods.TxtSelectProd(dgvProduct, txtSelectProduct.Text.ToUpper());
         }
         
         /// <summary>
@@ -57,7 +57,7 @@ namespace InventarAppIHK
 
         private void txtSelectLocation_TextChanged(object sender, EventArgs e)
         {
-            DataImport.TxtLocation(dgvLocation, txtSelectLocation.Text.ToUpper());
+            InventarMethods.TxtLocation(dgvLocation, txtSelectLocation.Text.ToUpper());
         }
 
         private void dgvLocation_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -68,15 +68,12 @@ namespace InventarAppIHK
         }
 
         private void dgvProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-           
+        {           
                 txtPNumber.Text = dgvProduct.Rows[e.RowIndex].Cells[0].Value.ToString();
                 txtPName.Text = dgvProduct.Rows[e.RowIndex].Cells[1].Value.ToString();
                 txtDate.Text = dgvProduct.Rows[e.RowIndex].Cells[2].Value.ToString().Substring(0, 10);
                 txtPrice.Text = dgvProduct.Rows[e.RowIndex].Cells[3].Value.ToString();
-                txtCategoryName.Text = dgvProduct.Rows[e.RowIndex].Cells[4].Value.ToString();
-            
-             
+                txtCategoryName.Text = dgvProduct.Rows[e.RowIndex].Cells[4].Value.ToString();           
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -95,11 +92,11 @@ namespace InventarAppIHK
             {
                 try
                 {
-                    int category_id = DataImport.GetCategoryId(txtCategoryName.Text);
-                    int location_id = DataImport.GetLocationId(txtLName.Text);
-                    int product_id = DataImport.GetProductId(txtPName.Text);
+                    int category_id = CatMethods.GetCategoryId(txtCategoryName.Text);
+                    int location_id = LocMethods.GetLocationId(txtLName.Text);
+                    int product_id = ProdMethods.GetProductId(txtPName.Text);
                     Inventar inventar = new Inventar(product_id, category_id, location_id);
-                    DataImport.ChooseInventar(inventar);
+                    InventarMethods.ChooseInventar(inventar);
                 }
                 catch(Exception ex)
                 { 
@@ -116,16 +113,16 @@ namespace InventarAppIHK
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            DataImport.ClearAllFields(this);
+            Utility.ClearAllFields(this);
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {       
-            int category_id = DataImport.GetCategoryId(txtCategoryName.Text);
-            int product_id = DataImport.GetProductId(txtPName.Text);
-            int location_id = DataImport.GetLocationId(txtLName.Text);
+            int category_id = CatMethods.GetCategoryId(txtCategoryName.Text);
+            int product_id = ProdMethods.GetProductId(txtPName.Text);
+            int location_id = LocMethods.GetLocationId(txtLName.Text);
             Inventar updateInventar = new Inventar(int.Parse(txtProductID.Text), /*product_id, */category_id, location_id);
-            DataImport.UpdateProductLocation(updateInventar);
+            InventarMethods.UpdateProductLocation(updateInventar);
         }       
 
     }

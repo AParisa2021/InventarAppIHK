@@ -13,13 +13,13 @@ namespace InventarAppIHK
 {
     public partial class LoginForm : Form
     {
+
         insertData insertdata = new insertData();
         DBConnection conn = new DBConnection();
         SelectItem selectItem = new SelectItem();
         public LoginForm()
         {
-            InitializeComponent();
-            
+            InitializeComponent();            
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
@@ -39,12 +39,14 @@ namespace InventarAppIHK
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if(txtUser.Text == "" && txtPassword.Text == "")
+           
+            if (txtUser.Text == "" && txtPassword.Text == "")
             {
                 MessageBox.Show("Bitte registrieren");
             }
-            else if(txtUser.Text != "" && txtPassword.Text != "")
+            else if (txtUser.Text != "" && txtPassword.Text != "")
             {
+            
                 selectItem.SelectData(txtUser.Text, txtPassword.Text);
 
             }
@@ -52,13 +54,21 @@ namespace InventarAppIHK
             {
                 MessageBox.Show("Bitte Benutzername und Passwort eingeben!");
             }
+         
         }
+      
+     
 
         private void label1_Click(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// Anzeige Passwort
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void checkBoxPassword_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxPassword.Checked == true)
@@ -69,6 +79,11 @@ namespace InventarAppIHK
             {
                 txtPassword.UseSystemPasswordChar = true;
             }
+        }
+
+        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+
         }
     }
 }

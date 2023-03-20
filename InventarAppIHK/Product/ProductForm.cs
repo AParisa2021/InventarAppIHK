@@ -23,13 +23,13 @@ namespace InventarAppIHK
 
         public void MyInitializeComponent()
         {
-            DataImport.LoadFormProduct(dgvProduct);
+            ProdMethods.LoadFormProduct(dgvProduct);
 
         }
 
         private void dgvProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataImport.ProductEditDelete(dgvProduct, e);
+            ProdMethods.ProductEditDelete(dgvProduct, e);
             MyInitializeComponent();            
 
         }

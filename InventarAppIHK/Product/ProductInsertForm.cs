@@ -23,7 +23,7 @@ namespace InventarAppIHK
         }
         public void MyInitializeComponent()
         {
-            DataImport.FillComboBox(comboCategory);
+            ProdMethods.FillComboBox(comboCategory);
         }
 
         private void pbClose_Click(object sender, EventArgs e)
@@ -51,7 +51,7 @@ namespace InventarAppIHK
                 }
                 else if (txtName.Text != "" && comboCategory.Text != "")
                 {
-                    DataImport.InsertProduct(txtName.Text, dtOrder.Text, DataImport.formatDouble(txtPrice.Text), DataImport.formatCategoryId(comboCategory.Text));
+                    ProdMethods.InsertProduct(txtName.Text, dtOrder.Text, Utility.formatDouble(txtPrice.Text), Utility.formatCategoryId(comboCategory.Text));
                     MessageBox.Show("Ihre Auswahl wurde eingetragen!");
                 }
             }
@@ -76,15 +76,15 @@ namespace InventarAppIHK
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            int category_id = DataImport.GetCategoryId(comboCategory.Text);
-            Product updateProduct = new Product(int.Parse(txtID.Text), txtName.Text, DateTime.Parse(dtOrder.Text), double.Parse(DataImport.formatDouble(txtPrice.Text).ToString()), category_id);
-            DataImport.UpdateProduct(updateProduct);
+            int category_id = CatMethods.GetCategoryId(comboCategory.Text);
+            Product updateProduct = new Product(int.Parse(txtID.Text), txtName.Text, DateTime.Parse(dtOrder.Text), double.Parse(Utility.formatDouble(txtPrice.Text).ToString()), category_id);
+            ProdMethods.UpdateProduct(updateProduct);
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
             comboCategory.SelectedItem = null;
-            DataImport.ClearAllFields(this);
+            Utility.ClearAllFields(this);
         }
 
         private void txtName_KeyDown(object sender, KeyEventArgs e)
@@ -101,13 +101,10 @@ namespace InventarAppIHK
                     }
                     else if (txtName.Text != "" && comboCategory.Text != "")
                     {
-                        DataImport.InsertProduct(txtName.Text, dtOrder.Text, DataImport.formatDouble(txtPrice.Text), DataImport.formatCategoryId(comboCategory.Text));
+                        ProdMethods.InsertProduct(txtName.Text, dtOrder.Text, Utility.formatDouble(txtPrice.Text), Utility.formatCategoryId(comboCategory.Text));
                         MessageBox.Show("Ihre Auswahl wurde eingetragen!");
                     }
-
-
                 }
-
             }
             else if (btnSave.Enabled == false)
             {
@@ -119,9 +116,9 @@ namespace InventarAppIHK
                     }
                     else
                     {
-                        int category_id = DataImport.GetCategoryId(comboCategory.Text);
-                        Product updateProduct = new Product(int.Parse(txtID.Text), txtName.Text, DateTime.Parse(dtOrder.Text), double.Parse(DataImport.formatDouble(txtPrice.Text).ToString()), category_id);
-                        DataImport.UpdateProduct(updateProduct);
+                        int category_id = CatMethods.GetCategoryId(comboCategory.Text);
+                        Product updateProduct = new Product(int.Parse(txtID.Text), txtName.Text, DateTime.Parse(dtOrder.Text), double.Parse(Utility.formatDouble(txtPrice.Text).ToString()), category_id);
+                        ProdMethods.UpdateProduct(updateProduct);
                     }
                 }
             }
@@ -140,9 +137,9 @@ namespace InventarAppIHK
                     }
                     else
                     {
-                        int category_id = DataImport.GetCategoryId(comboCategory.Text);
-                        Product updateProduct = new Product(int.Parse(txtID.Text), txtName.Text, DateTime.Parse(dtOrder.Text), double.Parse(DataImport.formatDouble(txtPrice.Text).ToString()), category_id);
-                        DataImport.UpdateProduct(updateProduct);
+                        int category_id = CatMethods.GetCategoryId(comboCategory.Text);
+                        Product updateProduct = new Product(int.Parse(txtID.Text), txtName.Text, DateTime.Parse(dtOrder.Text), double.Parse(Utility.formatDouble(txtPrice.Text).ToString()), category_id);
+                        ProdMethods.UpdateProduct(updateProduct);
                     }
                 }
             }
@@ -150,30 +147,6 @@ namespace InventarAppIHK
 
         private void comboCategory_KeyDown(object sender, KeyEventArgs e)
         {
-            //if (e.KeyCode == Keys.Enter)
-            //{
-            //    try
-            //    {
-            //        if (txtName.Text == "" || comboCategory.Text == "")
-            //        {
-            //            MessageBox.Show("Bitte wählen Sie einen Produktnamen und eine Kategorie.");
-
-            //        }
-            //        else if (txtName.Text != "" && comboCategory.Text != "")
-            //        {
-            //            DataImport.InsertProduct(txtName.Text, dtOrder.Text, DataImport.formatDouble(txtPrice.Text), DataImport.formatCategoryId(comboCategory.Text));
-            //            MessageBox.Show("Ihre Auswahl wurde eingetragen!");
-            //        }
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show(ex.Message);
-            //    }
-            //}
-
-
-
-
             if (btnUpdate.Enabled == false)
             {
                 if (e.KeyCode == Keys.Enter)
@@ -186,13 +159,10 @@ namespace InventarAppIHK
                         }
                         else if (txtName.Text != "" && comboCategory.Text != "")
                         {
-                            DataImport.InsertProduct(txtName.Text, dtOrder.Text, DataImport.formatDouble(txtPrice.Text), DataImport.formatCategoryId(comboCategory.Text));
+                            ProdMethods.InsertProduct(txtName.Text, dtOrder.Text, Utility.formatDouble(txtPrice.Text), Utility.formatCategoryId(comboCategory.Text));
                             MessageBox.Show("Ihre Auswahl wurde eingetragen!");
-                        }
-                 
-
+                        }           
                 }
-
             }
             else if (btnSave.Enabled == false)
             {
@@ -204,9 +174,9 @@ namespace InventarAppIHK
                     }
                     else
                     {
-                        int category_id = DataImport.GetCategoryId(comboCategory.Text);
-                        Product updateProduct = new Product(int.Parse(txtID.Text), txtName.Text, DateTime.Parse(dtOrder.Text), double.Parse(DataImport.formatDouble(txtPrice.Text).ToString()), category_id);
-                        DataImport.UpdateProduct(updateProduct);
+                        int category_id = CatMethods.GetCategoryId(comboCategory.Text);
+                        Product updateProduct = new Product(int.Parse(txtID.Text), txtName.Text, DateTime.Parse(dtOrder.Text), double.Parse(Utility.formatDouble(txtPrice.Text).ToString()), category_id);
+                        ProdMethods.UpdateProduct(updateProduct);
                     }
                 }
             }

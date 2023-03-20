@@ -37,19 +37,19 @@ namespace InventarAppIHK
             else
             {
                 Location location = new Location(txtfloor.Text.Trim(), txtRoomName.Text.Trim());
-                DataImport.AddLocation(location);
+                LocMethods.AddLocation(location);
             }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {          
-            DataImport.ClearAllFields(this);
+            Utility.ClearAllFields(this);
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             Location location = new Location(int.Parse(txtID.Text), txtfloor.Text, txtRoomName.Text);
-            DataImport.UpdateLocation(location);
+            LocMethods.UpdateLocation(location);
         }
 
         private void txtRoomName_KeyDown(object sender, KeyEventArgs e)
@@ -65,7 +65,7 @@ namespace InventarAppIHK
                     else
                     {
                         Location location = new Location(txtfloor.Text.Trim(), txtRoomName.Text.Trim());
-                        DataImport.AddLocation(location);                        
+                        LocMethods.AddLocation(location);                        
                     }
                 }
 
@@ -81,7 +81,7 @@ namespace InventarAppIHK
                     else
                     {
                         Location location = new Location(int.Parse(txtID.Text), txtfloor.Text, txtRoomName.Text);
-                        DataImport.UpdateLocation(location);                        
+                        LocMethods.UpdateLocation(location);                        
                     }
                 }
             }
