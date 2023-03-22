@@ -238,14 +238,14 @@ namespace InventarAppIHK
             double total = 0;
             dgv.Rows.Clear();
             MySqlConnection con = Utility.GetConnection();
-            string query = "SELECT P.product_id, P.productName, P.date, P.price, C.categoryName, L.floor, L.locationName " +
-                "from inventarfk AS I " +
+            string query = "SELECT P.product_id, P.productName, P.date, P.price, LP.seriennummer, C.categoryName, L.floor, L.locationName " +
+                "from l_p AS LP " +
                 "INNER JOIN product AS P " +
-                 "ON I.product_id=P.product_id " +
+                 "ON LP.product_id=P.product_id " +
                 "INNER JOIN category AS C " +
                 "ON P.category_id=C.category_id " +
                 "INNER JOIN location AS L " +
-                "ON I.location_id=L.location_id ";
+                "ON LP.location_id=L.location_id ";
 
             if (txtFrom.Trim() != "" || txtTo.Trim() != "" || txtSelect.ToUpper().Trim() != "") query += " WHERE ";
 
@@ -266,7 +266,7 @@ namespace InventarAppIHK
                 if (txtFrom.Trim().Length > 0 || txtTo.Trim().Length > 0)
                     query += " AND ";
 
-                query += " concat(I.product_id, P.productName, P.date, P.price, C.categoryName, L.floor, L.locationName ) like concat('%' , @search_totalinventar , '%')";
+                query += " concat(P.product_id, P.productName, P.date, P.price, LP.seriennummer, C.categoryName, L.floor, L.locationName ) like concat('%' , @search_totalinventar , '%')";
             }
             using (MySqlCommand comm = new MySqlCommand(query, con))
             {
@@ -288,7 +288,7 @@ namespace InventarAppIHK
                         {
                             while (dr.Read())
                             {
-                                dgv.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString().Substring(0, 10), double.Parse(dr[3].ToString()), dr[4].ToString(), dr[5].ToString(), dr[6].ToString());
+                                dgv.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString().Substring(0, 10), double.Parse(dr[3].ToString()), dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString());
 
                                 total += double.Parse(dr[3].ToString());
                             }

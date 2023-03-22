@@ -16,7 +16,7 @@ namespace InventarAppIHK
         /// Änderungen in der Zwischentabelle inventar können mit dieser Methode vorgenommen werden
         /// </summary>
         /// <param name="inventar"></param>
-        public static void UpdateProductLocation(Inventar inventar)
+        public static void UpdateProductLocation(Inventar inventar)     //!!!!!Ändern
         {
             string query = "UPDATE inventarfk SET product_id=@product_id, /*category_id=@category_id, */location_id=@location_id WHERE product_id=@product_id";
 
@@ -45,14 +45,23 @@ namespace InventarAppIHK
         public static void LoadFormTotal(DataGridView dgv, DataGridViewCellEventArgs e)              //update datagridview mit einem Button updaten
         {
             dgv.Rows.Clear();
-            string query = "SELECT P.product_id, P.productName, P.date, P.price, C.categoryName, L.floor, L.locationName " +
-                "from inventarfk AS I " +
-                "INNER JOIN product AS P " +
-                "ON I.product_id=P.product_id " +
-                "INNER JOIN location AS L " +
-                "ON I.location_id=L.location_id " +
-                "INNER JOIN category AS C " +
-                "ON P.category_id=C.category_id ";
+            string query = "SELECT P.product_id, P.productName, P.date, P.price, LP.seriennummer, C.categoryName, L.floor, L.locationName " +
+             "from l_p AS LP " +
+             "INNER JOIN product AS P " +
+             "ON LP.product_id=P.product_id " +            
+             "INNER JOIN location AS L " +
+             "ON LP.location_id=L.location_id " +
+             "INNER JOIN category AS C " +
+             "ON P.category_id=C.category_id ";
+
+            //string query = "SELECT P.product_id, P.productName, P.date, P.price, C.categoryName, L.floor, L.locationName " +
+            //    "from inventarfk AS I " +
+            //    "INNER JOIN product AS P " +
+            //    "ON I.product_id=P.product_id " +
+            //    "INNER JOIN location AS L " +
+            //    "ON I.location_id=L.location_id " +
+            //    "INNER JOIN category AS C " +
+            //    "ON P.category_id=C.category_id ";
 
             try
             {
@@ -90,15 +99,17 @@ namespace InventarAppIHK
             MySqlConnection con = Utility.GetConnection();
 
 
-            string query = "INSERT INTO inventarfk(product_id, location_id) VALUES (@product_id, @location_id)";
+            string query = "INSERT INTO l_p(location_id, product_id, seriennummer) VALUES (@location_id, @product_id, @seriennummer)";
 
             //category_id = CSVDataImport.GetCategoryId(txtCategoryName.Text);
             //location_id = CSVDataImport.GetLocationId(txtLName.Text);
             MySqlCommand command = new MySqlCommand(query, con);    //In der Datenbank klasse erstellen und immer wieder darauf zugreifen
             command.CommandType = CommandType.Text;
 
-            command.Parameters.AddWithValue("@product_id", MySqlDbType.Int32).Value = inventar.Product_id;
             command.Parameters.AddWithValue("@location_id", MySqlDbType.Int32).Value = inventar.Location_id;
+            command.Parameters.AddWithValue("@product_id", MySqlDbType.Int32).Value = inventar.Product_id;
+            command.Parameters.Add("@seriennummer", MySqlDbType.VarChar).Value = inventar.Seriennummer;
+
 
             try
             {
@@ -137,6 +148,8 @@ namespace InventarAppIHK
                 productLocationForm.txtDate.Text = dgv.Rows[e.RowIndex].Cells[2].Value.ToString();
                 productLocationForm.txtPName.Text = dgv.Rows[e.RowIndex].Cells[1].Value.ToString();
                 productLocationForm.txtPrice.Text = dgv.Rows[e.RowIndex].Cells[3].Value.ToString();
+                productLocationForm.txtSerial.Text = dgv.Rows[e.RowIndex].Cells[4].Value.ToString();
+
                 productLocationForm.txtCategoryName.Text = dgv.Rows[e.RowIndex].Cells[4].Value.ToString();
 
                 productLocationForm.ShowDialog();
@@ -148,7 +161,7 @@ namespace InventarAppIHK
                     MySqlConnection con = Utility.GetConnection();
 
                     int product_id = Convert.ToInt32(dgv.Rows[e.RowIndex].Cells[0].Value);
-                    MySqlCommand commandProduct = new MySqlCommand("DELETE FROM inventarfk WHERE product_id=" + Convert.ToInt32(dgv.Rows[e.RowIndex].Cells[0].Value.ToString()), con);
+                    MySqlCommand commandProduct = new MySqlCommand("DELETE FROM l_p WHERE product_id=" + Convert.ToInt32(dgv.Rows[e.RowIndex].Cells[0].Value.ToString()), con);
                     //in der Inventartabelle nach product-id suchen da uique
                     //Tabelle mit unique product_id und location_id
                     commandProduct.ExecuteNonQuery();
@@ -243,17 +256,22 @@ namespace InventarAppIHK
         /// </summary>
         /// <param name="dgv"></param>
         /// <param name="txtSelectProduct"></param>
-        public static void TxtSelectProd(DataGridView dgv, string txtSelectProduct)
+        public static void TxtSelectProd(DataGridView dgv, string txtSelectProduct)     //!!!!Ändern
         {
             dgv.Rows.Clear();
 
             dgv.Rows.Clear();
             MySqlConnection con = Utility.GetConnection();
 
+            //string query = "select P.product_id, P.productName, P.date, P.price, C.categoryName " +
+            //"from product AS P INNER JOIN category AS C ON P.category_id=C.category_id " +
+            //"WHERE UPPER(CONCAT(P.product_id, P.productName, P.date, P.price, C.categoryName)) like concat('%' , @search_product , '%')" +
+            //" AND product_id NOT IN (select product_id from inventarfk AS I WHERE P.product_id=I.product_id) ";
+
+
             string query = "select P.product_id, P.productName, P.date, P.price, C.categoryName " +
-            "from product AS P INNER JOIN category AS C ON P.category_id=C.category_id " +
-            "WHERE UPPER(CONCAT(P.product_id, P.productName, P.date, P.price, C.categoryName)) like concat('%' , @search_product , '%')" +
-            " AND product_id NOT IN (select product_id from inventarfk AS I WHERE P.product_id=I.product_id) ";
+          "from product AS P INNER JOIN category AS C ON P.category_id=C.category_id " +
+          "WHERE UPPER(CONCAT(P.product_id, P.productName, P.date, P.price, C.categoryName)) like concat('%' , @search_product , '%')";
 
             MySqlCommand command = new MySqlCommand(query, con);
             command.Parameters.AddWithValue("@search_product", txtSelectProduct);

@@ -50,6 +50,8 @@
             this.label15 = new System.Windows.Forms.Label();
             this.txtProductID = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txtSerial = new System.Windows.Forms.TextBox();
             this.txtDate = new System.Windows.Forms.TextBox();
             this.txtCategoryName = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -72,8 +74,6 @@
             this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocation)).BeginInit();
             this.panel3.SuspendLayout();
@@ -292,7 +292,7 @@
             // panel3
             // 
             this.panel3.Controls.Add(this.label16);
-            this.panel3.Controls.Add(this.textBox1);
+            this.panel3.Controls.Add(this.txtSerial);
             this.panel3.Controls.Add(this.txtProductID);
             this.panel3.Controls.Add(this.label15);
             this.panel3.Controls.Add(this.txtDate);
@@ -317,6 +317,23 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(706, 562);
             this.panel3.TabIndex = 2;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(19, 331);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(109, 18);
+            this.label16.TabIndex = 24;
+            this.label16.Text = "Seriennummer:";
+            // 
+            // txtSerial
+            // 
+            this.txtSerial.Location = new System.Drawing.Point(153, 331);
+            this.txtSerial.Name = "txtSerial";
+            this.txtSerial.Size = new System.Drawing.Size(528, 22);
+            this.txtSerial.TabIndex = 23;
             // 
             // txtDate
             // 
@@ -526,23 +543,6 @@
             this.categoryName.ReadOnly = true;
             this.categoryName.Width = 125;
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(153, 331);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(528, 22);
-            this.textBox1.TabIndex = 23;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(19, 331);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(109, 18);
-            this.label16.TabIndex = 24;
-            this.label16.Text = "Seriennummer:";
-            // 
             // ProductLocationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -610,6 +610,6 @@
         public System.Windows.Forms.Button btnUpdate;
         public System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label label16;
-        public System.Windows.Forms.TextBox textBox1;
+        public System.Windows.Forms.TextBox txtSerial;
     }
 }

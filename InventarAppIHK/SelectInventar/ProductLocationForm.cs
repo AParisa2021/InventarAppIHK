@@ -86,14 +86,19 @@ namespace InventarAppIHK
                 MessageBox.Show("Bitte wählen Sie ein Produkt!");
 
             }
-            else if (txtProductID.Text != "" || txtLocationID.Text != "")
+            if (txtSerial.Text == "")
+            {
+                MessageBox.Show("Bitte geben Sie eine Seriennummer ein!");
+
+            }
+            else if (txtProductID.Text != "" || txtLocationID.Text != "" || txtSerial.Text != "")
             {
                 try
                 {
-                    int category_id = CatMethods.GetCategoryId(txtCategoryName.Text);
+                    //int category_id = CatMethods.GetCategoryId(txtCategoryName.Text);
                     int location_id = LocMethods.GetLocationId(txtLName.Text);
                     int product_id = ProdMethods.GetProductId(txtPName.Text);
-                    Inventar inventar = new Inventar(product_id, category_id, location_id);
+                    Inventar inventar = new Inventar (location_id, product_id, txtSerial.Text);
                     InventarMethods.ChooseInventar(inventar);
                 }
                 catch(Exception ex)
@@ -116,10 +121,12 @@ namespace InventarAppIHK
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {       
-            int category_id = CatMethods.GetCategoryId(txtCategoryName.Text);
+            //int category_id = CatMethods.GetCategoryId(txtCategoryName.Text);
             int product_id = ProdMethods.GetProductId(txtPName.Text);
             int location_id = LocMethods.GetLocationId(txtLName.Text);
-            Inventar updateInventar = new Inventar(int.Parse(txtProductID.Text), /*product_id, */category_id, location_id);
+            //Inventar updateInventar = new Inventar(int.Parse(txtProductID.Text), /*product_id, */category_id, location_id);
+            Inventar updateInventar = new Inventar(int.Parse(txtProductID.Text), location_id, product_id, txtSerial.Text );
+
             InventarMethods.UpdateProductLocation(updateInventar);
         }       
 
