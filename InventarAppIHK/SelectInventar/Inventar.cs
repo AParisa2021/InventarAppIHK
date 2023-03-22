@@ -23,7 +23,7 @@ namespace InventarAppIHK.SelectInventar
             //this.Category_id = category_id;
             this.Seriennummer = seriennummer;
         }
-        public Inventar(int l_p_id,int product_id, int location_id, string seriennummer)
+        public Inventar(int l_p_id, int location_id, int product_id, string seriennummer)
         {
             this.L_p_id = l_p_id;
             this.Product_id = product_id;

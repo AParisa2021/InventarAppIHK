@@ -12,13 +12,40 @@ namespace InventarAppIHK
 {
     public class InventarMethods
     {
+        public static int Getl_p_Id(string seriennummer)
+        {
+
+            string query = "SELECT l_p_id FROM l_p WHERE seriennummer=@seriennummer";
+            //string query = "SELECT l_p_id FROM l_p WHERE seriennummer=@seriennummer";
+
+            int l_p_id = 0;
+            try
+            {
+                MySqlConnection con = Utility.GetConnection();
+                using (MySqlCommand command = new MySqlCommand(query, con))
+                {
+                    command.Parameters.Add("@seriennummer", MySqlDbType.VarChar).Value = seriennummer;
+
+                    l_p_id = (int)command.ExecuteScalar();
+                }
+                con.Close();
+
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+            return l_p_id;
+        }
+
         /// <summary>
         /// Änderungen in der Zwischentabelle inventar können mit dieser Methode vorgenommen werden
         /// </summary>
         /// <param name="inventar"></param>
         public static void UpdateProductLocation(Inventar inventar)     //!!!!!Ändern
         {
-            string query = "UPDATE inventarfk SET product_id=@product_id, /*category_id=@category_id, */location_id=@location_id WHERE product_id=@product_id";
+            string query = "UPDATE l_p SET location_id=@location_id, product_id=@product_id, seriennummer=@seriennummer WHERE l_p_Id=@l_p_Id";
 
             try
             {
@@ -26,6 +53,8 @@ namespace InventarAppIHK
                 MySqlCommand command = new MySqlCommand(query, conn);
                 command.Parameters.Add("@product_id", MySqlDbType.Int32).Value = inventar.Product_id;
                 command.Parameters.Add("@location_id", MySqlDbType.Int32).Value = inventar.Location_id;
+                command.Parameters.Add("@seriennummer", MySqlDbType.VarChar).Value = inventar.Seriennummer;
+
                 command.ExecuteNonQuery();
 
                 MessageBox.Show("Total update");
@@ -138,19 +167,21 @@ namespace InventarAppIHK
             {
                 ProductLocationForm productLocationForm = new ProductLocationForm();
                 productLocationForm.btnSave.Enabled = false;
-                productLocationForm.txtCatID.Text = (CatMethods.GetCategoryId(dgv.Rows[e.RowIndex].Cells[4].Value.ToString())).ToString();
-                productLocationForm.txtLocationID.Text = (LocMethods.GetLocationId(dgv.Rows[e.RowIndex].Cells[6].Value.ToString())).ToString();
+                productLocationForm.dgvProduct.Enabled = false;
+                productLocationForm.txtCatID.Text = (CatMethods.GetCategoryId(dgv.Rows[e.RowIndex].Cells[5].Value.ToString())).ToString();
+                productLocationForm.txtLocationID.Text = (LocMethods.GetLocationId(dgv.Rows[e.RowIndex].Cells[7].Value.ToString())).ToString();
                 productLocationForm.txtProductID.Text = (ProdMethods.GetProductId(dgv.Rows[e.RowIndex].Cells[1].Value.ToString())).ToString();
                 productLocationForm.txtPNumber.Text = (ProdMethods.GetProductId(dgv.Rows[e.RowIndex].Cells[1].Value.ToString())).ToString();
+                productLocationForm.txtLPId.Text = (InventarMethods.Getl_p_Id(dgv.Rows[e.RowIndex].Cells[4].Value.ToString())).ToString();
 
-                productLocationForm.txtLNumber.Text = dgv.Rows[e.RowIndex].Cells[5].Value.ToString();
-                productLocationForm.txtLName.Text = dgv.Rows[e.RowIndex].Cells[6].Value.ToString();
+                productLocationForm.txtLNumber.Text = dgv.Rows[e.RowIndex].Cells[6].Value.ToString();
+                productLocationForm.txtLName.Text = dgv.Rows[e.RowIndex].Cells[7].Value.ToString();
                 productLocationForm.txtDate.Text = dgv.Rows[e.RowIndex].Cells[2].Value.ToString();
                 productLocationForm.txtPName.Text = dgv.Rows[e.RowIndex].Cells[1].Value.ToString();
                 productLocationForm.txtPrice.Text = dgv.Rows[e.RowIndex].Cells[3].Value.ToString();
                 productLocationForm.txtSerial.Text = dgv.Rows[e.RowIndex].Cells[4].Value.ToString();
 
-                productLocationForm.txtCategoryName.Text = dgv.Rows[e.RowIndex].Cells[4].Value.ToString();
+                productLocationForm.txtCategoryName.Text = dgv.Rows[e.RowIndex].Cells[5].Value.ToString();
 
                 productLocationForm.ShowDialog();
             }

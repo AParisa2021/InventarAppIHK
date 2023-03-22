@@ -120,12 +120,13 @@ namespace InventarAppIHK
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
-        {       
+        {
             //int category_id = CatMethods.GetCategoryId(txtCategoryName.Text);
+            int l_p_id = InventarMethods.Getl_p_Id(txtPNumber.Text);
             int product_id = ProdMethods.GetProductId(txtPName.Text);
             int location_id = LocMethods.GetLocationId(txtLName.Text);
             //Inventar updateInventar = new Inventar(int.Parse(txtProductID.Text), /*product_id, */category_id, location_id);
-            Inventar updateInventar = new Inventar(int.Parse(txtProductID.Text), location_id, product_id, txtSerial.Text );
+            Inventar updateInventar = new Inventar(int.Parse(txtLPId.Text), /*int.Parse(txtProductID.Text),*/ location_id, product_id, txtSerial.Text );
 
             InventarMethods.UpdateProductLocation(updateInventar);
         }       

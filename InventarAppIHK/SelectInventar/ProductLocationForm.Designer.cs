@@ -74,6 +74,8 @@
             this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtLPId = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocation)).BeginInit();
             this.panel3.SuspendLayout();
@@ -91,6 +93,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label17);
+            this.panel2.Controls.Add(this.txtLPId);
             this.panel2.Controls.Add(this.txtLocationID);
             this.panel2.Controls.Add(this.label14);
             this.panel2.Controls.Add(this.label13);
@@ -543,6 +547,24 @@
             this.categoryName.ReadOnly = true;
             this.categoryName.Width = 125;
             // 
+            // txtLPId
+            // 
+            this.txtLPId.Location = new System.Drawing.Point(253, 466);
+            this.txtLPId.Name = "txtLPId";
+            this.txtLPId.Size = new System.Drawing.Size(100, 22);
+            this.txtLPId.TabIndex = 15;
+            this.txtLPId.Visible = false;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(250, 443);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(43, 16);
+            this.label17.TabIndex = 16;
+            this.label17.Text = "l_p_id";
+            this.label17.Visible = false;
+            // 
             // ProductLocationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -578,7 +600,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DataGridView dgvProduct;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.DataGridViewTextBoxColumn location_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn floor;
@@ -611,5 +632,8 @@
         public System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label label16;
         public System.Windows.Forms.TextBox txtSerial;
+        private System.Windows.Forms.Label label17;
+        public System.Windows.Forms.TextBox txtLPId;
+        public System.Windows.Forms.DataGridView dgvProduct;
     }
 }
