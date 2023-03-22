@@ -188,6 +188,7 @@ namespace InventarAppIHK
                 locInsert.txtID.Text = dgv.Rows[e.RowIndex].Cells[0].Value.ToString();
                 locInsert.txtfloor.Text = dgv.Rows[e.RowIndex].Cells[1].Value.ToString();
                 locInsert.txtRoomName.Text = dgv.Rows[e.RowIndex].Cells[2].Value.ToString();
+                locInsert.Text = "Update";
 
                 locInsert.ShowDialog();
             }

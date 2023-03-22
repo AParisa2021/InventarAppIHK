@@ -1,5 +1,4 @@
-﻿using Google.Protobuf;
-using InventarAppIHK.SelectInventar;
+﻿using InventarAppIHK.SelectInventar;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -13,7 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Google.Protobuf.Reflection.SourceCodeInfo.Types;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+
 
 namespace InventarAppIHK.Import
 {

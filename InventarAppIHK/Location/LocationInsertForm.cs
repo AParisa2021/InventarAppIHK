@@ -30,14 +30,16 @@ namespace InventarAppIHK
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (txtfloor.Text == "" && txtRoomName.Text == "")
-            {
-                MessageBox.Show("Bitte geben Sie einen Ort an!");
-            }
-            else
+          
+            if(txtfloor.Text != "" && txtRoomName.Text != "")
             {
                 Location location = new Location(txtfloor.Text.Trim(), txtRoomName.Text.Trim());
                 LocMethods.AddLocation(location);
+                this.Close();
+            }
+            else if (txtfloor.Text == "" && txtRoomName.Text == "")
+            {
+                MessageBox.Show("Bitte geben Sie einen Ort an!");
             }
         }
 

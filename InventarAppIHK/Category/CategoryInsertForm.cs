@@ -9,7 +9,6 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Ubiety.Dns.Core.Records;
 
 namespace InventarAppIHK
 {
@@ -27,16 +26,17 @@ namespace InventarAppIHK
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-           if(txtCategory.Text == "")
+          
+            if(txtCategory.Text != "")
+            {
+                Category category = new Category(txtCategory.Text.Trim());
+                CatMethods.InsertCategory(txtCategory.Text.ToUpper().Trim());
+                Close();                                                                      //klappt nicht. fenster schließt nicht automatisch
+            }
+            else if (txtCategory.Text == "")
             {
                 MessageBox.Show("Bitte geben Sie eine Kategorie an!");
             }
-            else
-            {
-                Category category = new Category(txtCategory.Text.Trim());
-                CatMethods.InsertCategory(txtCategory.Text);
-                MessageBox.Show("Kategorie gespeichert");
-            }       
            
         }
 
@@ -69,7 +69,6 @@ namespace InventarAppIHK
                         {
                             Category category = new Category(txtCategory.Text.Trim());
                             CatMethods.InsertCategory(txtCategory.Text);
-                            MessageBox.Show("Kategorie gespeichert");
                         }
                     }              
 

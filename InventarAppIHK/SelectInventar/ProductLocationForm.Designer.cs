@@ -72,6 +72,8 @@
             this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocation)).BeginInit();
             this.panel3.SuspendLayout();
@@ -106,7 +108,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 75);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(450, 517);
+            this.panel2.Size = new System.Drawing.Size(450, 562);
             this.panel2.TabIndex = 1;
             // 
             // txtLocationID
@@ -272,7 +274,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(432, 417);
+            this.label15.Location = new System.Drawing.Point(432, 452);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(77, 18);
             this.label15.TabIndex = 16;
@@ -281,7 +283,7 @@
             // 
             // txtProductID
             // 
-            this.txtProductID.Location = new System.Drawing.Point(507, 414);
+            this.txtProductID.Location = new System.Drawing.Point(507, 449);
             this.txtProductID.Name = "txtProductID";
             this.txtProductID.Size = new System.Drawing.Size(174, 22);
             this.txtProductID.TabIndex = 15;
@@ -289,6 +291,8 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.label16);
+            this.panel3.Controls.Add(this.textBox1);
             this.panel3.Controls.Add(this.txtProductID);
             this.panel3.Controls.Add(this.label15);
             this.panel3.Controls.Add(this.txtDate);
@@ -311,19 +315,19 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel3.Location = new System.Drawing.Point(479, 75);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(706, 517);
+            this.panel3.Size = new System.Drawing.Size(706, 562);
             this.panel3.TabIndex = 2;
             // 
             // txtDate
             // 
-            this.txtDate.Location = new System.Drawing.Point(507, 338);
+            this.txtDate.Location = new System.Drawing.Point(507, 373);
             this.txtDate.Name = "txtDate";
             this.txtDate.Size = new System.Drawing.Size(174, 22);
             this.txtDate.TabIndex = 22;
             // 
             // txtCategoryName
             // 
-            this.txtCategoryName.Location = new System.Drawing.Point(153, 415);
+            this.txtCategoryName.Location = new System.Drawing.Point(153, 450);
             this.txtCategoryName.Name = "txtCategoryName";
             this.txtCategoryName.Size = new System.Drawing.Size(262, 22);
             this.txtCategoryName.TabIndex = 21;
@@ -332,7 +336,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(19, 415);
+            this.label11.Location = new System.Drawing.Point(19, 450);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(61, 18);
             this.label11.TabIndex = 20;
@@ -341,7 +345,7 @@
             // btnClear
             // 
             this.btnClear.Font = new System.Drawing.Font("Rubik", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClear.Location = new System.Drawing.Point(495, 451);
+            this.btnClear.Location = new System.Drawing.Point(495, 486);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(120, 45);
             this.btnClear.TabIndex = 19;
@@ -352,7 +356,7 @@
             // btnUpdate
             // 
             this.btnUpdate.Font = new System.Drawing.Font("Rubik", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.Location = new System.Drawing.Point(336, 451);
+            this.btnUpdate.Location = new System.Drawing.Point(336, 486);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(120, 45);
             this.btnUpdate.TabIndex = 18;
@@ -363,7 +367,7 @@
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Rubik", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(180, 451);
+            this.btnSave.Location = new System.Drawing.Point(180, 486);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(120, 45);
             this.btnSave.TabIndex = 17;
@@ -373,7 +377,7 @@
             // 
             // txtPrice
             // 
-            this.txtPrice.Location = new System.Drawing.Point(507, 382);
+            this.txtPrice.Location = new System.Drawing.Point(507, 417);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(174, 22);
             this.txtPrice.TabIndex = 16;
@@ -382,7 +386,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(434, 338);
+            this.label9.Location = new System.Drawing.Point(434, 373);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(56, 18);
             this.label9.TabIndex = 14;
@@ -392,7 +396,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(434, 378);
+            this.label10.Location = new System.Drawing.Point(434, 413);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(46, 18);
             this.label10.TabIndex = 13;
@@ -400,7 +404,7 @@
             // 
             // txtPName
             // 
-            this.txtPName.Location = new System.Drawing.Point(153, 380);
+            this.txtPName.Location = new System.Drawing.Point(153, 415);
             this.txtPName.Name = "txtPName";
             this.txtPName.Size = new System.Drawing.Size(262, 22);
             this.txtPName.TabIndex = 12;
@@ -415,7 +419,7 @@
             // 
             // txtPNumber
             // 
-            this.txtPNumber.Location = new System.Drawing.Point(153, 334);
+            this.txtPNumber.Location = new System.Drawing.Point(153, 369);
             this.txtPNumber.Name = "txtPNumber";
             this.txtPNumber.Size = new System.Drawing.Size(262, 22);
             this.txtPNumber.TabIndex = 11;
@@ -424,7 +428,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(19, 338);
+            this.label7.Location = new System.Drawing.Point(19, 373);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(156, 18);
             this.label7.TabIndex = 10;
@@ -444,7 +448,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(19, 380);
+            this.label8.Location = new System.Drawing.Point(19, 415);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(107, 18);
             this.label8.TabIndex = 9;
@@ -522,11 +526,28 @@
             this.categoryName.ReadOnly = true;
             this.categoryName.Width = 125;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(153, 331);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(528, 22);
+            this.textBox1.TabIndex = 23;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(19, 331);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(109, 18);
+            this.label16.TabIndex = 24;
+            this.label16.Text = "Seriennummer:";
+            // 
             // ProductLocationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1185, 592);
+            this.ClientSize = new System.Drawing.Size(1185, 637);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -588,5 +609,7 @@
         private System.Windows.Forms.Label label15;
         public System.Windows.Forms.Button btnUpdate;
         public System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Label label16;
+        public System.Windows.Forms.TextBox textBox1;
     }
 }

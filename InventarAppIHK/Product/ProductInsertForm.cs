@@ -51,8 +51,7 @@ namespace InventarAppIHK
                 }
                 else if (txtName.Text != "" && comboCategory.Text != "")
                 {
-                    ProdMethods.InsertProduct(txtName.Text, dtOrder.Text, Utility.formatDouble(txtPrice.Text), Utility.formatCategoryId(comboCategory.Text));
-                    MessageBox.Show("Ihre Auswahl wurde eingetragen!");
+                    ProdMethods.InsertProduct(txtName.Text.Trim(), dtOrder.Text, Utility.formatDouble(txtPrice.Text), Utility.formatCategoryId(comboCategory.Text));
                 }
             }
             catch (Exception ex)
@@ -77,7 +76,7 @@ namespace InventarAppIHK
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             int category_id = CatMethods.GetCategoryId(comboCategory.Text);
-            Product updateProduct = new Product(int.Parse(txtID.Text), txtName.Text, DateTime.Parse(dtOrder.Text), double.Parse(Utility.formatDouble(txtPrice.Text).ToString()), category_id);
+            Product updateProduct = new Product(int.Parse(txtID.Text), txtName.Text, DateTime.Parse(dtOrder.Text), double.Parse(Utility.formatDouble(txtPrice.Text.Trim()).ToString()), category_id);
             ProdMethods.UpdateProduct(updateProduct);
         }
 
@@ -101,8 +100,7 @@ namespace InventarAppIHK
                     }
                     else if (txtName.Text != "" && comboCategory.Text != "")
                     {
-                        ProdMethods.InsertProduct(txtName.Text, dtOrder.Text, Utility.formatDouble(txtPrice.Text), Utility.formatCategoryId(comboCategory.Text));
-                        MessageBox.Show("Ihre Auswahl wurde eingetragen!");
+                        ProdMethods.InsertProduct(txtName.Text.Trim(), dtOrder.Text, Utility.formatDouble(txtPrice.Text.Trim()), Utility.formatCategoryId(comboCategory.Text));
                     }
                 }
             }
@@ -117,7 +115,7 @@ namespace InventarAppIHK
                     else
                     {
                         int category_id = CatMethods.GetCategoryId(comboCategory.Text);
-                        Product updateProduct = new Product(int.Parse(txtID.Text), txtName.Text, DateTime.Parse(dtOrder.Text), double.Parse(Utility.formatDouble(txtPrice.Text).ToString()), category_id);
+                        Product updateProduct = new Product(int.Parse(txtID.Text), txtName.Text, DateTime.Parse(dtOrder.Text), double.Parse(Utility.formatDouble(txtPrice.Text.Trim()).ToString()), category_id);
                         ProdMethods.UpdateProduct(updateProduct);
                     }
                 }
@@ -138,7 +136,7 @@ namespace InventarAppIHK
                     else
                     {
                         int category_id = CatMethods.GetCategoryId(comboCategory.Text);
-                        Product updateProduct = new Product(int.Parse(txtID.Text), txtName.Text, DateTime.Parse(dtOrder.Text), double.Parse(Utility.formatDouble(txtPrice.Text).ToString()), category_id);
+                        Product updateProduct = new Product(int.Parse(txtID.Text), txtName.Text.Trim(), DateTime.Parse(dtOrder.Text), double.Parse(Utility.formatDouble(txtPrice.Text.Trim()).ToString()), category_id);
                         ProdMethods.UpdateProduct(updateProduct);
                     }
                 }
@@ -159,8 +157,7 @@ namespace InventarAppIHK
                         }
                         else if (txtName.Text != "" && comboCategory.Text != "")
                         {
-                            ProdMethods.InsertProduct(txtName.Text, dtOrder.Text, Utility.formatDouble(txtPrice.Text), Utility.formatCategoryId(comboCategory.Text));
-                            MessageBox.Show("Ihre Auswahl wurde eingetragen!");
+                            ProdMethods.InsertProduct(txtName.Text.Trim(), dtOrder.Text, Utility.formatDouble(txtPrice.Text.Trim()), Utility.formatCategoryId(comboCategory.Text));
                         }           
                 }
             }
@@ -175,7 +172,7 @@ namespace InventarAppIHK
                     else
                     {
                         int category_id = CatMethods.GetCategoryId(comboCategory.Text);
-                        Product updateProduct = new Product(int.Parse(txtID.Text), txtName.Text, DateTime.Parse(dtOrder.Text), double.Parse(Utility.formatDouble(txtPrice.Text).ToString()), category_id);
+                        Product updateProduct = new Product(int.Parse(txtID.Text), txtName.Text.Trim(), DateTime.Parse(dtOrder.Text), double.Parse(Utility.formatDouble(txtPrice.Text.Trim()).ToString()), category_id);
                         ProdMethods.UpdateProduct(updateProduct);
                     }
                 }

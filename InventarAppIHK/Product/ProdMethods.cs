@@ -24,11 +24,10 @@ namespace InventarAppIHK
             string query = "INSERT INTO product (productName, date, price, category_id) VALUES (@productName, @date, @price, @category_id)";
             int categoryId = CatMethods.GetCategoryId(categoryName);
 
-            string sql = "datasource=localhost;port=3306;username=user;password=Inventar2023;database=inventar";
+           
             try
             {
-                MySqlConnection con = new MySqlConnection(sql);
-                con.Open();
+                MySqlConnection con = Utility.GetConnection();
                 using (MySqlCommand command = new MySqlCommand(query, con))
                 {
                     command.Parameters.Add("productName", MySqlDbType.VarChar).Value = productName;
@@ -38,10 +37,12 @@ namespace InventarAppIHK
                     command.ExecuteNonQuery();
                 }
                 con.Close();
+                MessageBox.Show("Ihre Auswahl wurde eingetragen!");
+
             }
             catch (MySqlException e)
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show("Bitte geben Sie einen gültigen Preis an!");
             }
         }
 
@@ -141,6 +142,13 @@ namespace InventarAppIHK
                 MessageBox.Show(e.Message + "Error");
             }
         }
+
+        //private static string PriceFormat(string price)                                   *****er soll 7,00 statt 7 schreiben
+        //{
+        //    string priceFormat =  price.Format("{0:#,##0.##}"); 
+        //    return priceFormat;
+        //}
+
         /// <summary>
         /// Im DataGridView im ProductForm kann der User auf edit oder delete drücken. Um einen Datensatz zu löschen oder um das ProductInsertForm zu öffnen um den Datensatz zu ändern
         /// </summary>
@@ -160,7 +168,7 @@ namespace InventarAppIHK
                 productInsert.txtName.Text = dgv.Rows[e.RowIndex].Cells[1].Value.ToString(); ;
                 productInsert.txtPrice.Text = dgv.Rows[e.RowIndex].Cells[3].Value.ToString();
                 productInsert.comboCategory.Text = dgv.Rows[e.RowIndex].Cells[4].Value.ToString();
-
+                productInsert.Text = "Update";
                 productInsert.ShowDialog();
             }
 

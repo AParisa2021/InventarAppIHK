@@ -16,7 +16,7 @@ namespace InventarAppIHK
         /// <returns></returns>
         public static MySqlConnection GetConnection()
         {
-            string sql = "datasource=localhost;port=3306;username=user;password=Inventar2023;database=inventar";
+            string sql = "datasource=localhost;port=3306;username=Parisa;password=Inventar2023;database=inventarapp";
 
             MySqlConnection con = new MySqlConnection(sql);
             try
@@ -52,7 +52,20 @@ namespace InventarAppIHK
         {
             if (valueString == "" || valueString == null) return 0;
 
-            return double.Parse(valueString.Replace(".", ","));
+            return price(double.Parse(valueString.Replace(".", ",")));
+        }
+
+        /// <summary>
+        /// Runden auf zwei Stellen nach dem Komma
+        /// </summary>
+        /// <param name="valueString"></param>
+        /// <returns></returns>
+        public static double price(double valueString)
+        {
+            
+                valueString = Math.Round(valueString, 2);
+            
+                return valueString;
         }
 
         /// <summary>

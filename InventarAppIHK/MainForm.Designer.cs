@@ -138,7 +138,7 @@
             // 
             // panelLeft
             // 
-            this.panelLeft.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.panelLeft.BackColor = System.Drawing.Color.Cyan;
             this.panelLeft.Location = new System.Drawing.Point(119, 104);
             this.panelLeft.Name = "panelLeft";
             this.panelLeft.Size = new System.Drawing.Size(10, 87);
@@ -147,7 +147,6 @@
             // panelMain
             // 
             this.panelMain.Controls.Add(this.Inventarchart);
-            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.Location = new System.Drawing.Point(124, 0);
             this.panelMain.Name = "panelMain";
             this.panelMain.Size = new System.Drawing.Size(1160, 549);
@@ -186,7 +185,7 @@
             this.Controls.Add(this.panelLeft);
             this.Controls.Add(this.panel1);
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "InventoryApp";
             this.VisibleChanged += new System.EventHandler(this.MainForm_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

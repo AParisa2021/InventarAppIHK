@@ -1,16 +1,11 @@
 ﻿using MySql.Data.MySqlClient;
-using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySqlCommand = MySqlConnector.MySqlCommand;
-using MySqlConnection = MySqlConnector.MySqlConnection;
-using MySqlDataReader = MySqlConnector.MySqlDataReader;
-using MySqlDbType = MySqlConnector.MySqlDbType;
-using MySqlException = MySqlConnector.MySqlException;
+
 
 namespace InventarAppIHK
 {
@@ -24,7 +19,7 @@ namespace InventarAppIHK
         public static void InsertCategory(string categoryName)
         {
 
-            string query = "INSERT IGNORE INTO category (categoryname) VALUES (@categoryname)";
+            string query = "INSERT INTO category (categoryname) VALUES (@categoryname)";
             try
             {
                 MySqlConnection con = Utility.GetConnection();
@@ -32,10 +27,13 @@ namespace InventarAppIHK
                 command.Parameters.Add("categoryname", MySqlDbType.VarChar).Value = categoryName;
                 command.ExecuteNonQuery();
                 con.Close();
+               
+                    MessageBox.Show("Kategorie gespeichert");                   //******************klappt nicht. auch wenn nicht gespeichert wird, gibt er das an
+             
             }
             catch (MySqlException e)
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show("Die Kategorie existiert bereits!");
             }
         }
 
@@ -115,8 +113,9 @@ namespace InventarAppIHK
                 CategoryInsertForm catInsert = new CategoryInsertForm();
                 catInsert.btnSave.Enabled = false;
                 catInsert.txtId.Text = dgv.Rows[e.RowIndex].Cells[0].Value.ToString();
-
                 catInsert.txtCategory.Text = dgv.Rows[e.RowIndex].Cells[1].Value.ToString();
+                catInsert.Text = "Update";
+
                 catInsert.ShowDialog();
             }
             else if (columnName == "delete")
