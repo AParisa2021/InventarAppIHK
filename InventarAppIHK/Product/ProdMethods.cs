@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+//using System.Windows.Controls;
 using System.Windows.Forms;
 
 namespace InventarAppIHK
@@ -99,8 +100,8 @@ namespace InventarAppIHK
                 command.ExecuteNonQuery();
                 MessageBox.Show("Produkt update");
 
-                MySqlDataReader da = command.ExecuteReader();
-
+                MySqlDataReader dr = command.ExecuteReader();
+                dr.Close();
                 con.Close();
             }
             catch (MySqlException e)
@@ -140,6 +141,37 @@ namespace InventarAppIHK
             catch (MySqlException e)
             {
                 MessageBox.Show(e.Message + "Error");
+            }
+        }
+
+        public static void SumProduct(string txtSelect, Label lblSum)
+        {
+            //string query = "select Count(product_id) " +
+            //                "from product where productName='" + txtSelect.Trim().ToUpper() + "'";
+
+            string query = "select Count(product_id) " +
+                          "from product where @productName=productName ";
+            try
+            {
+                MySqlConnection con = Utility.GetConnection();
+                MySqlCommand command = new MySqlCommand(query, con);
+                //MySqlDataReader dr = command.ExecuteReader();
+                //lblSum.Text = Convert.ToString(command);
+
+                using (var cmd = new MySqlCommand(query, con))
+                {
+                    //ProductForm pf = new ProductForm();
+                    //pf.lblSum.Text = cmd.ExecuteScalar().ToString();
+                    cmd.Parameters.AddWithValue("@productName", txtSelect.ToUpper());
+                    lblSum.Text = cmd.ExecuteScalar().ToString();
+                }
+
+                con.Close();
+
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message + "Error");
             }
         }
 
