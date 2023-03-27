@@ -3,6 +3,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,20 +15,18 @@ namespace InventarAppIHK
     {
         public static int Getl_p_Id(string seriennummer)
         {
-
-            string query = "SELECT l_p_id FROM l_p WHERE seriennummer=@seriennummer";
-            //string query = "SELECT l_p_id FROM l_p WHERE seriennummer=@seriennummer";
+            string query = "SELECT l_p_id FROM l_p WHERE seriennummer=@seriennummer ";
 
             int l_p_id = 0;
             try
             {
                 MySqlConnection con = Utility.GetConnection();
-                using (MySqlCommand command = new MySqlCommand(query, con))
-                {
-                    command.Parameters.Add("@seriennummer", MySqlDbType.VarChar).Value = seriennummer;
+                MySqlCommand command = new MySqlCommand(query, con);
 
-                    l_p_id = (int)command.ExecuteScalar();
-                }
+                command.Parameters.Add("@seriennummer", MySqlDbType.VarChar).Value = seriennummer;
+
+                l_p_id = (int)command.ExecuteScalar();
+
                 con.Close();
 
             }
@@ -37,6 +36,29 @@ namespace InventarAppIHK
             }
 
             return l_p_id;
+
+
+            //MySqlConnection con = Utility.GetConnection();
+            //string query = "SELECT l_p_id FROM l_p WHERE seriennummer=@seriennummer";
+            ////string query = "SELECT l_p_id FROM l_p WHERE seriennummer=@seriennummer";
+
+            //int l_p_id = 0;
+            //try
+            //{
+            //    using (MySqlCommand command = new MySqlCommand(query, con))
+            //    {
+            //        command.Parameters.Add("@seriennummer", MySqlDbType.VarChar).Value = seriennummer;
+
+            //        l_p_id = (int)command.ExecuteScalar();
+            //    }
+
+            //}
+            //catch (MySqlException e)
+            //{
+            //    MessageBox.Show(e.Message);
+            //}
+            //con.Close();
+            //return l_p_id;
         }
 
         /// <summary>
@@ -51,6 +73,7 @@ namespace InventarAppIHK
             {
                 MySqlConnection conn = Utility.GetConnection();
                 MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.Add("@l_p_Id", MySqlDbType.Int32).Value = inventar.L_p_id;
                 command.Parameters.Add("@product_id", MySqlDbType.Int32).Value = inventar.Product_id;
                 command.Parameters.Add("@location_id", MySqlDbType.Int32).Value = inventar.Location_id;
                 command.Parameters.Add("@seriennummer", MySqlDbType.VarChar).Value = inventar.Seriennummer;
@@ -167,7 +190,7 @@ namespace InventarAppIHK
             {
                 ProductLocationForm productLocationForm = new ProductLocationForm();
                 productLocationForm.btnSave.Enabled = false;
-                productLocationForm.dgvProduct.Enabled = false;
+                productLocationForm.dgvProduct.Enabled = false; //Produkt kann höchsten die Location ändern. nicht seinen Namen. deswegen dgvProduct.Enabled = false
                 productLocationForm.txtCatID.Text = (CatMethods.GetCategoryId(dgv.Rows[e.RowIndex].Cells[5].Value.ToString())).ToString();
                 productLocationForm.txtLocationID.Text = (LocMethods.GetLocationId(dgv.Rows[e.RowIndex].Cells[7].Value.ToString())).ToString();
                 productLocationForm.txtProductID.Text = (ProdMethods.GetProductId(dgv.Rows[e.RowIndex].Cells[1].Value.ToString())).ToString();
@@ -327,6 +350,39 @@ namespace InventarAppIHK
             catch (MySqlException e)
             {
                 MessageBox.Show(e.Message + "Error");
+            }
+        }
+
+        public static void Suml_p(string txtSelect, Label lblSum)
+        {            
+            //string query = "select Count(l_p_id) " +
+            //              "from l_p where @product_id=product_id ";
+
+            string query = "select Count(l_p_id), P.productName " +
+                         "from l_p AS LP " +
+                         "INNER JOIN product AS P ON LP.product_id=P.product_id " +
+                         "where @P.productName=P.productName GROUP BY P.productName ";
+            try
+            {
+                MySqlConnection con = Utility.GetConnection();
+                MySqlCommand command = new MySqlCommand(query, con);
+                //MySqlDataReader dr = command.ExecuteReader();
+                //lblSum.Text = Convert.ToString(command);
+
+                using (var cmd = new MySqlCommand(query, con))
+                {
+                    //ProductForm pf = new ProductForm();
+                    //pf.lblSum.Text = cmd.ExecuteScalar().ToString();
+                    cmd.Parameters.AddWithValue("@P.productName", txtSelect.ToUpper());
+                    lblSum.Text = cmd.ExecuteScalar().ToString();
+                }
+
+                con.Close();
+
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message + "Error");
             }
         }
     }

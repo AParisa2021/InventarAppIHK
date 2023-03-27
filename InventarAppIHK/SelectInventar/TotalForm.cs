@@ -73,5 +73,10 @@ namespace InventarAppIHK
         {
             MyInitializeComponent();
         }
+
+        private void txtSeriennummer_TextChanged(object sender, EventArgs e)
+        {
+            InventarMethods.Suml_p(txtSeriennummer.Text, lblSum);
+        }
     }
 }

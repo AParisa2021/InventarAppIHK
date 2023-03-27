@@ -30,6 +30,8 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtLPId = new System.Windows.Forms.TextBox();
             this.txtLocationID = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -50,6 +52,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.txtProductID = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.lblSum = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.txtSerial = new System.Windows.Forms.TextBox();
             this.txtDate = new System.Windows.Forms.TextBox();
@@ -74,8 +77,6 @@
             this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtLPId = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocation)).BeginInit();
             this.panel3.SuspendLayout();
@@ -114,6 +115,23 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(450, 562);
             this.panel2.TabIndex = 1;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(250, 443);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(43, 16);
+            this.label17.TabIndex = 16;
+            this.label17.Text = "l_p_id";
+            this.label17.Visible = false;
+            // 
+            // txtLPId
+            // 
+            this.txtLPId.Location = new System.Drawing.Point(253, 466);
+            this.txtLPId.Name = "txtLPId";
+            this.txtLPId.Size = new System.Drawing.Size(100, 22);
+            this.txtLPId.TabIndex = 15;
             // 
             // txtLocationID
             // 
@@ -295,6 +313,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.lblSum);
             this.panel3.Controls.Add(this.label16);
             this.panel3.Controls.Add(this.txtSerial);
             this.panel3.Controls.Add(this.txtProductID);
@@ -321,6 +340,16 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(706, 562);
             this.panel3.TabIndex = 2;
+            // 
+            // lblSum
+            // 
+            this.lblSum.AutoSize = true;
+            this.lblSum.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSum.Location = new System.Drawing.Point(478, 266);
+            this.lblSum.Name = "lblSum";
+            this.lblSum.Size = new System.Drawing.Size(20, 22);
+            this.lblSum.TabIndex = 25;
+            this.lblSum.Text = "0";
             // 
             // label16
             // 
@@ -547,24 +576,6 @@
             this.categoryName.ReadOnly = true;
             this.categoryName.Width = 125;
             // 
-            // txtLPId
-            // 
-            this.txtLPId.Location = new System.Drawing.Point(253, 466);
-            this.txtLPId.Name = "txtLPId";
-            this.txtLPId.Size = new System.Drawing.Size(100, 22);
-            this.txtLPId.TabIndex = 15;
-            this.txtLPId.Visible = false;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(250, 443);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(43, 16);
-            this.label17.TabIndex = 16;
-            this.label17.Text = "l_p_id";
-            this.label17.Visible = false;
-            // 
             // ProductLocationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -635,5 +646,6 @@
         private System.Windows.Forms.Label label17;
         public System.Windows.Forms.TextBox txtLPId;
         public System.Windows.Forms.DataGridView dgvProduct;
+        private System.Windows.Forms.Label lblSum;
     }
 }

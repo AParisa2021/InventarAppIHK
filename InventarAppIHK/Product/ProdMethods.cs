@@ -144,6 +144,12 @@ namespace InventarAppIHK
             }
         }
 
+        /// <summary>
+        /// mit count product_id zählt diese Methode die Anzahl der (Datensätze)Produkte, die mit where txtSelect gefiltert werden, also wie ist die
+        /// Anzahl des jeweils gesuchten Produkts
+        /// </summary>
+        /// <param name="txtSelect"></param>
+        /// <param name="lblSum"></param>
         public static void SumProduct(string txtSelect, Label lblSum)
         {
             //string query = "select Count(product_id) " +
