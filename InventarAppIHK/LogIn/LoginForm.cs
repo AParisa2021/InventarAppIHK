@@ -48,7 +48,8 @@ namespace InventarAppIHK
             {
             
                 selectItem.SelectData(txtUser.Text, txtPassword.Text);
-
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                this.Close();
             }
             else
             {
@@ -82,6 +83,11 @@ namespace InventarAppIHK
         }
 
         private void txtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void btnLogin_MouseClick(object sender, MouseEventArgs e)
         {
 
         }

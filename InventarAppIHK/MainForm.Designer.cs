@@ -131,7 +131,7 @@
             this.btnOrder.Name = "btnOrder";
             this.btnOrder.Size = new System.Drawing.Size(119, 85);
             this.btnOrder.TabIndex = 2;
-            this.btnOrder.Text = "Bestellung";
+            this.btnOrder.Text = "Inventar";
             this.btnOrder.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnOrder.UseVisualStyleBackColor = false;
             this.btnOrder.Click += new System.EventHandler(this.btnOrder_Click);

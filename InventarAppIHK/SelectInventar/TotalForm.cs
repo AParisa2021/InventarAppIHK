@@ -41,6 +41,8 @@ namespace InventarAppIHK
         private void txtSelect_TextChanged(object sender, EventArgs e)
         {
             ProdMethods.SelectPriceProduct(dgvTotal, txtFrom.Text, txtTo.Text, txtSelect.Text, lblTotal);
+            //InventarMethods.Suml_p(txtSelect.Text, lblSum);
+
         }
 
         /// <summary>

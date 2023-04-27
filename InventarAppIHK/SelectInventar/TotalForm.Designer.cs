@@ -33,6 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblSum = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtSeriennummer = new System.Windows.Forms.TextBox();
             this.lblTotal = new System.Windows.Forms.Label();
@@ -55,7 +56,6 @@
             this.locationName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.edit = new System.Windows.Forms.DataGridViewImageColumn();
             this.delete = new System.Windows.Forms.DataGridViewImageColumn();
-            this.lblSum = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTotal)).BeginInit();
             this.SuspendLayout();
@@ -81,12 +81,22 @@
             this.panel1.Size = new System.Drawing.Size(1200, 161);
             this.panel1.TabIndex = 0;
             // 
+            // lblSum
+            // 
+            this.lblSum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSum.ForeColor = System.Drawing.Color.White;
+            this.lblSum.Location = new System.Drawing.Point(425, 97);
+            this.lblSum.Name = "lblSum";
+            this.lblSum.Size = new System.Drawing.Size(56, 39);
+            this.lblSum.TabIndex = 12;
+            this.lblSum.Text = "0";
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(353, 97);
+            this.label5.Location = new System.Drawing.Point(39, 103);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(72, 20);
             this.label5.TabIndex = 11;
@@ -94,9 +104,9 @@
             // 
             // txtSeriennummer
             // 
-            this.txtSeriennummer.Location = new System.Drawing.Point(443, 95);
+            this.txtSeriennummer.Location = new System.Drawing.Point(133, 101);
             this.txtSeriennummer.Name = "txtSeriennummer";
-            this.txtSeriennummer.Size = new System.Drawing.Size(168, 22);
+            this.txtSeriennummer.Size = new System.Drawing.Size(268, 22);
             this.txtSeriennummer.TabIndex = 10;
             this.txtSeriennummer.TextChanged += new System.EventHandler(this.txtSeriennummer_TextChanged);
             // 
@@ -104,7 +114,7 @@
             // 
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotal.ForeColor = System.Drawing.Color.White;
-            this.lblTotal.Location = new System.Drawing.Point(190, 95);
+            this.lblTotal.Location = new System.Drawing.Point(545, 36);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(132, 39);
             this.lblTotal.TabIndex = 9;
@@ -125,7 +135,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(23, 99);
+            this.label4.Location = new System.Drawing.Point(425, 40);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(107, 20);
             this.label4.TabIndex = 7;
@@ -173,7 +183,7 @@
             // 
             this.txtSelect.Location = new System.Drawing.Point(133, 40);
             this.txtSelect.Name = "txtSelect";
-            this.txtSelect.Size = new System.Drawing.Size(319, 22);
+            this.txtSelect.Size = new System.Drawing.Size(264, 22);
             this.txtSelect.TabIndex = 1;
             this.txtSelect.TextChanged += new System.EventHandler(this.txtSelect_TextChanged);
             // 
@@ -182,7 +192,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(23, 40);
+            this.label1.Location = new System.Drawing.Point(34, 40);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 20);
             this.label1.TabIndex = 0;
@@ -317,16 +327,6 @@
             this.delete.Name = "delete";
             this.delete.ReadOnly = true;
             this.delete.Width = 64;
-            // 
-            // lblSum
-            // 
-            this.lblSum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSum.ForeColor = System.Drawing.Color.White;
-            this.lblSum.Location = new System.Drawing.Point(634, 91);
-            this.lblSum.Name = "lblSum";
-            this.lblSum.Size = new System.Drawing.Size(56, 39);
-            this.lblSum.TabIndex = 12;
-            this.lblSum.Text = "0";
             // 
             // TotalForm
             // 

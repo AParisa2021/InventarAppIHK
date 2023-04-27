@@ -353,15 +353,20 @@ namespace InventarAppIHK
             }
         }
 
-        public static void Suml_p(string txtSelect, Label lblSum)
-        {            
+        public static void Suml_p(string txtSeriennummer, Label lblSum)
+        {
             //string query = "select Count(l_p_id) " +
             //              "from l_p where @product_id=product_id ";
 
             string query = "select Count(l_p_id), P.productName " +
                          "from l_p AS LP " +
                          "INNER JOIN product AS P ON LP.product_id=P.product_id " +
-                         "where @P.productName=P.productName GROUP BY P.productName ";
+                         "where concat (LP.l_p_id, P.productName) like concat ('%' , @P.productName , '%') GROUP BY P.productName ";
+
+            //string query = "select Count(l_p_id), P.productName " +
+            //             "from l_p AS LP " +
+            //             "INNER JOIN product AS P ON LP.product_id=P.product_id " +
+            //             "where  @P.productName=P.productName ";     //kein Absturz
             try
             {
                 MySqlConnection con = Utility.GetConnection();
@@ -371,14 +376,17 @@ namespace InventarAppIHK
 
                 using (var cmd = new MySqlCommand(query, con))
                 {
-                    //ProductForm pf = new ProductForm();
-                    //pf.lblSum.Text = cmd.ExecuteScalar().ToString();
-                    cmd.Parameters.AddWithValue("@P.productName", txtSelect.ToUpper());
-                    lblSum.Text = cmd.ExecuteScalar().ToString();
+                    if (txtSeriennummer != "")
+                    {
+                        cmd.Parameters.AddWithValue("@P.productName", txtSeriennummer.ToUpper().Trim());
+                        lblSum.Text = cmd.ExecuteScalar().ToString();           //**********************wenn produkt nicht gefunden störtzt programm ab
+                    }
+                    else
+                    {
+                        lblSum.Text = "0";
+                    }
                 }
-
                 con.Close();
-
             }
             catch (MySqlException ex)
             {

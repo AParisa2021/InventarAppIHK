@@ -156,7 +156,7 @@ namespace InventarAppIHK
             //                "from product where productName='" + txtSelect.Trim().ToUpper() + "'";
 
             string query = "select Count(product_id) " +
-                          "from product where @productName=productName ";
+                          "from product where concat(product_id, productName) like concat ('%' , @productName , '%') ";
             try
             {
                 MySqlConnection con = Utility.GetConnection();
@@ -168,7 +168,7 @@ namespace InventarAppIHK
                 {
                     //ProductForm pf = new ProductForm();
                     //pf.lblSum.Text = cmd.ExecuteScalar().ToString();
-                    cmd.Parameters.AddWithValue("@productName", txtSelect.ToUpper());
+                    cmd.Parameters.AddWithValue("@productName", txtSelect.ToUpper().Trim());
                     lblSum.Text = cmd.ExecuteScalar().ToString();
                 }
 

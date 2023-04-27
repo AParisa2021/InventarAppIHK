@@ -56,6 +56,7 @@
             // btnLogin
             // 
             this.btnLogin.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnLogin.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnLogin.Font = new System.Drawing.Font("Rubik", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.Location = new System.Drawing.Point(81, 350);
             this.btnLogin.Name = "btnLogin";
@@ -65,6 +66,7 @@
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            this.btnLogin.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnLogin_MouseClick);
             // 
             // btnRegister
             // 
