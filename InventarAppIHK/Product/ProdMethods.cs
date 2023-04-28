@@ -91,11 +91,11 @@ namespace InventarAppIHK
             {
                 MySqlConnection con = Utility.GetConnection();
                 MySqlCommand command = new MySqlCommand(query, con);
-                command.Parameters.Add("@product_id", MySqlDbType.Int32).Value = product.ProductID;
-                command.Parameters.Add("@productName", MySqlDbType.VarChar).Value = product.ProductName;
-                command.Parameters.Add("@date", MySqlDbType.VarChar).Value = product.Date.ToString("yyyy-MM-dd");
-                command.Parameters.Add("@price", MySqlDbType.Double).Value = product.Price;
-                command.Parameters.Add("@category_id", MySqlDbType.Int32).Value = product.Category_id;
+                command.Parameters.Add("@product_id", MySqlDbType.Int32).Value = product.GetProductID();
+                command.Parameters.Add("@productName", MySqlDbType.VarChar).Value = product.GetProductName();
+                command.Parameters.Add("@date", MySqlDbType.VarChar).Value = product.GetDate().ToString("yyyy-MM-dd");
+                command.Parameters.Add("@price", MySqlDbType.Double).Value = product.GetPrice();
+                command.Parameters.Add("@category_id", MySqlDbType.Int32).Value = product.GetCategory_id();
 
                 command.ExecuteNonQuery();
                 MessageBox.Show("Produkt update");
@@ -270,7 +270,8 @@ namespace InventarAppIHK
         /// <param name="txtTo"></param>
         /// <param name="txtSelect"></param>
         /// <param name="lblTotal"></param>
-        public static void SelectPriceProduct(DataGridView dgv, string txtFrom, string txtTo, string txtSelect, Label lblTotal)
+        /// <param name="lblSum"></param>
+        public static void SelectPriceProduct(DataGridView dgv, string txtFrom, string txtTo, string txtSelect, Label lblTotal, Label lblSum)
         {
 
             double total = 0;
@@ -329,6 +330,7 @@ namespace InventarAppIHK
                                 dgv.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString().Substring(0, 10), double.Parse(dr[3].ToString()), dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString());
 
                                 total += double.Parse(dr[3].ToString());
+                                i++;
                             }
                         }
                         comm.Dispose();
@@ -336,6 +338,7 @@ namespace InventarAppIHK
                         dr.Close();
 
                         lblTotal.Text = total.ToString();
+                        lblSum.Text = i.ToString();
                     }
                     catch (Exception ex)
                     {

@@ -79,8 +79,8 @@ namespace InventarAppIHK
             {
                 MySqlConnection con = Utility.GetConnection();
                 MySqlCommand command = new MySqlCommand(query, con);
-                command.Parameters.Add("@category_id", MySqlDbType.Int32).Value = category.CategoryID;
-                command.Parameters.Add("@categoryName", MySqlDbType.VarChar).Value = category.CategoryName;
+                command.Parameters.Add("@category_id", MySqlDbType.Int32).Value = category.GetCategoryId();
+                command.Parameters.Add("@categoryName", MySqlDbType.VarChar).Value = category.GetCategoryName();
 
                 command.ExecuteNonQuery();
                 MessageBox.Show("Kategorie update");

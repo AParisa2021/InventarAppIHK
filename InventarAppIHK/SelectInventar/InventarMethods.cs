@@ -73,10 +73,10 @@ namespace InventarAppIHK
             {
                 MySqlConnection conn = Utility.GetConnection();
                 MySqlCommand command = new MySqlCommand(query, conn);
-                command.Parameters.Add("@l_p_Id", MySqlDbType.Int32).Value = inventar.L_p_id;
-                command.Parameters.Add("@product_id", MySqlDbType.Int32).Value = inventar.Product_id;
-                command.Parameters.Add("@location_id", MySqlDbType.Int32).Value = inventar.Location_id;
-                command.Parameters.Add("@seriennummer", MySqlDbType.VarChar).Value = inventar.Seriennummer;
+                command.Parameters.Add("@l_p_Id", MySqlDbType.Int32).Value = inventar.GetL_p_id();
+                command.Parameters.Add("@product_id", MySqlDbType.Int32).Value = inventar.GetProduct_id();
+                command.Parameters.Add("@location_id", MySqlDbType.Int32).Value = inventar.GetLocation_id();
+                command.Parameters.Add("@seriennummer", MySqlDbType.VarChar).Value = inventar.GetSeriennummer();
 
                 command.ExecuteNonQuery();
 
@@ -158,9 +158,9 @@ namespace InventarAppIHK
             MySqlCommand command = new MySqlCommand(query, con);    //In der Datenbank klasse erstellen und immer wieder darauf zugreifen
             command.CommandType = CommandType.Text;
 
-            command.Parameters.AddWithValue("@location_id", MySqlDbType.Int32).Value = inventar.Location_id;
-            command.Parameters.AddWithValue("@product_id", MySqlDbType.Int32).Value = inventar.Product_id;
-            command.Parameters.Add("@seriennummer", MySqlDbType.VarChar).Value = inventar.Seriennummer;
+            command.Parameters.AddWithValue("@location_id", MySqlDbType.Int32).Value = inventar.GetLocation_id();
+            command.Parameters.AddWithValue("@product_id", MySqlDbType.Int32).Value = inventar.GetProduct_id();
+            command.Parameters.Add("@seriennummer", MySqlDbType.VarChar).Value = inventar.GetSeriennummer();
 
 
             try
@@ -213,9 +213,11 @@ namespace InventarAppIHK
                 if (MessageBox.Show("Sind sie sich sicher, dass Sie diesen Datensatz löschen möchten?", "Löschen Datensatz", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     MySqlConnection con = Utility.GetConnection();
+                    //WHERE seriennummer da diese Eindeutig ist. Ansonsten löscht er alle Produkte mit dem gleichen Namen
+                    string select_serial = dgv.CurrentRow.Cells["serial"].Value.ToString();
+                    string deleteRow = "DELETE  FROM l_p WHERE seriennummer= '"+ select_serial + "' ";
+                    MySqlCommand commandProduct = new MySqlCommand(deleteRow, con);
 
-                    int product_id = Convert.ToInt32(dgv.Rows[e.RowIndex].Cells[0].Value);
-                    MySqlCommand commandProduct = new MySqlCommand("DELETE FROM l_p WHERE product_id=" + Convert.ToInt32(dgv.Rows[e.RowIndex].Cells[0].Value.ToString()), con);
                     //in der Inventartabelle nach product-id suchen da uique
                     //Tabelle mit unique product_id und location_id
                     commandProduct.ExecuteNonQuery();
@@ -353,15 +355,12 @@ namespace InventarAppIHK
             }
         }
 
-        public static void Suml_p(string txtSeriennummer, Label lblSum)
-        {
-            //string query = "select Count(l_p_id) " +
-            //              "from l_p where @product_id=product_id ";
-
-            string query = "select Count(l_p_id), P.productName " +
+        public static void Suml_p(string txtProductName, Label lblSum)
+        {           
+            string query = "select Count(l_p_id) " +
                          "from l_p AS LP " +
                          "INNER JOIN product AS P ON LP.product_id=P.product_id " +
-                         "where concat (LP.l_p_id, P.productName) like concat ('%' , @P.productName , '%') GROUP BY P.productName ";
+                         "where concat (LP.l_p_id, P.productName) like concat ('%' , @P.productName , '%')";
 
             //string query = "select Count(l_p_id), P.productName " +
             //             "from l_p AS LP " +
@@ -376,10 +375,15 @@ namespace InventarAppIHK
 
                 using (var cmd = new MySqlCommand(query, con))
                 {
-                    if (txtSeriennummer != "")
+                    if (txtProductName != "")
                     {
-                        cmd.Parameters.AddWithValue("@P.productName", txtSeriennummer.ToUpper().Trim());
-                        lblSum.Text = cmd.ExecuteScalar().ToString();           //**********************wenn produkt nicht gefunden störtzt programm ab
+                        cmd.Parameters.AddWithValue("@P.productName", txtProductName.ToUpper().Trim());
+                        object result = cmd.ExecuteScalar();
+                        if(result != null)
+                        {
+                            lblSum.Text = result.ToString();
+                        }
+                 
                     }
                     else
                     {
@@ -388,7 +392,7 @@ namespace InventarAppIHK
                 }
                 con.Close();
             }
-            catch (MySqlException ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + "Error");
             }

@@ -22,7 +22,7 @@ namespace InventarAppIHK
             MyInitializeComponent();
         }
 
-        public void MyInitializeComponent()
+        private void MyInitializeComponent()
         {
             //CSVDataImport.LoadFormLocation(dgvLocation);
             InventarMethods.TxtLocation(dgvLocation, txtSelectLocation.Text.ToUpper());

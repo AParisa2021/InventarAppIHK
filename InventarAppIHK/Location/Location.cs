@@ -8,10 +8,14 @@ namespace InventarAppIHK
 {
     public class Location
     {
-        public int LocationID { get; set; }
-        public string Floor { get; set; }
-        public string LocationName { get; set; }
+        private int LocationID;
+        private string Floor;
+        private string LocationName;
 
+        public int GetLocationID() => LocationID;
+        public string GetFloor() => Floor;
+
+        public string GetLocationName() => LocationName;
         public Location(string floor, string locationName)
         {
             this.Floor = floor;

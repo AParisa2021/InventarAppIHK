@@ -8,12 +8,17 @@ namespace InventarAppIHK
 {
     public class Product
     {
-        public int ProductID { get; set; }
-        public string ProductName { get; set; }
-        public DateTime Date { get; set; }
-        public double Price { get; set; }
+        private int ProductID;
+        private string ProductName;
+        private DateTime Date;
+        private double Price;
+        private int Category_id;
 
-        public int Category_id { get; set; }
+        public int GetProductID() => ProductID;
+        public string GetProductName() => ProductName;
+        public DateTime GetDate() => Date;
+        public double GetPrice() => Price;
+        public int GetCategory_id() => Category_id;
 
         public Product(string productName, DateTime date, double price, int category_id)
         {

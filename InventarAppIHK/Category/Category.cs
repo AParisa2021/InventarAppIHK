@@ -8,17 +8,22 @@ namespace InventarAppIHK
 {
     public class Category
     {
-        public int CategoryID { get; set; }
-        public string CategoryName { get; set; }
+        private int CategoryID;   
 
+        private string CategoryName;  
+
+        public int GetCategoryId() => CategoryID;
+        public string GetCategoryName() => CategoryName;
+
+       
         public Category(string categoryName)
-        { 
-            this.CategoryName = categoryName; 
+        {
+            CategoryName = categoryName;
         }
         public Category(int category_id, string categoryName)
         {
-            this.CategoryID = category_id;
-            this.CategoryName = categoryName;
+            CategoryID = category_id;
+            CategoryName = categoryName;
         }
     }
 }

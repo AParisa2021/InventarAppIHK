@@ -3,16 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Google.Protobuf.Reflection.SourceCodeInfo.Types;
 
 namespace InventarAppIHK.SelectInventar
 {
     public class Inventar
     {
-        public int L_p_id { get; set; }
-        public int Product_id { get; set; }
-        //public int Category_id { get; set; }
-        public int Location_id { get; set; }
-        public string Seriennummer { get; set; }
+        private int L_p_id;
+        private int Product_id;
+        private int Location_id;
+        private string Seriennummer;
+
+        public int GetL_p_id() => L_p_id;
+        public int GetProduct_id() => Product_id;
+        public int GetLocation_id() => Location_id;
+        public string GetSeriennummer() => Seriennummer;
 
         public Inventar(int location_id, int product_id, string seriennummer)
         {

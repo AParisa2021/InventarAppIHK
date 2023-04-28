@@ -143,7 +143,6 @@
     <Compile Include="SelectInventar\TotalForm.Designer.cs">
       <DependentUpon>TotalForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SelectInventar\Totalinventar.cs" />
     <Compile Include="Utility\Utility.cs" />
     <EmbeddedResource Include="Category\CategoryForm.resx">
       <DependentUpon>CategoryForm.cs</DependentUpon>

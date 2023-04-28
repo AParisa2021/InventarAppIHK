@@ -21,8 +21,8 @@ namespace InventarAppIHK
             MySqlConnection con = Utility.GetConnection();
             MySqlCommand cmd = new MySqlCommand(insert, con);
             cmd.CommandType = CommandType.Text;
-            cmd.Parameters.Add("@floor", MySqlDbType.VarChar).Value = location.Floor;
-            cmd.Parameters.Add("@locationName", MySqlDbType.VarChar).Value = location.LocationName;
+            cmd.Parameters.Add("@floor", MySqlDbType.VarChar).Value = location.GetFloor();
+            cmd.Parameters.Add("@locationName", MySqlDbType.VarChar).Value = location.GetLocationName();
 
             try
             {
@@ -121,9 +121,9 @@ namespace InventarAppIHK
             {
                 MySqlConnection con = Utility.GetConnection();
                 MySqlCommand command = new MySqlCommand(query, con);
-                command.Parameters.Add("@location_id", MySqlDbType.VarChar).Value = location.LocationID;
-                command.Parameters.Add("@floor", MySqlDbType.VarChar).Value = location.Floor;
-                command.Parameters.Add("@locationName", MySqlDbType.VarChar).Value = location.LocationName;
+                command.Parameters.Add("@location_id", MySqlDbType.VarChar).Value = location.GetLocationID();
+                command.Parameters.Add("@floor", MySqlDbType.VarChar).Value = location.GetFloor();
+                command.Parameters.Add("@locationName", MySqlDbType.VarChar).Value = location.GetLocationName();
                 command.ExecuteNonQuery();
                 MessageBox.Show("Ort update");
 
