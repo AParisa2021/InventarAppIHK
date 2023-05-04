@@ -25,6 +25,7 @@ namespace InventarAppIHK
         private void MyInitializeComponent()
         {
             //CSVDataImport.LoadFormLocation(dgvLocation);
+            dgvProduct.Columns["price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             InventarMethods.TxtLocation(dgvLocation, txtSelectLocation.Text.ToUpper());
             TxtSelectProd();
         }

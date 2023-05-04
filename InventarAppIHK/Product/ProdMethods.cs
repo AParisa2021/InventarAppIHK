@@ -1,4 +1,5 @@
-﻿using InventarAppIHK.Import;
+﻿using Google.Protobuf.WellKnownTypes;
+using InventarAppIHK.Import;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -131,7 +132,7 @@ namespace InventarAppIHK
                     while (dr.Read())
                     {
                         i++;        //wird noch nicht verwendet
-                        dgv.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString().Substring(0, 10), dr[3].ToString(), dr[4].ToString());
+                        dgv.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString().Substring(0, 10), Utility.PriceFormat(dr[3].ToString()), dr[4].ToString());
                     }
                 }
                 command.Dispose();
@@ -143,6 +144,8 @@ namespace InventarAppIHK
                 MessageBox.Show(e.Message + "Error");
             }
         }
+
+       
 
         /// <summary>
         /// mit count product_id zählt diese Methode die Anzahl der (Datensätze)Produkte, die mit where txtSelect gefiltert werden, also wie ist die
@@ -179,13 +182,7 @@ namespace InventarAppIHK
             {
                 MessageBox.Show(ex.Message + "Error");
             }
-        }
-
-        //private static string PriceFormat(string price)                                   *****er soll 7,00 statt 7 schreiben
-        //{
-        //    string priceFormat =  price.Format("{0:#,##0.##}"); 
-        //    return priceFormat;
-        //}
+        } 
 
         /// <summary>
         /// Im DataGridView im ProductForm kann der User auf edit oder delete drücken. Um einen Datensatz zu löschen oder um das ProductInsertForm zu öffnen um den Datensatz zu ändern
@@ -227,7 +224,7 @@ namespace InventarAppIHK
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message, "Sie können diese Zeile nicht löschen, da sie in einer Elternspalte verwendet wird");
+                        MessageBox.Show( "Sie können diese Zeile nicht löschen, da sie in einer Elternspalte verwendet wird", ex.Message);
 
                     }
                 }
@@ -261,6 +258,8 @@ namespace InventarAppIHK
                 dr.Close();
             }
         }
+
+
 
         /// <summary>
         /// Filterung Preis von, Preis bis und Filterung nach Produktnamen
@@ -327,7 +326,7 @@ namespace InventarAppIHK
                         {
                             while (dr.Read())
                             {
-                                dgv.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString().Substring(0, 10), double.Parse(dr[3].ToString()), dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString());
+                                dgv.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString().Substring(0, 10), Utility.PriceFormat(dr[3].ToString()), dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString());
 
                                 total += double.Parse(dr[3].ToString());
                                 i++;
@@ -346,7 +345,6 @@ namespace InventarAppIHK
                     }
                 }
             }
-
         }
     }
 }

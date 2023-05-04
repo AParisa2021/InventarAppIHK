@@ -23,24 +23,26 @@ namespace InventarAppIHK
 
         private void MyInitializeComponent()
         {
-            ProdMethods.SelectPriceProduct(dgvTotal, txtFrom.Text, txtTo.Text, txtSelect.Text, lblTotal, lblSum);
+            ProdMethods.SelectPriceProduct(dgvTotal, txtFrom.Text, txtTo.Text, txtSelect.Text, lblTotal, lblAmount);
+            dgvTotal.Columns["price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
         }
 
         private void txtTo_TextChanged(object sender, EventArgs e)
         {
-            ProdMethods.SelectPriceProduct(dgvTotal, txtFrom.Text, txtTo.Text, txtSelect.Text, lblTotal, lblSum);
+            ProdMethods.SelectPriceProduct(dgvTotal, txtFrom.Text, txtTo.Text, txtSelect.Text, lblTotal, lblAmount);
         }
 
 
         private void txtFrom_TextChanged(object sender, EventArgs e)
         {
             //SelectPriceProduct();
-            ProdMethods.SelectPriceProduct(dgvTotal, txtFrom.Text, txtTo.Text, txtSelect.Text, lblTotal, lblSum);
+            ProdMethods.SelectPriceProduct(dgvTotal, txtFrom.Text, txtTo.Text, txtSelect.Text, lblTotal, lblAmount);
         }
 
         private void txtSelect_TextChanged(object sender, EventArgs e)
         {
-            ProdMethods.SelectPriceProduct(dgvTotal, txtFrom.Text, txtTo.Text, txtSelect.Text, lblTotal, lblSum);
+            ProdMethods.SelectPriceProduct(dgvTotal, txtFrom.Text, txtTo.Text, txtSelect.Text, lblTotal, lblAmount);
             //InventarMethods.Suml_p(txtSelect.Text, lblSum);
 
         }
@@ -54,8 +56,8 @@ namespace InventarAppIHK
         {
             //DataImport.LoadFormTotal(dgvTotal);
             InventarMethods.TotalEditDelete(dgvTotal, e);
-            InventarMethods.LoadFormTotal(dgvTotal, e);
-            ProdMethods.SelectPriceProduct(dgvTotal, txtFrom.Text, txtTo.Text, txtSelect.Text, lblTotal, lblSum);
+            //InventarMethods.LoadFormTotal(dgvTotal, e);
+            ProdMethods.SelectPriceProduct(dgvTotal, txtFrom.Text, txtTo.Text, txtSelect.Text, lblTotal, lblAmount);
 
             //MyInitializeComponent();
         }
@@ -78,7 +80,7 @@ namespace InventarAppIHK
 
         private void txtSeriennummer_TextChanged(object sender, EventArgs e)
         {
-            InventarMethods.Suml_p(txtProductName.Text, lblSum);
+            InventarMethods.Suml_p(txtProductName.Text, lblAmount);
         }
     }
 }

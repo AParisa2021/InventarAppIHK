@@ -106,14 +106,6 @@ namespace InventarAppIHK
              "INNER JOIN category AS C " +
              "ON P.category_id=C.category_id ";
 
-            //string query = "SELECT P.product_id, P.productName, P.date, P.price, C.categoryName, L.floor, L.locationName " +
-            //    "from inventarfk AS I " +
-            //    "INNER JOIN product AS P " +
-            //    "ON I.product_id=P.product_id " +
-            //    "INNER JOIN location AS L " +
-            //    "ON I.location_id=L.location_id " +
-            //    "INNER JOIN category AS C " +
-            //    "ON P.category_id=C.category_id ";
 
             try
             {
@@ -126,7 +118,7 @@ namespace InventarAppIHK
                     while (dr.Read())
                     {
                         i++;        //wird noch nicht verwendet
-                        dgv.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString().Substring(0, 10), double.Parse(dr[3].ToString()), dr[4].ToString(), dr[5].ToString(), dr[6].ToString());
+                        dgv.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString().Substring(0, 10), Utility.PriceFormat(dr[3].ToString()), dr[4].ToString(), dr[5].ToString(), dr[6].ToString());
                     }
                 }
                 command.Dispose();
@@ -138,6 +130,8 @@ namespace InventarAppIHK
                 MessageBox.Show(ex.Message + "Error");
             }
         }
+
+       
         /// <summary>
         /// MySQL Tabelle totalinventar aus Tabelle location und produkt Inventar wählen und in totalinventar einfügen
         /// </summary>
@@ -341,7 +335,7 @@ namespace InventarAppIHK
                 {
                     while (dr.Read())
                     {
-                        dgv.Rows.Add(dr[0].ToString(), dr[1].ToString(), Utility.Datetime(dr[2].ToString()), dr[3].ToString(), dr[4].ToString());
+                        dgv.Rows.Add(dr[0].ToString(), dr[1].ToString(), Utility.Datetime(dr[2].ToString()), Utility.PriceFormat(dr[3].ToString()), dr[4].ToString());
                     }
                 }
 

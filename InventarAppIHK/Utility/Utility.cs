@@ -116,5 +116,22 @@ namespace InventarAppIHK
             string timeFormat = Convert.ToDateTime(datetime.ToString()).ToString("yyyy-MM-dd");
             return timeFormat;
         }
+
+        /// <summary>
+        /// Diese Methode dienst zur Formatierung. setzt hinter Preisen ohne Kommastellen ,00 hinter. 
+        /// </summary>
+        /// <param name="price"></param>
+        /// <returns></returns>
+        public static string PriceFormat(string price)
+        {
+            if (!price.Contains(","))
+            {
+                return price + ",00";
+            }
+            else
+            {
+                return price ;
+            }
+        }
     }
 }

@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using System.Xml.Linq;
 
 namespace InventarAppIHK
@@ -28,12 +29,14 @@ namespace InventarAppIHK
         public void MyInitializeComponent()
         {
             ProdMethods.LoadFormProduct(dgvProduct);
+            dgvProduct.Columns["price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
         }
 
         private void dgvProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            ProdMethods.ProductEditDelete(dgvProduct, e);
             MyInitializeComponent();
+            ProdMethods.ProductEditDelete(dgvProduct, e);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

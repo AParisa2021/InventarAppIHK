@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnCategory = new System.Windows.Forms.Button();
             this.btnLocation = new System.Windows.Forms.Button();
@@ -154,27 +154,27 @@
             // 
             // Inventarchart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.Inventarchart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.Inventarchart.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            this.Inventarchart.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.Inventarchart.Legends.Add(legend3);
             this.Inventarchart.Location = new System.Drawing.Point(145, 102);
             this.Inventarchart.Name = "Inventarchart";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Legend = "Legend1";
-            series1.Name = "Inventar";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Legend = "Legend1";
-            series2.Name = "Series2";
-            this.Inventarchart.Series.Add(series1);
-            this.Inventarchart.Series.Add(series2);
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series5.Legend = "Legend1";
+            series5.Name = "Inventar";
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series6.Legend = "Legend1";
+            series6.Name = "Series2";
+            this.Inventarchart.Series.Add(series5);
+            this.Inventarchart.Series.Add(series6);
             this.Inventarchart.Size = new System.Drawing.Size(637, 357);
             this.Inventarchart.TabIndex = 0;
             this.Inventarchart.Text = "chart1";
-            title1.Name = "Lager";
-            this.Inventarchart.Titles.Add(title1);
+            title3.Name = "Lager";
+            this.Inventarchart.Titles.Add(title3);
             // 
             // MainForm
             // 
@@ -184,6 +184,9 @@
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.panelLeft);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "MainForm";
             this.Text = "InventoryApp";
             this.VisibleChanged += new System.EventHandler(this.MainForm_Load);
