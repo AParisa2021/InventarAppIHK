@@ -89,9 +89,13 @@ namespace InventarAppIHK
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            Inventarchart.Series["Inventar"].Points.AddXY("2023", 2000);
-            Inventarchart.Series["Inventar"].Points.AddXY("2023", 2000);
+            //Inventarchart.Series["Inventar"].Points.AddXY("2023", 2000);
+            //Inventarchart.Series["Inventar"].Points.AddXY("2023", 2000);
 
+            DesignChartControl.FillChart(chart1);
+            DesignChartControl.FillChart(chart2);
+            DesignChartControl.Location(chart3);
+            DesignChartControl.Location(chart4);
 
         }
 

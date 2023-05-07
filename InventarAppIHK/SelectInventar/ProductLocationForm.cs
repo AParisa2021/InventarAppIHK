@@ -114,7 +114,7 @@ namespace InventarAppIHK
         private void txtSelectProduct_TextChanged(object sender, EventArgs e)
         {
             TxtSelectProd();
-            ProdMethods.SumProduct(txtSelectProduct.Text, lblSum);
+            ProdMethods.SumProduct(dgvProduct, txtSelectProduct.Text, lblSum);
 
         }
 

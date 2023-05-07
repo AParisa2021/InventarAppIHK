@@ -164,7 +164,7 @@ namespace InventarAppIHK
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show("Produkt ist bereits reserviert!");
+                MessageBox.Show(ex.Message,"Produkt ist bereits reserviert!");
                 con.Close();
             }
         }

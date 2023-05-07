@@ -189,6 +189,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtName);
+            this.MinimizeBox = false;
             this.Name = "ProductInsertForm";
             this.Text = "ProductInsertForm";
             this.ResumeLayout(false);

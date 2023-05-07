@@ -143,9 +143,7 @@ namespace InventarAppIHK
             {
                 MessageBox.Show(e.Message + "Error");
             }
-        }
-
-       
+        }       
 
         /// <summary>
         /// mit count product_id zählt diese Methode die Anzahl der (Datensätze)Produkte, die mit where txtSelect gefiltert werden, also wie ist die
@@ -153,29 +151,37 @@ namespace InventarAppIHK
         /// </summary>
         /// <param name="txtSelect"></param>
         /// <param name="lblSum"></param>
-        public static void SumProduct(string txtSelect, Label lblSum)
-        {
-            //string query = "select Count(product_id) " +
-            //                "from product where productName='" + txtSelect.Trim().ToUpper() + "'";
+        public static void SumProduct(DataGridView dgvProduct, string txtSelect, Label lblSum)
+        {           
+            dgvProduct.Rows.Clear();
+           
+            string query = "SELECT P.product_id, P.productName, P.date, P.price, C.categoryName " +
+                            "FROM product AS P " +
+                            "JOIN category AS C ON C.category_id= P.category_id " +
+                            "WHERE P.productName like concat('%' , @search_product , '%')";
 
-            string query = "select Count(product_id) " +
-                          "from product where concat(product_id, productName) like concat ('%' , @productName , '%') ";
             try
             {
                 MySqlConnection con = Utility.GetConnection();
                 MySqlCommand command = new MySqlCommand(query, con);
-                //MySqlDataReader dr = command.ExecuteReader();
-                //lblSum.Text = Convert.ToString(command);
+              
+                command.Parameters.AddWithValue("@search_product", txtSelect.ToUpper());
 
-                using (var cmd = new MySqlCommand(query, con))
+                MySqlDataReader dr = command.ExecuteReader();
+                int i = 0;
+                if (dr.HasRows)
                 {
-                    //ProductForm pf = new ProductForm();
-                    //pf.lblSum.Text = cmd.ExecuteScalar().ToString();
-                    cmd.Parameters.AddWithValue("@productName", txtSelect.ToUpper().Trim());
-                    lblSum.Text = cmd.ExecuteScalar().ToString();
-                }
+                    while (dr.Read())
+                    {
+                        dgvProduct.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString().Substring(0, 10), Utility.PriceFormat( dr[3].ToString()), dr[4].ToString());
 
+                        i++;
+                    }
+                }
+                command.Dispose();
                 con.Close();
+                dr.Close();
+                lblSum.Text = i.ToString();         
 
             }
             catch (MySqlException ex)

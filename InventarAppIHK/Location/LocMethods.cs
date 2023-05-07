@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,9 +32,9 @@ namespace InventarAppIHK
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show("Ort nicht hinzugefügt!");
+                MessageBox.Show(ex.Message,"Ort existiert bereits!");
+                con.Close();
             }
-            con.Close();
         }
         /// <summary>
         /// holt die jeweilige location_id des jeweiligen locationName aus der category Tabelle und gibt die LocationId als Rückgabewert zurück
@@ -117,23 +118,23 @@ namespace InventarAppIHK
         public static void UpdateLocation(Location location)
         {
             string query = "UPDATE location SET floor=@floor, locationName=@locationName WHERE location_id=@location_id";
+            MySqlConnection con = Utility.GetConnection();
+            MySqlCommand command = new MySqlCommand(query, con);
+            command.Parameters.Add("@location_id", MySqlDbType.VarChar).Value = location.GetLocationID();
+            command.Parameters.Add("@floor", MySqlDbType.VarChar).Value = location.GetFloor();
+            command.Parameters.Add("@locationName", MySqlDbType.VarChar).Value = location.GetLocationName();
+
             try
             {
-                MySqlConnection con = Utility.GetConnection();
-                MySqlCommand command = new MySqlCommand(query, con);
-                command.Parameters.Add("@location_id", MySqlDbType.VarChar).Value = location.GetLocationID();
-                command.Parameters.Add("@floor", MySqlDbType.VarChar).Value = location.GetFloor();
-                command.Parameters.Add("@locationName", MySqlDbType.VarChar).Value = location.GetLocationName();
                 command.ExecuteNonQuery();
                 MessageBox.Show("Ort update");
-
                 MySqlDataReader da = command.ExecuteReader();
 
-                con.Close();
             }
             catch (MySqlException e)
             {
                 MessageBox.Show(e.Message + "Ort nicht hinzugefügt!");
+                con.Close();
             }
         }
 
@@ -206,6 +207,65 @@ namespace InventarAppIHK
                 }
             }
             con.Close();
+        }
+
+        /// <summary>
+        /// KeyPress Methode: Beim drücken der Enter Taste wird location gespeichert.
+        /// </summary>
+        /// <param name="btn"></param>
+        /// <param name="textBox1"></param>
+        /// <param name="textBox2"></param>
+        /// <param name="e"></param>
+        public static void KeyDownSave(Button btn, string textBox1, string textBox2, KeyEventArgs e)
+        {
+
+            if (btn.Enabled == false)
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (textBox1 == "" && textBox2 == "")
+                    {
+                        MessageBox.Show("Bitte geben Sie einen Ort an!");
+                    }
+                    else
+                    {
+                        Location location = new Location(textBox1.Trim(), textBox2.Trim());
+                        LocMethods.AddLocation(location);
+                    }
+                }
+
+            }
+        }
+        /// <summary>
+        /// KeyPress Methode: Beim drücken der Enter Taste wird location geändert mit der update Methode.
+        /// </summary>
+        /// <param name="btn"></param>
+        /// <param name="textBox1"></param>
+        /// <param name="textBox2"></param>
+        /// <param name="textBox3"></param>
+        /// <param name="e"></param>
+        public static void KeyDownUpdate(Button btn, string textBox1, string textBox2, string textBox3, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (textBox1 == "" && textBox2 == "")
+                    {
+                        MessageBox.Show("Bitte geben Sie einen Ort an!");
+                    }
+                    else
+                    {
+                        Location location = new Location(int.Parse(textBox1), textBox2, textBox3);
+                        LocMethods.UpdateLocation(location);
+                    }
+                }
+            }
+           catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ort existiert bereits!");
+            }
+
         }
     }
 }

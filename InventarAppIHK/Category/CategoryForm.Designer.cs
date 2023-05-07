@@ -136,6 +136,7 @@
             this.Controls.Add(this.dgvCategory);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
             this.Name = "CategoryForm";
             this.Text = "CategoryForm";
             this.panel1.ResumeLayout(false);

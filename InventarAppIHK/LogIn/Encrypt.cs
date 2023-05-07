@@ -9,22 +9,36 @@ namespace InventarAppIHK
 {
     public class Encrypt
     {
-        public static string HashString(string passwordString)
+        /// <summary>
+        /// Der StringBuilder stellt eine veränderbare Zeichenfolge dar.
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public static string HashValue(string password)
         {
-            StringBuilder sb= new StringBuilder();
-            foreach(byte b in GetHash(passwordString)) 
+            StringBuilder stringBuilder= new StringBuilder();
+            foreach(byte b in GetHashValue(password)) 
             {
-            sb.Append(b.ToString("X3"));
+                stringBuilder.Append(b.ToString("X3"));
             }
-            return sb.ToString();
-
+            return stringBuilder.ToString();
         }
 
-        public static byte[] GetHash(string passwordString)
+        public static byte[] GetHashValue(string password)
         {
-            using (HashAlgorithm algorithm= SHA256.Create()) 
-                return algorithm.ComputeHash(Encoding.UTF8.GetBytes(passwordString));
+            using (HashAlgorithm Hashalgorithm= SHA256.Create()) 
+                return Hashalgorithm.ComputeHash(Encoding.UTF8.GetBytes(password));
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
 //https://www.youtube.com/watch?v=J3BbVzzfR3g       Hashwert

@@ -191,6 +191,7 @@
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtUser);
+            this.MaximizeBox = false;
             this.Name = "LoginForm";
             this.Text = "MainForm";
             this.panel1.ResumeLayout(false);

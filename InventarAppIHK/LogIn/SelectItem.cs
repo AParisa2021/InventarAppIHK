@@ -22,7 +22,7 @@ namespace InventarAppIHK
                 MySqlCommand command= new MySqlCommand();
                 command.CommandText = ("Select * from login where (username, Password) = (@username, @Password)");
                 command.Parameters.AddWithValue("@username", userInsert);
-                command.Parameters.AddWithValue("@Password", Encrypt.HashString(passwordInsert));
+                command.Parameters.AddWithValue("@Password", Encrypt.HashValue(passwordInsert));
                 command.Connection = DBConnection.connMaster;
                 MySqlDataReader reader = command.ExecuteReader();
 

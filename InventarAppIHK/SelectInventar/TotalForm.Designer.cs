@@ -336,6 +336,7 @@
             this.Controls.Add(this.dgvTotal);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "TotalForm";
             this.Text = "TotalForm";
             this.Load += new System.EventHandler(this.TotalForm_Load);

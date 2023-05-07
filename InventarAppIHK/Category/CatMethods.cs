@@ -28,12 +28,12 @@ namespace InventarAppIHK
                 command.ExecuteNonQuery();
                 con.Close();
                
-                    MessageBox.Show("Kategorie gespeichert");                   //******************klappt nicht. auch wenn nicht gespeichert wird, gibt er das an
+                    MessageBox.Show("Kategorie gespeichert");                   
              
             }
-            catch (MySqlException e)
+            catch (MySqlException ex)
             {
-                MessageBox.Show("Die Kategorie existiert bereits!");
+                MessageBox.Show(ex.Message,"Die Kategorie existiert bereits!");
             }
         }
 

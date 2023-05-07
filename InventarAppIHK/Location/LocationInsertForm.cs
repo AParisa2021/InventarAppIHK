@@ -56,36 +56,15 @@ namespace InventarAppIHK
 
         private void txtRoomName_KeyDown(object sender, KeyEventArgs e)
         {
-            if (btnUpdate.Enabled == false)
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    if (txtfloor.Text == "" && txtRoomName.Text == "")
-                    {
-                        MessageBox.Show("Bitte geben Sie einen Ort an!");
-                    }
-                    else
-                    {
-                        Location location = new Location(txtfloor.Text.Trim(), txtRoomName.Text.Trim());
-                        LocMethods.AddLocation(location);                        
-                    }
-                }
 
-            }
-            else if (btnSave.Enabled == false)
+           if (btnSave.Enabled == false)
+           {
+                LocMethods.KeyDownUpdate(btnUpdate, txtID.Text, txtfloor.Text, txtRoomName.Text, e);          
+           }
+       
+            else if (btnUpdate.Enabled == false)
             {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    if (txtfloor.Text == "" && txtRoomName.Text == "")
-                    {
-                        MessageBox.Show("Bitte geben Sie einen Ort an!");
-                    }
-                    else
-                    {
-                        Location location = new Location(int.Parse(txtID.Text), txtfloor.Text, txtRoomName.Text);
-                        LocMethods.UpdateLocation(location);                        
-                    }
-                }
+                LocMethods.KeyDownSave(btnUpdate, txtfloor.Text, txtRoomName.Text, e);                     
             }
         }
     }

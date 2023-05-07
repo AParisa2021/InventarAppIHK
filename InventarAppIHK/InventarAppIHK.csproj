@@ -81,6 +81,7 @@
     <Compile Include="ChartControl.Designer.cs">
       <DependentUpon>ChartControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="DesignChartControl.cs" />
     <Compile Include="IDatabase.cs" />
     <Compile Include="SelectInventar\InventarMethods.cs" />
     <Compile Include="Location\LocMethods.cs" />

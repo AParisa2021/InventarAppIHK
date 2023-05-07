@@ -39,7 +39,35 @@ namespace InventarAppIHK
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-           
+
+            // //Login Attempts counter
+            //int loginAttempts = 0;
+
+            ////Simple iteration upto three times
+            //for (int i = 0; i < 3; i++)
+            //{
+            //    if (loginAttempts > 2)
+            //        MessageBox.Show("Bitte Admin");
+            //    //MessageBox.Show("Bitte Benutzername und Passwort eingeben!");
+
+            //    if (txtUser.Text == "" && txtPassword.Text == "")       //Fehler denn wenn er eine Falscheingabe macht geht er in den nächsten if teil
+            //    {                                                       //loginAttempts zählt er nur 3 wenn keine Eingabe erfolt und nicht bei einer falschen Eingabe
+            //        loginAttempts+=i;
+            //    }
+              
+
+            //}
+
+            ////Display the result
+            //if (loginAttempts > 2)
+            //    MessageBox.Show("Bitte Admin");
+            //else
+            //{
+            //    selectItem.SelectData(txtUser.Text, txtPassword.Text);
+            //    this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            //    //this.Close();
+            //}
+
             if (txtUser.Text == "" && txtPassword.Text == "")
             {
                 MessageBox.Show("Bitte registrieren");

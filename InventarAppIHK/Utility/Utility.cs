@@ -106,6 +106,7 @@ namespace InventarAppIHK
             if (datetime == "") return "-";
             else return Convert.ToDateTime(datetime.ToString()).ToString("yyyy-MM-dd");
         }
+
         /// <summary>
         /// Umwandlung des Formats in Datetime Jahr-Monat-Tag
         /// </summary>

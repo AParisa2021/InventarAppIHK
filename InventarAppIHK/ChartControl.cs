@@ -21,7 +21,7 @@ namespace InventarAppIHK
          
         }
 
-        private void FillChart()
+        public void FillChart()
         {
             MySqlConnection con = Utility.GetConnection();
 
@@ -95,6 +95,11 @@ namespace InventarAppIHK
             adapter.Fill(dt);
             dataGridView1.DataSource = dt;
             con.Close();
+        }
+
+        private void chart1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

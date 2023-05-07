@@ -55,7 +55,7 @@ namespace InventarAppIHK
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            ProdMethods.SumProduct(txtSearch.Text, lblSum);
+            ProdMethods.SumProduct(dgvProduct,txtSearch.Text, lblSum);
         }
     }
 }
