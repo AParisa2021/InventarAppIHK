@@ -24,6 +24,7 @@ namespace InventarAppIHK
         private void MyInitializeComponent()
         {
             ProdMethods.SelectPriceProduct(dgvTotal, txtFrom.Text, txtTo.Text, txtSelect.Text, lblTotal, lblAmount);
+            //ProdMethods.SetDataToDataGridView(dgvTotal, );
             dgvTotal.Columns["price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
         }
@@ -36,14 +37,12 @@ namespace InventarAppIHK
 
         private void txtFrom_TextChanged(object sender, EventArgs e)
         {
-            //SelectPriceProduct();
             ProdMethods.SelectPriceProduct(dgvTotal, txtFrom.Text, txtTo.Text, txtSelect.Text, lblTotal, lblAmount);
         }
 
         private void txtSelect_TextChanged(object sender, EventArgs e)
         {
             ProdMethods.SelectPriceProduct(dgvTotal, txtFrom.Text, txtTo.Text, txtSelect.Text, lblTotal, lblAmount);
-            //InventarMethods.Suml_p(txtSelect.Text, lblSum);
 
         }
 
@@ -54,12 +53,9 @@ namespace InventarAppIHK
         /// <param name="e"></param>
         private void dgvTotal_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //DataImport.LoadFormTotal(dgvTotal);
             InventarMethods.TotalEditDelete(dgvTotal, e);
-            //InventarMethods.LoadFormTotal(dgvTotal, e);
             ProdMethods.SelectPriceProduct(dgvTotal, txtFrom.Text, txtTo.Text, txtSelect.Text, lblTotal, lblAmount);
 
-            //MyInitializeComponent();
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {

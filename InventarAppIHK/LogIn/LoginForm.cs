@@ -73,11 +73,9 @@ namespace InventarAppIHK
                 MessageBox.Show("Bitte registrieren");
             }
             else if (txtUser.Text != "" && txtPassword.Text != "")
-            {
-            
+            {            
                 selectItem.SelectData(txtUser.Text, txtPassword.Text);
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
-                this.Close();
             }
             else
             {

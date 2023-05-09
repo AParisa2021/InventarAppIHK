@@ -30,6 +30,26 @@ namespace InventarAppIHK
             return con;
         }
 
+        //to show subform form in mainform
+        /// <summary>
+        /// Methode öffnet die User Form innerhalb der Main Form, wenn btn_Users etc. geklickt werden. Als Parameter wird die UnterForm als childform(UserForm) 
+        /// in die Methode reingegeben. Die gesamte Form wird im Panel angezeigt
+        /// </summary>
+        public static Form activeForm = null;
+        public static void openChildForm(Panel panelMain, Form childform)
+        {
+            if (activeForm != null)     //wenn UserForm existiert
+                activeForm.Close();     //schließt das Formular
+            activeForm = childform;     //aktuelle Form wird zur UnterForm
+            childform.TopLevel = false; //Ruft 1 Wert ab, der angibt, ob das Formular als Fenster der obersten Ebene angezeigt wird oder legt diesen fest. True, um das Fenster als obersten Ebene anzuzeigen, sonst false
+            childform.FormBorderStyle = FormBorderStyle.None;   //Ramenform für ein Formular
+            childform.Dock = DockStyle.Fill;        //Andocken des Steuerelements
+            panelMain.Controls.Add(childform);      //gibt die childForm im Panel aus
+            panelMain.Tag = childform;              //Tag: 1 Objekt, das Daten über das Steuerelement zeigt
+            childform.BringToFront();
+            childform.Show();           //zeigt childform an
+        }
+
         /// <summary>
         /// wenn die comboBox leer oder null ist, gibt er einen leeren string zurück, sonst den Wert. So wird Programmfehler verindert
         /// </summary>

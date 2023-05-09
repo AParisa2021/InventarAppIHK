@@ -27,5 +27,8 @@ namespace InventarAppIHK
             this.Floor = floor;
             this.LocationName = locationName;
         }
+        public Location()
+        {
+        }
     }
 }

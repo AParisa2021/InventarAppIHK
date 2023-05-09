@@ -132,6 +132,7 @@
             this.txtLPId.Name = "txtLPId";
             this.txtLPId.Size = new System.Drawing.Size(100, 22);
             this.txtLPId.TabIndex = 15;
+            this.txtLPId.Visible = false;
             // 
             // txtLocationID
             // 

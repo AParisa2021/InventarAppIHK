@@ -35,8 +35,8 @@ namespace InventarAppIHK
 
         private void dgvProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            MyInitializeComponent();
             ProdMethods.ProductEditDelete(dgvProduct, e);
+            MyInitializeComponent();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

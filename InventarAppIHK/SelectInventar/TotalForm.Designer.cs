@@ -85,7 +85,7 @@
             // 
             this.lblAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAmount.ForeColor = System.Drawing.Color.White;
-            this.lblAmount.Location = new System.Drawing.Point(425, 97);
+            this.lblAmount.Location = new System.Drawing.Point(138, 97);
             this.lblAmount.Name = "lblAmount";
             this.lblAmount.Size = new System.Drawing.Size(56, 39);
             this.lblAmount.TabIndex = 12;
@@ -96,7 +96,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(39, 103);
+            this.label5.Location = new System.Drawing.Point(38, 101);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(72, 20);
             this.label5.TabIndex = 11;
@@ -104,10 +104,11 @@
             // 
             // txtProductName
             // 
-            this.txtProductName.Location = new System.Drawing.Point(133, 101);
+            this.txtProductName.Location = new System.Drawing.Point(408, 95);
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(268, 22);
             this.txtProductName.TabIndex = 10;
+            this.txtProductName.Visible = false;
             this.txtProductName.TextChanged += new System.EventHandler(this.txtSeriennummer_TextChanged);
             // 
             // lblTotal

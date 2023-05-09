@@ -35,7 +35,7 @@ namespace InventarAppIHK
         {
             MySqlConnection con = Utility.GetConnection();
 
-            string query = "select floor, locationName from location"; // || in sql ist wie das + in C#. Hierdruch werden strings zusammengesetzt  https://stackoverflow.com/questions/13950279/like-statement-for-npgsql-using-parameter
+            string query = "select floor, count(locationName) AS LN from location GROUP BY floor"; // || in sql ist wie das + in C#. Hierdruch werden strings zusammengesetzt  https://stackoverflow.com/questions/13950279/like-statement-for-npgsql-using-parameter
             MySqlCommand command = new MySqlCommand(query, con);
 
 
@@ -46,7 +46,7 @@ namespace InventarAppIHK
 
             chart1.DataSource = dataset;
             chart1.Series[0].XValueMember = "floor";
-            chart1.Series[0].YValueMembers = "locationName";
+            chart1.Series[0].YValueMembers = "LN";
             // Insert code for additional chart formatting here.
             chart1.DataBind();
             con.Close();

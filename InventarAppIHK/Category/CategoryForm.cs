@@ -28,7 +28,7 @@ namespace InventarAppIHK
 
         private void dgvCategory_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            CatMethods.CategoryEditDelete(dgvCategory, e);
+            CatMethods.ProcessDataGridViewClick(dgvCategory, e);
             MyInitializeComponent();
         }
 

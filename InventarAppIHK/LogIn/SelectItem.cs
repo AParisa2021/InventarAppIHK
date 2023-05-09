@@ -36,7 +36,7 @@ namespace InventarAppIHK
                 }
                 else
                 {
-                    MessageBox.Show("Bitte registrieren Sie sich!");
+                    MessageBox.Show("Ihre Eingabedaten sind nicht korrekt oder Sie sind noch nicht registriert!");
                 }
                 return userInsert + passwordInsert;
             }
